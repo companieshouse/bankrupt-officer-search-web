@@ -26,6 +26,13 @@ gulp-install:
 .PHONY: init
 init: npm-install gulp-install build-static
 
+.PHONY: test
+test: test-unit
+
+.PHONY: test-unit
+test-unit:
+	npm run test
+
 .PHONY: package
 package: init build 
 ifndef version
