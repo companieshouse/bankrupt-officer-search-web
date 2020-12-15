@@ -1,6 +1,7 @@
+artifact_name       := bankrupt-officer-search-web
+
 .PHONY: build
-build: clean build-app build-static
-	npm run build
+build: clean init build-app
 
 .PHONY: build-app
 build-app:
@@ -8,7 +9,7 @@ build-app:
 
 .PHONY: clean
 clean:
-	rm -rf dist/app dist/static
+	rm -rf dist/
 
 .PHONY: build-static
 build-static:
@@ -25,3 +26,19 @@ gulp-install:
 .PHONY: init
 init: npm-install gulp-install build-static
 
+.PHONY: package
+package: init build 
+ifndef version
+	$(error No version given. Aborting)
+endif
+	$(info Packaging version: $(version))
+	$(eval tmpdir := $(shell mktemp -d build-XXXXXXXXXX))
+	cp -r ./dist/* $(tmpdir)
+	cp -r ./package.json $(tmpdir)
+	cp -r ./package-lock.json $(tmpdir)
+	cp ./start.sh $(tmpdir)
+	cp ./routes.yaml $(tmpdir)
+	cd $(tmpdir) && npm i --production
+	rm $(tmpdir)/package.json $(tmpdir)/package-lock.json
+	cd $(tmpdir) && zip -r ../$(artifact_name)-$(version).zip .
+	rm -rf $(tmpdir)
