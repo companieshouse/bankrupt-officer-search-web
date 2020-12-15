@@ -1,6 +1,7 @@
-.idea
-.vscode
-.DS_STORE
+*
 
-node_modules/
-dist/
+!src
+!gulpfile.js
+!package.json
+!package-lock.json
+!tsconfig.json
