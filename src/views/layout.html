@@ -1,0 +1,75 @@
+{% extends "components/template.njk" %}
+
+{% from "govuk/components/tabs/macro.njk"             import govukTabs %}
+{% from "govuk/components/breadcrumbs/macro.njk"      import govukBreadcrumbs %}
+{% from "govuk/components/button/macro.njk"           import govukButton %}
+{% from "govuk/components/back-link/macro.njk"        import govukBackLink %}
+{% from "govuk/components/error-summary/macro.njk"    import govukErrorSummary %}
+{% from "govuk/components/fieldset/macro.njk"         import govukFieldset %}
+{% from "govuk/components/panel/macro.njk"            import govukPanel %}
+{% from "govuk/components/checkboxes/macro.njk"       import govukCheckboxes %}
+{% from "govuk/components/summary-list/macro.njk"     import govukSummaryList %}
+{% from "govuk/components/textarea/macro.njk"         import govukTextarea %}
+{% from "govuk/components/radios/macro.njk"           import govukRadios %}
+{% from "govuk/components/input/macro.njk"            import govukInput %}
+{% from "./components/header/macro.njk"               import chHeader %}
+{% from "./components/footer/macro.njk"               import chFooter %}
+{% from "govuk/components/table/macro.njk"            import govukTable %}
+
+{% block head %}
+<meta name="format-detection" content="telephone=no">
+<!--[if !IE 8]><!-->
+<link rel="stylesheet" type="text/css" media="all" href="{{ CSS_URL }}" />
+<link rel="stylesheet" type="text/css" media="all" href="{{ FOOTER }}" />
+<!--<![endif]-->
+<link rel="SHORTCUT ICON" href="//{{CDN_URL}}/images/favicon.ico" />
+<link rel="icon" href="//{{CDN_URL}}/images/favicon.ico" type="image/x-icon" />
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+          integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+          crossorigin="anonymous">
+</script>
+
+<div id="templateName" data-id='{{templateName}}' hidden></div>
+
+{% endblock %}
+
+{% block footer %}
+    {{ chFooter({
+      classes: "ch",
+      meta: {
+        items: [
+          {
+            href: "http://resources.companieshouse.gov.uk/serviceInformation.shtml",
+            text: "Policies"
+          },
+          {
+            href: "https://beta.companieshouse.gov.uk/help/cookies",
+            text: "Cookies"
+          },
+          {
+            href: "https://beta.companieshouse.gov.uk/help/contact-us",
+            text: "Contact us"
+          },
+          {
+            href: "https://developer.companieshouse.gov.uk/api/docs/",
+            text: "Developers"
+          }
+        ]
+      }
+    }) }}
+{% endblock %}
+
+{% block bodyEnd %}
+  <script src="//{{CDN_URL}}/javascripts/app/piwik-enable.js"></script>
+  <script type="application/javascript">
+    (function() {
+      bindPiwikListener('bankruptcy', '{{PIWIK_URL}}', {{PIWIK_SITE_ID}});
+    }());
+  </script>
+  <noscript>
+    <p>
+      <img src="{{PIWIK_URL}}/piwik.php?idsite={{PIWIK_SITE_ID}}" style="border:0;" alt="" />
+    </p>
+  </noscript>
+{% endblock %}
