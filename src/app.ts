@@ -1,7 +1,9 @@
 import * as express from "express";
 import * as nunjucks from "nunjucks";
 import * as path from "path";
+
 import router from "./routers";
+import { serverErrorHandler } from "./controller";
 
 const app = express();
 
@@ -36,5 +38,8 @@ if (process.env.NODE_ENV === "development") {
 }
 // apply our default router to /
 app.use("/", router);
+
+// set up error handler
+app.use(serverErrorHandler);
 
 export default app;
