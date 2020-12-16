@@ -1,9 +1,21 @@
-import {Router} from "express";
-import {homeHandler} from "../handlers";
+import { Router } from "express";
 
-// a router is a collection of routes that can have their own middleware chain. It is helpful to create routers for
-// a collection of related routes for better organisation and specific logic.
+import { 
+    bankrupt, 
+    bankruptOfficer, 
+    notFoundErrorHandler 
+} from "../controller";
+
+import { 
+    SCOTTISH_BANKRUPT_OFFICER, 
+    SCOTTISH_BANKRUPT_OFFICER_DETAILS 
+} from "../config";
+
 const router = Router();
-router.get("/", homeHandler);
+
+router.get(SCOTTISH_BANKRUPT_OFFICER_DETAILS, bankruptOfficer);
+router.get(SCOTTISH_BANKRUPT_OFFICER, bankrupt);
+
+router.all("/*", notFoundErrorHandler);
 
 export default router;
