@@ -7,14 +7,14 @@ sass.compiler = require('node-sass');
 gulp.task("govuk-frontend-copy", function() {
   return gulp.src([
     "./node_modules/govuk-frontend/govuk/assets/**/*"
-  ]).pipe(gulp.dest("./dist/static"));
+  ]).pipe(gulp.dest("./dist/app/static"));
 });
 
 // compiles the sass down to css
 gulp.task('sass', function() {
   return gulp.src('./static/**/*.scss')
     .pipe(sass())
-    .pipe(gulp.dest('./dist/static'));
+    .pipe(gulp.dest('./dist/app/static'));
 });
 
 // executes all static asset tasks in parallel

@@ -6,8 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=development ts-node ./src/server.ts",
     "start:watch": "NODE_ENV=development nodemon",
-    "build": "NODE_ENV=production tsc",
-    "postbuild": "copyfiles -f -V src/views/* dist/app/views",
+    "build": "NODE_ENV=production tsc && cp -r src/views dist/app && gulp static",
     "lint": "tslint -p .",
     "test": "jest -c src/test/jest.config.js"
   },
@@ -21,8 +20,10 @@
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "govuk-frontend": "^3.10.1",
+    "helmet": "^4.2.0",
     "ioredis": "^4.19.4",
     "nunjucks": "^3.2.2",
+    "validator": "^13.5.2",
     "yargs": "^16.2.0"
   },
   "devDependencies": {

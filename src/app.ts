@@ -3,6 +3,7 @@ import * as nunjucks from "nunjucks";
 import * as path from "path";
 import cookieParser from "cookie-parser";
 import Redis from "ioredis";
+import helmet from "helmet";
 
 import { 
   SessionStore, 
@@ -37,6 +38,7 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
+app.use(helmet());
 
 // where nunjucks templates should resolve to
 const viewPath = path.join(__dirname, "views");
@@ -66,10 +68,16 @@ env.addGlobal("PIWIK_URL", PIWIK_URL);
 env.addGlobal("PIWIK_SITE_ID", PIWIK_SITE_ID);
 
 // serve static assets in development. this will not execute in production.
-if (process.env.NODE_ENV === "development") {
-  app.use("/static", express.static("dist/static"));
+if (process.env.NODE_ENV !== "production") {
+  app.use("/static", express.static("dist/app/static"));
   env.addGlobal("CSS_URL", "/static/app.css");
+  //env.addGlobal("FOOTER", "/static/footer.css");
+} else {
+  app.use("/static", express.static("static"));
+  env.addGlobal("CSS_URL", "/static/app.css");
+  //env.addGlobal("FOOTER", "/static/footer.css");
 }
+
 // apply our default router to /
 app.use("/", router);
 
