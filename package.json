@@ -7,7 +7,8 @@
     "start": "node dist/app/server.js",
     "start:watch": "NODE_ENV=development nodemon",
     "build": "NODE_ENV=production tsc && cp -r src/views dist/app && gulp static",
-    "lint": "tslint -p .",
+    "lint:check": "ts-standard",
+    "lint": "ts-standard --fix",
     "test": "jest -c src/test/jest.config.js"
   },
   "keywords": [],
@@ -43,7 +44,7 @@
     "supertest": "^6.0.1",
     "ts-jest": "^26.4.4",
     "ts-node": "^9.1.1",
-    "tslint": "^6.1.1",
+    "ts-standard": "^10.0.0",
     "typescript": "^4.1.3"
   },
   "nodemonConfig": {
@@ -56,5 +57,11 @@
       "**/*.spec.ts"
     ],
     "exec": "ts-node ./src/server.ts"
+  },
+  "ts-standard": {
+    "ignore": [
+      "dist",
+      "src/views/components/header/header.js"
+    ]
   }
 }
