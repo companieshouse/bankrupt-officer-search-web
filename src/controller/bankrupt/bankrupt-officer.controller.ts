@@ -1,11 +1,11 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from 'express'
 
-export default (req: Request, res: Response, next: NextFunction) => {
+export default (req: Request, res: Response, next: NextFunction): void => {
   try {
-    const bankruptOfficer = [];
+    const bankruptOfficer = []
 
-    res.render("bankrupt_officer", { bankruptOfficer });
+    res.render('bankrupt_officer', { bankruptOfficer })
   } catch (err) {
-    next(err);
+    next(err)
   }
-};
+}

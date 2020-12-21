@@ -1,19 +1,19 @@
 module.exports = {
   roots: [
-    "<rootDir>"
+    '<rootDir>'
   ],
   testPathIgnorePatterns: [
-    "/node_modules/",
-    "/dist/"
+    '/node_modules/',
+    '/dist/'
   ],
-  preset: "ts-jest",
-  testEnvironment: "node",
+  preset: 'ts-jest',
+  testEnvironment: 'node',
   verbose: true,
-  testMatch: ["**/test/**/*.spec.[jt]s"],
+  testMatch: ['**/test/**/*.spec.[jt]s'],
   globals: {
-    "ts-jest": {
-      diagnostics: false,
+    'ts-jest': {
+      diagnostics: false
     }
   },
-  globalSetup: "./setup.ts"
-};
+  globalSetup: './setup.ts'
+}
