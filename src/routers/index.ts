@@ -1,7 +1,8 @@
 import { Router } from "express";
 
 import { 
-    bankrupt, 
+    getSearchPage, 
+    postSearchPage, 
     bankruptOfficer, 
     notFoundErrorHandler 
 } from "../controller";
@@ -14,7 +15,9 @@ import {
 const router = Router();
 
 router.get(SCOTTISH_BANKRUPT_OFFICER_DETAILS, bankruptOfficer);
-router.get(SCOTTISH_BANKRUPT_OFFICER, bankrupt);
+router.get(SCOTTISH_BANKRUPT_OFFICER, getSearchPage);
+
+router.post(SCOTTISH_BANKRUPT_OFFICER, postSearchPage);
 
 router.all("/*", notFoundErrorHandler);
 
