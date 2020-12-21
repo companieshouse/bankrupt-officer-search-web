@@ -21,3 +21,6 @@ export const COOKIE_DOMAIN = getEnvironmentValue("COOKIE_DOMAIN");
 export const APPLICATION_NAME = "bankrupt-officer-search-web";
 export const SCOTTISH_BANKRUPT_OFFICER = "/admin/officer-search/scottish-bankrupt-officer";
 export const SCOTTISH_BANKRUPT_OFFICER_DETAILS = "/admin/officer-search/scottish-bankrupt-officer/:id";
+
+export const ORACLE_QUERY_API_URL="http://oracle-query-api:8080";
+export const ORACLE_QUERY_API_ENDPOINT = "/officer-search/scottish-bankrupt-officers/";
