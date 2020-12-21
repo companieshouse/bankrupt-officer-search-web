@@ -1,19 +1,22 @@
 artifact_name       := bankrupt-officer-search-web
+version             := "unversioned"
 
 .PHONY: build
-build: clean init build-app
+build:
+	clean
+	init
+	build-app
+
+.PHONY: clean
+clean:
+	rm -f ./$(artifact_name)-*.zip
+	rm -rf ./build-*
+	rm -rf ./dist
+	rm -f ./build.log
 
 .PHONY: build-app
 build-app:
 	npm run build
-
-.PHONY: clean
-clean:
-	rm -rf dist/
-
-.PHONY: build-static
-build-static:
-	gulp static
 
 .PHONY: npm-install
 npm-install:
@@ -24,7 +27,7 @@ gulp-install:
 	npm install gulp-cli -g
 
 .PHONY: init
-init: npm-install gulp-install build-static
+init: npm-install gulp-install
 
 .PHONY: test
 test: test-unit
@@ -34,7 +37,7 @@ test-unit:
 	npm run test
 
 .PHONY: package
-package: init build 
+package: build
 ifndef version
 	$(error No version given. Aborting)
 endif
