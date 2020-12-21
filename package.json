@@ -4,7 +4,7 @@
   "description": "Web application for searching for bankrupt officers",
   "main": "dist/app/server.js",
   "scripts": {
-    "start": "NODE_ENV=development ts-node ./src/server.ts",
+    "start": "node dist/app/server.js",
     "start:watch": "NODE_ENV=development nodemon",
     "build": "NODE_ENV=production tsc && cp -r src/views dist/app && gulp static",
     "lint": "tslint -p .",
