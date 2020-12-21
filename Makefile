@@ -29,6 +29,10 @@ gulp-install:
 .PHONY: init
 init: npm-install gulp-install
 
+.PHONY: lint
+lint:
+	npm run lint
+
 .PHONY: test
 test: test-unit
 
