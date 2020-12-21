@@ -25,6 +25,7 @@ import router from "./routers";
 import {
   PIWIK_SITE_ID,
   PIWIK_URL,
+  CDN_HOST,
   COOKIE_SECRET,
   COOKIE_DOMAIN,
   CACHE_SERVER,
@@ -66,16 +67,17 @@ app.set("view engine", "html");
 // add global variables to all templates
 env.addGlobal("PIWIK_URL", PIWIK_URL);
 env.addGlobal("PIWIK_SITE_ID", PIWIK_SITE_ID);
+env.addGlobal("CDN_HOST", CDN_HOST);
 
 // serve static assets in development. this will not execute in production.
 if (process.env.NODE_ENV !== "production") {
   app.use("/static", express.static("dist/app/static"));
   env.addGlobal("CSS_URL", "/static/app.css");
-  //env.addGlobal("FOOTER", "/static/footer.css");
+  env.addGlobal("FOOTER", "/static/footer.css");
 } else {
   app.use("/static", express.static("static"));
   env.addGlobal("CSS_URL", "/static/app.css");
-  //env.addGlobal("FOOTER", "/static/footer.css");
+  env.addGlobal("FOOTER", "/static/footer.css");
 }
 
 // apply our default router to /
