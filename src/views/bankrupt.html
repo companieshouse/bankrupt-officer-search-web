@@ -16,12 +16,8 @@
     <input class="govuk-input govuk-input--width-30" id="surname" type="text" name="surname">
   </div>
   <div class="govuk-form-group">
-    <label class="govuk-label" for="forename">Forename</label>
-    <input class="govuk-input govuk-input--width-30" id="forename" type="text" name="forename">
-  </div>
-  <div class="govuk-form-group">
-    <label class="govuk-label" for="othername">Alias</label>
-    <input class="govuk-input govuk-input--width-30" id="othername" type="text" name="othername">
+    <label class="govuk-label" for="forename1">Forename</label>
+    <input class="govuk-input govuk-input--width-30" id="forename1" type="text" name="forename1">
   </div>
   <div class="govuk-form-group">
     <fieldset class="govuk-fieldset" role="group">
@@ -43,10 +39,10 @@
     </fieldset>
   </div>
   <div class="govuk-form-group">
-    <label class="govuk-label" for="postCode">
+    <label class="govuk-label" for="postcode">
       Postcode
     </label>
-    <input class="govuk-input govuk-input--width-10" id="postCode" name="postCode" type="text" autocomplete="postal-code">
+    <input class="govuk-input govuk-input--width-10" id="postcode" name="postcode" type="text" autocomplete="postal-code">
   </div>
   <button class="govuk-button" data-module="govuk-button">
     Search
@@ -77,7 +73,7 @@
     }) }}
 
   {% if not rows or not rows|length %}
-    <h2 class="govuk-heading-s">No Bankrupt Officers found with the given parameters.</h2>
+    <h2 class="govuk-heading-s">No results found matching your search criteria.</h2>
   {% endif %}
 
 {% endblock %}
