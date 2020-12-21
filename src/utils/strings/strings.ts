@@ -5,7 +5,7 @@
  */
 
 export const addComma = (string: string): string => {
-  if (string !== null && string !== undefined && string !== '') {
+  if (typeof string === 'string' && string !== '') {
     return `${string}, `
   }
   return ''
