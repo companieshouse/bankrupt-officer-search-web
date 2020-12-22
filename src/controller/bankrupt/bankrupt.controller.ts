@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from 'express'
 
-import { logger } from '../../utils'
-import { getBankruptOfficers } from '../../service'
+import { generateAddress, logger } from '../../utils'
+import { fetchBankruptOfficers, generateQuery } from '../../service'
+import { BankruptOfficerSearchFilters } from '../../types'
 
-// Get
-export const getSearchPage = (req: Request, res: Response, next: NextFunction): void => {
+export const getSearchPage = (_: Request, res: Response, next: NextFunction): void => {
   try {
     res.render('bankrupt')
   } catch (err) {
@@ -15,17 +15,52 @@ export const getSearchPage = (req: Request, res: Response, next: NextFunction): 
 
 export const postSearchPage = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const filter = {
-      forename1: req.body?.forename1 || '',
-      surname: req.body?.surname || '',
-      dateOfBirth: req.body?.dateOfBirth || '', // NOT YET DONE
-      postcode: req.body?.postcode || ''
+    const {
+      forename1 = '',
+      surname = '',
+      dateOfBirth = '',
+      postcode = ''
+    } = req.body
+
+    const filters: BankruptOfficerSearchFilters = {
+      forename1,
+      surname,
+      dateOfBirth,
+      postcode
     }
-    const bankruptOfficersSearch = await getBankruptOfficers(filter)
 
-    logger.info(bankruptOfficersSearch.data?.items)
+    const results = await fetchBankruptOfficers(generateQuery(filters))
 
-    res.render('bankrupt', { bankruptOfficersSearch: bankruptOfficersSearch.data?.items })
+    logger.info(results.data?.items as unknown as string)
+
+    const bankruptOfficersSearchItems = results.data?.items.map((item) => {
+      const {
+        ephemeralKey = '',
+        forename1 = '',
+        forename2 = '',
+        surname = '',
+        dateOfBirth = '',
+        addressLine1 = '',
+        addressLine2 = '',
+        addressLine3 = '',
+        town = '',
+        county = '',
+        postcode = ''
+      } = item
+
+      const address = generateAddress([addressLine1, addressLine2, addressLine3, town, county, postcode])
+
+      return {
+        ephemeralKey,
+        forename1,
+        forename2,
+        surname,
+        dateOfBirth,
+        address
+      }
+    })
+
+    res.render('bankrupt', { bankruptOfficersSearchItems })
   } catch (err) {
     logger.error(err)
     next(err)
