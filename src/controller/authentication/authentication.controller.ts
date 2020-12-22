@@ -22,7 +22,7 @@ export default (req: Request, res: Response, next: NextFunction): void => {
     }
     next()
   } catch (err) {
-    logger.error(`Certified Copies authentication middleware: ${err as string}`)
+    logger.error(`Bankrupt officers authentication middleware: ${err as string}`)
     next(err)
   }
 }
