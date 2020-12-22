@@ -14,7 +14,7 @@
 
 {% block content %}
 
-<h1 class="govuk-heading-xl"> {{ bankruptOfficer.forename }} {{ bankruptOfficer.surname }} </h1>
+<h1 class="govuk-heading-xl"> {{ bankruptOfficer.forename1 }} {{ bankruptOfficer.surname }} </h1>
   
 {% set overviewHtml %}
 
@@ -27,15 +27,15 @@
         text: "Forename"
       },
       value: {
-        text: bankruptOfficer.forename
+        text: bankruptOfficer.forename1
       }
     },
     {
       key: {
-        text: "Middle Name"
+        text: "Middle Names"
       },
       value: {
-        text: bankruptOfficer.middlename
+        text: bankruptOfficer.forename2
       }
     },
     {
@@ -51,7 +51,7 @@
         text: "Alias"
       },
       value: {
-        text: bankruptOfficer.othername
+        text: bankruptOfficer.alias
       }
     },
     {
@@ -74,7 +74,7 @@
         text: "Address line 1"
       },
       value: {
-        text: bankruptOfficer.address
+        text: bankruptOfficer.addressLine1
       }
     },
     {
@@ -82,7 +82,7 @@
         text: "Address line 2"
       },
       value: {
-        text: ""
+        text: bankruptOfficer.addressLine2
       }
     },
     {
@@ -90,7 +90,7 @@
         text: "Address line 3"
       },
       value: {
-        text: ""
+        text: bankruptOfficer.addressLine3
       }
     },
     {
@@ -114,7 +114,7 @@
         text: "Postcode"
       },
       value: {
-        text: bankruptOfficer.postCode
+        text: bankruptOfficer.postcode
       }
     }
   ]
@@ -133,7 +133,7 @@
         text: "Case Reference"
       },
       value: {
-        text: bankruptOfficer.caseNumber
+        text: bankruptOfficer.caseReference
       }
     },
     {
@@ -141,7 +141,7 @@
         text: "Case Type"
       },
       value: {
-        text: bankruptOfficer.status
+        text: bankruptOfficer.caseType
       }
     },
     {
@@ -149,7 +149,7 @@
         text: "Bankruptcy Type"
       },
       value: {
-        text: bankruptOfficer.caseType
+        text: bankruptOfficer.bankruptcyType
       }
     },
     {
@@ -165,7 +165,7 @@
         text: "Debtor Discharge Date"
       },
       value: {
-        text: "10 march 2021"
+        text: bankruptOfficer.debtorDischargeDate
       }
     },
     {
@@ -173,7 +173,7 @@
         text: "Trustee Discharge Date"
       },
       value: {
-        text: "10 march 2021"
+        text: bankruptOfficer.trusteeDischargeDate
       }
     }
   ]
