@@ -2,12 +2,12 @@ import axios, { AxiosResponse } from 'axios'
 import createError from 'http-errors'
 import { logger } from '../../utils'
 import { ORACLE_QUERY_API_URL, ORACLE_QUERY_API_ENDPOINT } from '../../config'
-import { BankruptOfficerSearchFilters, BankruptOfficerSearchQuery, BankruptOfficerSearchResults } from '../../types'
+import { BankruptOfficerSearchFilters, BankruptOfficerSearchQuery, BankruptOfficerSearchResults, FullBankruptOfficer } from '../../types'
 
-export const fetchBankruptOfficer = async (ephemeralKey: string): Promise<AxiosResponse<any>> => {
+export const fetchBankruptOfficer = async (ephemeralKey: string): Promise<AxiosResponse<FullBankruptOfficer>> => {
   try {
     const queryURL = `${ORACLE_QUERY_API_URL}${ORACLE_QUERY_API_ENDPOINT}/${ephemeralKey}`
-    return await axios.get(queryURL)
+    return await axios.get<FullBankruptOfficer>(queryURL)
   } catch (err) {
     logger.error(err)
     throw createError(err)
