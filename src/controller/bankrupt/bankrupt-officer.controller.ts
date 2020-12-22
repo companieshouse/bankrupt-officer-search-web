@@ -8,6 +8,10 @@ export default async (req: Request, res: Response, next: NextFunction): Promise<
 
     logger.info(bankruptOfficer.data as unknown as string)
 
+    if (bankruptOfficer.status === 404) {
+      return res.status(404).render('error-pages/404-link-expired')
+    }
+
     res.render('bankrupt_officer', { bankruptOfficer: bankruptOfficer.data })
   } catch (err) {
     next(err)
