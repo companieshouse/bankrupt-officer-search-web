@@ -39,7 +39,25 @@ const app = express()
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(cookieParser())
-app.use(helmet())
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      fontSrc: ["'self'", 'https:', 'data:', CDN_HOST],
+      imgSrc: ["'self'", 'data:', CDN_HOST],
+      styleSrc: ["'self'", 'https:', "'unsafe-inline'", CDN_HOST],
+      scriptSrc: [
+        "'self'",
+        "'unsafe-inline'",
+        'code.jquery.com/jquery-1.12.4.min.js',
+        'piwiki/piwik.js',
+        'www.piwiki.com/piwik.js',
+        CDN_HOST
+      ],
+      objectSrc: ["'none'"]
+    }
+  }
+}))
 
 // where nunjucks templates should resolve to
 const viewPath = path.join(__dirname, 'views')
