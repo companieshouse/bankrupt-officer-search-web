@@ -4,22 +4,38 @@
  * @param string
  */
 
-export const addComma = (string: string): string => {
-  if (typeof string === 'string' && string !== '') {
+const addComma = (string: string | undefined): string => {
+  if ((typeof string === 'string' || typeof string === 'number') && string !== '') {
     return `${string}, `
   }
   return ''
 }
 
 /**
- * Utility function to strip trailing commas from strings
+ * Utility function to strip a trailing comma or a trailing comma and space from strings
  *
  * @param string
  */
 
-export const stripComma = (string: string): string => {
-  if (string.slice(-1) === ',') {
+const stripComma = (string: string): string => {
+  if (string.slice(-2) === ', ') {
+    return string.slice(0, -2)
+  } else if (string.slice(-1) === ',') {
     return string.slice(0, -1)
+  } else {
+    return string
   }
-  return string
+}
+
+/**
+ * Concatenates an address from an array
+ *
+ * @param address
+ */
+
+export const generateAddress = (addressArray: string[]): string => {
+  const output = addressArray.reduce((accumulator, currentValue) => {
+    return `${accumulator}${addComma(currentValue)}`
+  }, '')
+  return stripComma(output)
 }
