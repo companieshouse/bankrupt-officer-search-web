@@ -10,6 +10,9 @@ export const fetchBankruptOfficer = async (ephemeralKey: string): Promise<AxiosR
     return await axios.get<FullBankruptOfficer>(queryURL)
   } catch (err) {
     logger.error(err)
+    if (err.response?.status === 404) {
+      return err.response
+    }
     throw createError(err)
   }
 }
@@ -20,6 +23,9 @@ export const fetchBankruptOfficers = async (query: BankruptOfficerSearchQuery): 
     return await axios.post<BankruptOfficerSearchResults>(queryURL, query)
   } catch (err) {
     logger.error(err)
+    if (err.response?.status === 404) {
+      return err.response
+    }
     throw createError(err)
   }
 }
