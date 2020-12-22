@@ -34,6 +34,15 @@
 
 {% endblock %}
 
+{% block header %}
+  {{ govukHeader({
+    homepageUrl: "/",
+    serviceName: "Search for a bankrupt and disqualified officer",
+    serviceUrl: "/admin/officer-search/scottish-bankrupt-officer",
+    containerClasses: "govuk-width-container"
+  }) }}
+{% endblock %}
+
 {% block footer %}
     {{ chFooter({
       classes: "ch",
