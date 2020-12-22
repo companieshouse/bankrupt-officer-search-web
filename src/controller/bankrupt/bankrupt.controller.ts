@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 
-import { generateAddress, logger } from '../../utils'
+import { logger } from '../../utils'
 import { fetchBankruptOfficers, generateQuery } from '../../service'
 import { BankruptOfficerSearchFilters } from '../../types'
 
@@ -31,36 +31,16 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
 
     const results = await fetchBankruptOfficers(generateQuery(filters))
 
+    const {
+      itemsPerPage = 0,
+      startIndex = 0,
+      totalResults = 0,
+      items = []
+    } = results.data
+
     logger.info(results.data?.items as unknown as string)
 
-    const bankruptOfficersSearchItems = results.data?.items.map((item) => {
-      const {
-        ephemeralKey = '',
-        forename1 = '',
-        forename2 = '',
-        surname = '',
-        dateOfBirth = '',
-        addressLine1 = '',
-        addressLine2 = '',
-        addressLine3 = '',
-        town = '',
-        county = '',
-        postcode = ''
-      } = item
-
-      const address = generateAddress([addressLine1, addressLine2, addressLine3, town, county, postcode])
-
-      return {
-        ephemeralKey,
-        forename1,
-        forename2,
-        surname,
-        dateOfBirth,
-        address
-      }
-    })
-
-    res.render('bankrupt', { bankruptOfficersSearchItems })
+    res.render('bankrupt', { itemsPerPage, startIndex, totalResults, items, searched: true })
   } catch (err) {
     logger.error(err)
     next(err)
