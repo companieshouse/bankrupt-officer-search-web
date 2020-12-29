@@ -1,15 +1,14 @@
-import { APPLICATION_NAME } from '../../config'
+import { createLogger } from "@companieshouse/structured-logging-node";
+import ApplicationLogger from "@companieshouse/structured-logging-node/lib/ApplicationLogger";
+import { APPLICATION_NAME } from "../../config";
 
-import { createLogger } from '@companieshouse/structured-logging-node'
-import ApplicationLogger from '@companieshouse/structured-logging-node/lib/ApplicationLogger'
-
-let localLogger: ApplicationLogger
-function createLocalLogger (appName: string) {
+let localLogger: ApplicationLogger;
+export function createLocalLogger(appName: string): ApplicationLogger {
   if (localLogger) {
-    return localLogger
+    return localLogger;
   } else {
-    return localLogger = createLogger(appName)
+    return (localLogger = createLogger(appName));
   }
 }
 
-export const logger = createLocalLogger(APPLICATION_NAME)
+export const logger = createLocalLogger(APPLICATION_NAME);
