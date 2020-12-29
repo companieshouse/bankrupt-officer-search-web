@@ -1,9 +1,9 @@
 /**
  *
  */
-export { logger } from './logger/logger'
+export { logger } from "./logger/logger";
 
 /**
  *
  */
-export * as userSessionDetails from './session/session'
+export * as userSession from "./session/session";
