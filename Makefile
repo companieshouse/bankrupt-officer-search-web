@@ -2,10 +2,7 @@ artifact_name       := bankrupt-officer-search-web
 version             := "unversioned"
 
 .PHONY: build
-build:
-	clean
-	init
-	build-app
+build: clean init build-app
 
 .PHONY: clean
 clean:
