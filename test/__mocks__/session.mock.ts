@@ -4,6 +4,7 @@ import { Encoding } from "@companieshouse/node-session-handler/lib/encoding/Enco
 import { SignInInfoKeys } from "@companieshouse/node-session-handler/lib/session/keys/SignInInfoKeys";
 import { ISignInInfo, IUserProfile } from "@companieshouse/node-session-handler/lib/session/model/SessionInterfaces";
 
+export const COOKIE_NAME = "__SID";
 export const testSignedIn = 1;
 export const testUserProfile: IUserProfile = { id: 'someId' };
 
@@ -16,11 +17,11 @@ export function getSessionRequest(): Session {
   });
 }
 
-export const COOKIE_NAME = "__SID";
 export const SIGNED_IN_ID = '4ZhJ6pAmB5NAJbjy/6fU1DWMqqrk';
 export const SIGNED_IN_SIGNATURE = 'mqJFqeNMr1lzJzQjKt+44ufLaT8';
 export const SIGNED_IN_COOKIE = SIGNED_IN_ID + SIGNED_IN_SIGNATURE;
 export const signedInCookie = [`${COOKIE_NAME}=${SIGNED_IN_COOKIE}`];
+
 export const sessionSignedIn = Encoding.encode({
   [SessionKey.ClientSig]: SIGNED_IN_SIGNATURE,
   [SessionKey.Id]: SIGNED_IN_ID,
@@ -39,8 +40,7 @@ export const sessionSignedIn = Encoding.encode({
 export const SIGNED_OUT_ID = '2VsqkD1ILMqzO0NyuL+ubx4crUCP';
 export const SIGNED_OUT_SIGNATURE = '9L9X4DGu5LOaE2yaGjPk+vGZcMw';
 export const SIGNED_OUT_COOKIE = SIGNED_OUT_ID + SIGNED_OUT_SIGNATURE;
-export const SET_SIGNED_OUT_COOKIE = [`${COOKIE_NAME}=${SIGNED_OUT_COOKIE}`];
-export const INVALID_COOKIE = [`${COOKIE_NAME}=123`];
+export const signedOutCookie = [`${COOKIE_NAME}=${SIGNED_OUT_COOKIE}`];
 
 export const sessionSignedOut = Encoding.encode({
   [SessionKey.ClientSig]: SIGNED_OUT_SIGNATURE,
