@@ -6,21 +6,21 @@ import sinon from "sinon";
 import { authentication } from "../../src/controller";
 import { SCOTTISH_BANKRUPT_OFFICER } from "../../src/config";
 import { getSessionRequest } from "../__mocks__/session.mock";
+import { FAKE_URL } from "../__mocks__/utils.mock";
 
 chai.use(sinonChai);
 
-const sandbox = sinon.createSandbox();
-const redirectSpy = sandbox.spy();
+const redirectSpy = sinon.spy();
 
-const nextFunctionSpy: NextFunction = sandbox.spy();
+const nextFunctionSpy: NextFunction = sinon.spy();
 const res: Response = {} as Response;
 res.redirect = redirectSpy;
 
 describe('AuthenticationController test suite', () => {
 
   afterEach(() => {
-    sandbox.reset();
-    sandbox.restore();
+    sinon.reset();
+    sinon.restore();
   });
 
   it("should call next() if the path is correct", () => {
@@ -32,7 +32,7 @@ describe('AuthenticationController test suite', () => {
   });
 
   it("should call res.redirect if the session is undefined", () => {
-    const req: Request = { path: "fakeUrl" } as Request;
+    const req: Request = FAKE_URL as Request;
     req.session = undefined;
 
     authentication(req, res, nextFunctionSpy);
@@ -40,14 +40,12 @@ describe('AuthenticationController test suite', () => {
     expect(redirectSpy).to.have.been.calledWith(`/signin?return_to=${SCOTTISH_BANKRUPT_OFFICER}`);
   });
 
-  it('should catch the error and call next(err)', () => {
-    const req: Request = { path: SCOTTISH_BANKRUPT_OFFICER } as Request;
+  it('should catch the error and call next(err)', async () => {
+    const resThrowsToBeCatched = { redirect: sinon.stub().throws() } as unknown as Response;
+    const req: Request = FAKE_URL as Request;
     req.session = undefined;
-
-    authentication(req, res, nextFunctionSpy);
-
-    expect(authentication).to.throw();
-    // TBD
-    // expect(nextFunctionSpy).to.have.been.calledOnce; was called 0 times???
+    
+    authentication(req, resThrowsToBeCatched, nextFunctionSpy);  
+    expect(nextFunctionSpy).to.have.been.calledOnce;
   });
 });
