@@ -25,7 +25,7 @@ const err = { statusCode: undefined };
 let res: Response;
 
 
-describe('AuthenticationController test suite', () => {
+describe('ErrorController test suite', () => {
 
   beforeEach(done => {
     sinon.reset();
