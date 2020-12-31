@@ -1,39 +1,53 @@
-import axios, { AxiosResponse } from 'axios'
-import createError from 'http-errors'
-import { logger } from '../../utils'
-import { ORACLE_QUERY_API_URL, ORACLE_QUERY_API_ENDPOINT } from '../../config'
-import { BankruptOfficerSearchFilters, BankruptOfficerSearchQuery, BankruptOfficerSearchResults, FullBankruptOfficer } from '../../types'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import axios from 'axios';
 
-export const fetchBankruptOfficer = async (ephemeralKey: string): Promise<AxiosResponse<FullBankruptOfficer>> => {
+import { logger } from '../../utils';
+import { 
+  ORACLE_QUERY_API_URL, 
+  ORACLE_QUERY_API_ENDPOINT 
+} from '../../config';
+import {  
+  BankruptOfficerSearchQuery, 
+  BankruptOfficerSearchResults,
+  FullBankruptOfficer
+} from '../../types';
+
+const QUERY_API_URL = `${ORACLE_QUERY_API_URL}${ORACLE_QUERY_API_ENDPOINT}`;
+
+export const fetchBankruptOfficer = async (ephemeralKey: string): Promise<any> => {
   try {
-    const queryURL = `${ORACLE_QUERY_API_URL}${ORACLE_QUERY_API_ENDPOINT}/${ephemeralKey}`
-    return await axios.get<FullBankruptOfficer>(queryURL)
-  } catch (err) {
-    logger.error(err)
-    if (err.response?.status === 404) {
-      return err.response
-    }
-    throw createError(err)
+    return axios.get<FullBankruptOfficer>(`${QUERY_API_URL}${ephemeralKey}`)
+      .then( (res) => {
+        return { status: res.status, data: res.data };
+      })
+      .catch( (e) => {
+        return failedExecHttpRequest(e, 404);
+      });
+  } catch (e) {
+    return failedExecHttpRequest(e, 500);
   }
-}
+};
 
-export const fetchBankruptOfficers = async (query: BankruptOfficerSearchQuery): Promise<AxiosResponse<BankruptOfficerSearchResults>> => {
+export const fetchBankruptOfficers = async (query: BankruptOfficerSearchQuery): Promise<any> => {
   try {
-    const queryURL = `${ORACLE_QUERY_API_URL}${ORACLE_QUERY_API_ENDPOINT}`
-    return await axios.post<BankruptOfficerSearchResults>(queryURL, query)
-  } catch (err) {
-    logger.error(err)
-    if (err.response?.status === 404) {
-      return err.response
-    }
-    throw createError(err)
+    return axios.post<BankruptOfficerSearchResults>(QUERY_API_URL, query)
+      .then( (res) => {
+        return { status: res.status, data: res.data };
+      })
+      .catch( (e) => {
+        return failedExecHttpRequest(e, 404);
+      });
+  } catch (e) {
+    return failedExecHttpRequest(e, 500);
   }
-}
+};
 
-export const generateQuery = (filters: BankruptOfficerSearchFilters): BankruptOfficerSearchQuery => {
+export const failedExecHttpRequest = (e: any, statusCode: number) => {
+  if(statusCode !== 404) logger.error(`${e}`);
+
   return {
-    startIndex: 0,
-    itemsPerPage: 10,
-    filters
-  }
-}
+    status: e?.statusCode || statusCode,
+    error: e?.response?.body || { message: "failed to execute http request" }
+  };
+};
