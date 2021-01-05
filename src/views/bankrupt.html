@@ -1,48 +1,71 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Bankrupt Officer Search
+  Search for a bankrupt and disqualified officer
 {% endblock %}
 
 {% set mainClasses = "govuk-main-wrapper--l" %}
 
 {% block content %}
 
-<h1 class="govuk-heading-l">Bankrupt Officer Search</h1>
+<h1 class="govuk-heading-l">
+  Search for a bankrupt and disqualified officer
+</h1>
 
-<form method="post" action="bankruptcy">
+<form method="post">
   <div class="govuk-form-group">
-    <label class="govuk-label" for="surname">Surname</label>
-    <input class="govuk-input govuk-input--width-30" id="surname" type="text" name="surname">
+    <label class="govuk-label" for="surname">Last name</label>
+    <input class="govuk-input govuk-!-width-one-half" id="surname" type="text" name="surname" aria-describedby="surname-hint">
   </div>
   <div class="govuk-form-group">
-    <label class="govuk-label" for="forename1">Forename</label>
-    <input class="govuk-input govuk-input--width-30" id="forename1" type="text" name="forename1">
+    <label class="govuk-label" for="forename1">First name</label>
+    <input class="govuk-input govuk-!-width-one-half" id="forename1" type="text" name="forename1" aria-describedby="forename1-hint">
   </div>
   <div class="govuk-form-group">
-    <fieldset class="govuk-fieldset" role="group">
-    <label class="govuk-label" for="dob">Date of birth</label>
-    <div class="govuk-date-input" id="dob">
-      <div class="govuk-date-input__item">
-        <div class="govuk-form-group">
-          <input class="govuk-input govuk-date-input__input govuk-input--width-2" placeholder="DD" id="dob-dd" name="dob-dd" autocomplete="bday-day" type="text" pattern="[0-9]*" inputmode="numeric"></div>
+    <fieldset class="govuk-fieldset" role="group" aria-describedby="dob-hint">
+      <legend class="govuk-fieldset__legend">
+        Date of birth
+      </legend>
+      <div id="dob-hint" class="govuk-hint">
+        For example, 31 3 1980
       </div>
-      <div class="govuk-date-input__item">
-        <div class="govuk-form-group">
-          <input class="govuk-input govuk-date-input__input govuk-input--width-2" placeholder="MM" id="dob-mm" name="dob-mm" autocomplete="bday-month" type="text" pattern="[0-9]*" inputmode="numeric"></div>
+      <div class="govuk-date-input" id="dob">
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" for="dob-day">
+              Day
+            </label>
+            <input class="govuk-input govuk-date-input__input govuk-input--width-2" placeholder="DD" id="dob-dd"
+              name="dob-dd" autocomplete="bday-day" type="text" pattern="[0-9]*" inputmode="numeric">
+          </div>
+        </div>
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" for="dob-mm">
+              Month
+            </label>
+            <input class="govuk-input govuk-date-input__input govuk-input--width-2" placeholder="MM" id="dob-mm"
+              name="dob-mm" autocomplete="bday-month" type="text" pattern="[0-9]*" inputmode="numeric">
+          </div>
+        </div>
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-date-input__label" for="dob-yyyy">
+              Year
+            </label>
+            <input class="govuk-input govuk-date-input__input govuk-input--width-4" placeholder="YYYY" id="dob-yyyy"
+              name="dob-yyyy" autocomplete="bday-year" type="text" pattern="[0-9]*" inputmode="numeric">
+          </div>
+        </div>
       </div>
-      <div class="govuk-date-input__item">
-        <div class="govuk-form-group">
-          <input class="govuk-input govuk-date-input__input govuk-input--width-4" placeholder="YYYY" id="dob-yyyy" name="dob-yyyy" autocomplete="bday-year" type="text" pattern="[0-9]*" inputmode="numeric"></div>
-      </div>
-    </div>
     </fieldset>
   </div>
   <div class="govuk-form-group">
     <label class="govuk-label" for="postcode">
       Postcode
     </label>
-    <input class="govuk-input govuk-input--width-10" id="postcode" name="postcode" type="text" autocomplete="postal-code">
+    <input class="govuk-input govuk-input--width-10" id="postcode" name="postcode" type="text"
+      autocomplete="postal-code" aria-describedby="postcode-hint">
   </div>
   <button class="govuk-button" data-module="govuk-button">
     Search
@@ -50,30 +73,36 @@
 
 </form>
 
-<div class="govuk-!-margin-9"></div>
-
-  <h3 class="govuk-heading-m">Officer details</h3>
-
-  {{ govukTable({
-      firstCellIsHeader: false,
-      head: [
-        {
-          text: "Name"
-        },
-        {
-          text: "Date of Birth",
-          format: "text"
-        },
-        {
-          text: "Address",
-          format: "text"
-        }
-      ],
-      rows: rows
-    }) }}
-
-  {% if not rows or not rows|length %}
-    <h2 class="govuk-heading-s">No results found matching your search criteria.</h2>
-  {% endif %}
+{% if searched %}
+  <h2 class="govuk-heading-l">Search results</h2>
+  <span id="results-hint" class="govuk-hint">
+    Showing {{ itemsPerPage + startIndex }} of {{ totalResults }} results
+  </span>
+  <div class="govuk-grid-column-full-width">
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">First name</th>
+          <th scope="col" class="govuk-table__header">Last name</th>
+          <th scope="col" class="govuk-table__header">Date of birth</th>
+          <th scope="col" class="govuk-table__header govuk--width-one-quarter">Postcode</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for item in items %}
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><a href='/admin/officer-search/scottish-bankrupt-officer/{{ item.ephemeralKey }}' class='govuk-link'>{{ item.forename1 }}</a></td>
+          <td class="govuk-table__cell">{{ item.surname }}</td>
+          <td class="govuk-table__cell">{{ item.dateOfBirth }}</td>
+          <td class="govuk-table__cell">{{ item.postcode }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% if not items or not items|length %}
+      <h2 class="govuk-heading-s">No results found matching your search criteria.</h2>
+    {% endif %}
+  </div>
+{% endif %}
 
 {% endblock %}

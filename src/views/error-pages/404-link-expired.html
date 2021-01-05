@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+<!-- Adds a class to increase vertical spacing for pages without a back button -->
+{% set mainClasses = "govuk-main-wrapper--l" %}
+
+{% block pageTitle %}
+  This link has expired – Search for a bankrupt and disqualified officer
+{% endblock %}
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">This link has expired</h1>
+      <p>The database is updated daily, so each link only lasts 24 hours.
+        <p>
+          To find the person you are looking for, you'll need to
+          <a href="/admin/officer-search/scottish-bankrupt-officer">search again.</a>
+        </p>
+      </div>
+    </div>
+
+  {% endblock %}

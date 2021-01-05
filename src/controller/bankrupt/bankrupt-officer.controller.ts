@@ -1,10 +1,18 @@
 import { Request, Response, NextFunction } from 'express'
+import { fetchBankruptOfficer } from '../../service'
+import { logger } from '../../utils'
 
-export default (req: Request, res: Response, next: NextFunction): void => {
+export default async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const bankruptOfficer = []
+    const bankruptOfficer = await fetchBankruptOfficer(req.params.id)
 
-    res.render('bankrupt_officer', { bankruptOfficer })
+    logger.info(bankruptOfficer.data as unknown as string)
+
+    if (bankruptOfficer.status === 404) {
+      return res.status(404).render('error-pages/404-link-expired')
+    }
+
+    res.render('bankrupt_officer', { bankruptOfficer: bankruptOfficer.data })
   } catch (err) {
     next(err)
   }

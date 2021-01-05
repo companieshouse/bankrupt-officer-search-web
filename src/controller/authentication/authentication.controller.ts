@@ -7,7 +7,7 @@ import { APPLICATION_NAME, SCOTTISH_BANKRUPT_OFFICER } from '../../config'
 
 const logger = createLogger(APPLICATION_NAME)
 
-export default async (req: Request, res: Response, next: NextFunction) => {
+export default (req: Request, res: Response, next: NextFunction): void => {
   try {
     if (!req.session) {
       logger.info(`${req.url}: Session object is missing!`)
@@ -22,7 +22,7 @@ export default async (req: Request, res: Response, next: NextFunction) => {
     }
     next()
   } catch (err) {
-    logger.error(`Certified Copies authentication middleware: ${err}`)
+    logger.error(`Bankrupt officers authentication middleware: ${err as string}`)
     next(err)
   }
 }

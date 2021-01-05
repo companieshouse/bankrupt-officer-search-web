@@ -1,204 +1,133 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  Bankrupt Officer
+  View bankrupt officer details -
+  {{ bankruptOfficer.forename1 }}
+  {{ bankruptOfficer.surname }}
 {% endblock %}
 
 {% set mainClasses = "govuk-main-wrapper--l" %}
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: "/bankruptcy"
+    href: "/admin/officer-search/scottish-bankrupt-officer"
   }) }}
 {% endblock %}
 
 {% block content %}
 
-<h1 class="govuk-heading-xl"> {{ bankruptOfficer.forename }} {{ bankruptOfficer.surname }} </h1>
-  
-{% set overviewHtml %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-half">
+      <h1 class="govuk-heading-xl">{{ bankruptOfficer.forename1 }}
+        {{ bankruptOfficer.surname }}</h1>
+    </div>
+  </div>
+  <h2 class="govuk-heading-m">Name details</h2>
+  <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        First name
+      </dt>
+      <dd class="govuk-summary-list__value">{{ bankruptOfficer.forename1 }}</dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Other names
+      </dt>
+      <dd class="govuk-summary-list__value">{{ bankruptOfficer.forename2 }}</dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Last name
+      </dt>
+      <dd class="govuk-summary-list__value">{{ bankruptOfficer.surname }}</dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Alias
+      </dt>
+      <dd class="govuk-summary-list__value">{{ bankruptOfficer.alias }}</dd>
+    </div>
+  </dl>
+  <h2 class="govuk-heading-m">Address details</h2>
+  <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Address line 1
+      </dt>
+      <dd class="govuk-summary-list__value">{{ bankruptOfficer.addressLine1 }}</dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Address line 2
+      </dt>
+      <dd class="govuk-summary-list__value">{{ bankruptOfficer.addressLine2 }}</dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Address line 3
+      </dt>
+      <dd class="govuk-summary-list__value">{{ bankruptOfficer.addressLine3 }}</dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Town
+      </dt>
+      <dd class="govuk-summary-list__value">{{ bankruptOfficer.town }}</dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        County
+      </dt>
+      <dd class="govuk-summary-list__value">{{ bankruptOfficer.county }}</dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Postcode
+      </dt>
+      <dd class="govuk-summary-list__value">{{ bankruptOfficer.postcode }}</dd>
+    </div>
+  </dl>
+  <h2 class="govuk-heading-m">Case information</h2>
+  <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Case reference
+      </dt>
+      <dd class="govuk-summary-list__value">{{ bankruptOfficer.caseReference }}</dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">Case type</dt>
+      <dd class="govuk-summary-list__value">{{ bankruptOfficer.caseType }}</dd>
+    </div>
 
-<h2 class="govuk-heading-m">Personal information</h2>
-
-{{ govukSummaryList({
-  rows: [
-    {
-      key: {
-        text: "Forename"
-      },
-      value: {
-        text: bankruptOfficer.forename
-      }
-    },
-    {
-      key: {
-        text: "Middle Name"
-      },
-      value: {
-        text: bankruptOfficer.middlename
-      }
-    },
-    {
-      key: {
-        text: "Surname"
-      },
-      value: {
-        text: bankruptOfficer.surname
-      }
-    },
-    {
-      key: {
-        text: "Alias"
-      },
-      value: {
-        text: bankruptOfficer.othername
-      }
-    },
-    {
-      key: {
-        text: "Date of birth"
-      },
-      value: {
-        text: bankruptOfficer.dateOfBirth
-      }
-    }
-  ]
-}) }}
-
-<h2 class="govuk-heading-m govuk-!-margin-top-9">Home address</h2>
-
-{{ govukSummaryList({
-  rows: [
-    {
-      key: {
-        text: "Address line 1"
-      },
-      value: {
-        text: bankruptOfficer.address
-      }
-    },
-    {
-      key: {
-        text: "Address line 2"
-      },
-      value: {
-        text: ""
-      }
-    },
-    {
-      key: {
-        text: "Address line 3"
-      },
-      value: {
-        text: ""
-      }
-    },
-    {
-      key: {
-        text: "Town"
-      },
-      value: {
-        text: bankruptOfficer.town
-      }
-    },
-    {
-      key: {
-        text: "County"
-      },
-      value: {
-        text: bankruptOfficer.county
-      }
-    },
-    {
-      key: {
-        text: "Postcode"
-      },
-      value: {
-        text: bankruptOfficer.postCode
-      }
-    }
-  ]
-}) }}
-
-{% endset -%}
-
-{% set bankruptcyInfoHtml %}
-
-<h2 class="govuk-heading-m">Bankruptcy information</h2>
-
-{{ govukSummaryList({
-  rows: [
-    {
-      key: {
-        text: "Case Reference"
-      },
-      value: {
-        text: bankruptOfficer.caseNumber
-      }
-    },
-    {
-      key: {
-        text: "Case Type"
-      },
-      value: {
-        text: bankruptOfficer.status
-      }
-    },
-    {
-      key: {
-        text: "Bankruptcy Type"
-      },
-      value: {
-        text: bankruptOfficer.caseType
-      }
-    },
-    {
-      key: {
-        text: "Start Date"
-      },
-      value: {
-        text: bankruptOfficer.startDate
-      }
-    },
-    {
-      key: {
-        text: "Debtor Discharge Date"
-      },
-      value: {
-        text: "10 march 2021"
-      }
-    },
-    {
-      key: {
-        text: "Trustee Discharge Date"
-      },
-      value: {
-        text: "10 march 2021"
-      }
-    }
-  ]
-}) }}
-
-{% endset -%}
-
-{{ govukTabs({
-  items: [
-    {
-      label: "Overview",
-      id: "overview",
-      panel: {
-        html: overviewHtml
-      }
-    },
-    {
-      label: "Bankruptcy information",
-      id: "bankruptcy-info",
-      panel: {
-        html: bankruptcyInfoHtml
-      }
-    }
-  ]
-}) }}
-
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Bankruptcy type
+      </dt>
+      <dd class="govuk-summary-list__value">{{ bankruptOfficer.bankruptcyType }}</dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Start date
+      </dt>
+      <dd class="govuk-summary-list__value">{{ bankruptOfficer.startDate }}</dd>
+    </div>
+  </dl>
+  <h2 class="govuk-heading-m">Discharge dates</h2>
+  <dl class="govuk-summary-list govuk-!-margin-bottom-9">
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Debtor discharge date
+      </dt>
+      <dd class="govuk-summary-list__value">{{ bankruptOfficer.debtorDischargeDate }}</dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Trustee discharge date
+      </dt>
+      <dd class="govuk-summary-list__value">{{ bankruptOfficer.trusteeDischargeDate }}</dd>
+    </div>
+  </dl>
 
 {% endblock %}
