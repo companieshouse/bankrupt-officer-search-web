@@ -1,4 +1,4 @@
 /**
- * 
+ *
  */
-export { getBankruptOfficers } from "./api/api.service"
+export { getBankruptOfficers } from './api/api.service'
