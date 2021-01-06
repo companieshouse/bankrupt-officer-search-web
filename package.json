@@ -11,7 +11,8 @@
     "lint:fix": "eslint 'src/**/*.ts' 'test/**/*.ts' --fix",
     "test": "mocha --file './test/setup.ts' --require ts-node/register './test/**/*.spec.ts'",
     "test:watch": "mocha --file './test/setup.ts' --require ts-node/register './test/**/*.spec.ts' --watch",
-    "test:coverage": "nyc npm test"
+    "test:coverage": "nyc npm test",
+    "analyse-code": "sonar-scanner"
   },
   "keywords": [],
   "author": "",
@@ -53,6 +54,7 @@
     "nyc": "^15.1.0",
     "sinon": "^9.2.2",
     "sinon-chai": "^3.5.0",
+    "sonarqube-scanner": "^2.8.0",
     "supertest": "^6.0.1",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
