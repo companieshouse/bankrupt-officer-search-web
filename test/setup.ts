@@ -1,0 +1,13 @@
+process.env.CDN_HOST = "testTBD";
+process.env.PIWIK_URL = "test";
+process.env.PIWIK_SITE_ID = "123";
+process.env.COOKIE_SECRET = "123456789123456789123456789";
+process.env.CACHE_SERVER = "testTBD";
+process.env.CHS_URL = "testTBD";
+process.env.CHS_API_KEY = "testTBD";
+process.env.COOKIE_DOMAIN = "testTBD";
+process.env.APPLICATION_NAME = 'bankrupt-officer-search-web';
+process.env.SCOTTISH_BANKRUPT_OFFICER = '/admin/officer-search/scottish-bankrupt-officer';
+process.env.SCOTTISH_BANKRUPT_OFFICER_DETAILS = '/admin/officer-search/scottish-bankrupt-officer/:id';
+process.env.ORACLE_QUERY_API_URL = 'http://oracle-query-api:8080';
+process.env.ORACLE_QUERY_API_ENDPOINT = '/officer-search/scottish-bankrupt-officers/';

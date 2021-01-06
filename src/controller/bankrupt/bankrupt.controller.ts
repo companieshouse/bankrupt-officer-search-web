@@ -1,48 +1,45 @@
-import { NextFunction, Request, Response } from 'express'
+import { NextFunction, Request, Response } from 'express';
 
-import { logger } from '../../utils'
-import { fetchBankruptOfficers, generateQuery } from '../../service'
-import { BankruptOfficerSearchFilters } from '../../types'
+import { logger } from '../../utils';
+import { fetchBankruptOfficers } from '../../service';
+import { BankruptOfficerSearchFilters, BankruptOfficerSearchQuery } from '../../types';
 
 export const getSearchPage = (_: Request, res: Response, next: NextFunction): void => {
   try {
-    res.render('bankrupt')
+    res.render('bankrupt');
   } catch (err) {
-    logger.error(err)
-    next(err)
+    logger.error(`${err}`);
+    next(err);
   }
-}
+};
 
 export const postSearchPage = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const {
-      forename1 = '',
-      surname = '',
-      dateOfBirth = '',
-      postcode = ''
-    } = req.body
 
-    const filters: BankruptOfficerSearchFilters = {
-      forename1,
-      surname,
-      dateOfBirth,
-      postcode
-    }
+    // Get data from request body - dateOfBirth needs to be checked 
+    const { forename1 = '', surname = '', postcode = '' } = req.body;
 
-    const results = await fetchBankruptOfficers(generateQuery(filters))
+    // Deal with fragmented date of birth
+    const dateOfBirth = 
+      (req.body["dob-dd"] && req.body["dob-mm"] && req.body["dob-yyyy"]) ?
+        `${req.body["dob-yyyy"]}-${req.body["dob-mm"]}-${req.body["dob-dd"]}` : '';
 
-    const {
-      itemsPerPage = 0,
-      startIndex = 0,
-      totalResults = 0,
-      items = []
-    } = results.data
+    // Set post query data
+    const filters: BankruptOfficerSearchFilters = { forename1, surname, dateOfBirth, postcode };
+    const body: BankruptOfficerSearchQuery = { startIndex: 0, itemsPerPage: 10, filters};
 
-    logger.info(results.data?.items as unknown as string)
+    const results = await fetchBankruptOfficers(body);
 
-    res.render('bankrupt', { itemsPerPage, startIndex, totalResults, items, searched: true })
+    // Not found officers has to be rendered anyway with an empty list 
+    if(!results.error || results.status === 404){      
+      const { itemsPerPage = 0, startIndex = 0, totalResults = 0, items = [] } = results.data || {};
+      return res.render('bankrupt', { itemsPerPage, startIndex, totalResults, items, searched: true });      
+    } else {
+      return res.status(results.status).render('error-pages/500');
+    } 
+
   } catch (err) {
-    logger.error(err)
-    next(err)
+    logger.error(`${err}`);
+    next(err);
   }
-}
+};

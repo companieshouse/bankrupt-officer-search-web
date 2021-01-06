@@ -1,9 +1,10 @@
-import { NextFunction, Request, Response } from 'express'
+import { Request, Response } from 'express';
 
-export function notFoundErrorHandler (req: Request, res: Response, next: NextFunction): void {
-  res.status(404).render('error-pages/404')
-};
+export function notFoundErrorHandler(req: Request, res: Response): void {
+  return res.status(404).render('error-pages/404');
+}
 
-export function serverErrorHandler (err: any, req: Request, res: Response, next: NextFunction): void {
-  res.status(err.statusCode || 500).render('error-pages/500')
-};
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export function serverErrorHandler(err, req: Request, res: Response): void {
+  return res.status(err.statusCode || 500).render('error-pages/500');
+}
