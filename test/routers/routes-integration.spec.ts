@@ -61,16 +61,6 @@ describe('Routers test suite', () => {
   });
 
   describe('Errors routes', () => {
-
-    // it('Page not Found Error', async () => {
-    //   return await request(app)
-    //     .get(FAKE_URL.path)
-    //     .set('Cookie', signedInCookie)
-    //     .then(response => {
-    //       expect(response.text).to.include(PAGE_NOT_FOUND);
-    //       expect(response.status).equal(404);
-    //     });
-    // });
   
     it('Page link has Expired Error', async () => {
       return await request(app)
@@ -81,10 +71,6 @@ describe('Routers test suite', () => {
           expect(response.status).equal(404);
         });
     });  
-
-    // it('Page Server Error', async () => {
-    // TBD
-    // });
 
   });
 
