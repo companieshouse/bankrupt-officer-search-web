@@ -5,11 +5,12 @@ import sinon from "sinon";
 import axios from 'axios';
 
 import { bankruptOfficer } from "../../src/controller";
-import { logger } from '../../src/utils';
+import { logger, formattingOfficersInfo } from '../../src/utils';
 
 import { 
-  mockAxiosResponse, 
-  statusCode 
+  mockAxiosResponse,
+  mockBankruptOfficer,
+  statusCode
 } from '../__mocks__/utils.mock';
 
 chai.use(sinonChai);
@@ -42,13 +43,14 @@ describe('BankruptOfficerController test suite', () => {
   });
 
   it('should return bankruptOfficer with data object and render bankrupt_officer page', async () => {
+    sinon.stub(formattingOfficersInfo([]));
     sinon.stub(axios, 'get').resolves(mockAxiosResponse.ok);
 
     await bankruptOfficer(req, res, nextFunctionSpy);
 
     expect(nextFunctionSpy).not.called;
     expect(res.render).to.have.been.calledOnce;
-    expect(res.render).to.have.been.calledWith('bankrupt_officer', { bankruptOfficer: "ok" });
+    expect(res.render).to.have.been.calledWith('bankrupt_officer', { bankruptOfficer: mockBankruptOfficer });
   });
 
   it('should return bankruptOfficer with status code 500 and render error-pages/500 page', async () => {
