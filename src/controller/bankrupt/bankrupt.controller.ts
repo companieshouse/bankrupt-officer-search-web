@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { logger } from '../../utils';
+import { logger, formattingOfficersInfo } from '../../utils';
 import { fetchBankruptOfficers } from '../../service';
 import { BankruptOfficerSearchFilters, BankruptOfficerSearchQuery } from '../../types';
 
@@ -31,9 +31,9 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
     const results = await fetchBankruptOfficers(body);
 
     // Not found officers has to be rendered anyway with an empty list 
-    if(!results.error || results.status === 404){      
+    if(!results.error || results.status === 404){
       const { itemsPerPage = 0, startIndex = 0, totalResults = 0, items = [] } = results.data || {};
-      return res.render('bankrupt', { itemsPerPage, startIndex, totalResults, items, searched: true });      
+      return res.render('bankrupt', { itemsPerPage, startIndex, totalResults, items: formattingOfficersInfo(items), searched: true });
     } else {
       return res.status(results.status).render('error-pages/500');
     } 

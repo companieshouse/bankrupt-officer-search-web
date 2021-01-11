@@ -6,7 +6,7 @@ export interface Address {
   county?: string
   postcode?: string
 }
-interface BankruptOfficer extends Address {
+export interface BankruptOfficer extends Address {
   ephemeralKey: string
   forename1?: string
   forename2?: string
