@@ -101,15 +101,5 @@ describe("BankruptController test suite", () => {
       expect(res.status).to.have.been.calledWith(statusCode.server_error);
       expect(res.render).to.have.been.calledWith('error-pages/500');
     });
-    
-    it('should catch any error and call next function', async () => {
-      const resThrowsToBeCatched = { render: sinon.stub().throws() } as unknown as Response;
-
-      await postSearchPage(req, resThrowsToBeCatched, nextFunctionSpy);
-
-      expect(nextFunctionSpy).to.have.been.calledOnce;
-      expect(res.status).not.called;
-      expect(res.render).not.called;
-    });
   });
 });

@@ -60,20 +60,6 @@ describe('Routers test suite', () => {
     });
   });
 
-  describe('Errors routes', () => {
-  
-    it('Page link has Expired Error', async () => {
-      return await request(app)
-        .get(`${SCOTTISH_BANKRUPT_OFFICER}/${EPHEMERALKEY}`)
-        .set('Cookie', signedInCookie)
-        .then(response => {
-          expect(response.text).to.include(LINK_EXPIRED);
-          expect(response.status).equal(404);
-        });
-    });  
-
-  });
-
   describe('Hit Scottish Endpoint', () => {
     it("should find " + SCOTTISH_BANKRUPT_OFFICER + " page url", async () => {
       return await request(app)
