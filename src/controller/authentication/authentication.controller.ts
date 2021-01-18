@@ -17,7 +17,7 @@ export default (req: Request, res: Response, next: NextFunction): void => {
     const signedIn = userSession.checkUserSignedIn(req.session);
 
     if (!signedIn) {
-      logger.info('User non authenticated, status_code=401, redirecting to sign in page');
+      logger.info('User not authenticated, status_code=401, redirecting to sign in page');
       return res.redirect(`/signin?return_to=${SCOTTISH_BANKRUPT_OFFICER}`);
     } 
 
@@ -25,7 +25,7 @@ export default (req: Request, res: Response, next: NextFunction): void => {
       logger.info(`User (${userSession.getLoggedInUserEmail(req.session)}) is signed in`);
       next();
     } else {
-      logger.info('User authenticated but non authorized (no permission), status_code=404');
+      logger.info('User authenticated without correct permissions, status_code=404');
       return res.status(404).render('error-pages/404');
     }
     

@@ -52,7 +52,7 @@ describe('AuthenticationController test suite', () => {
     expect(res.render).not.have.been.called;
   });
 
-  it("should return user authenticated but non authorized with error page 404", () => {
+  it("should return user authenticated but not authorized with error page 404", () => {
     const req: Request = { path: SCOTTISH_BANKRUPT_OFFICER } as Request;
     req.session = getSessionRequestWithNoPermission();
 
