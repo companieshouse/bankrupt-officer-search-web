@@ -1,12 +1,27 @@
 import { expect } from 'chai';
 
-import { getSessionRequest, testSignedIn, testUserProfile } from '../__mocks__/session.mock';
-import { checkUserSignedIn, getSignInInfo, getUserId } from '../../src/utils/session/session';
 import { Session } from '@companieshouse/node-session-handler';
 import { SignInInfoKeys } from "@companieshouse/node-session-handler/lib/session/keys/SignInInfoKeys";
+import { PERMISSIONS_PATH } from "../../src/config";
+
+import { 
+  getSessionRequestWithPermission,
+  getSessionRequest,
+  testSignedIn,
+  testUserProfile 
+} from '../__mocks__/session.mock';
+import { 
+  checkUserSignedIn,
+  getPermissions,
+  checkPermission,
+  getLoggedInUserEmail,
+  getSignInInfo,
+  getUserId
+} from '../../src/utils/session/session';
 
 describe('SessionUtils test suite', () => {  
   const testSessionRequest: Session = getSessionRequest();
+  const testSessionWithPermission: Session = getSessionRequestWithPermission();
 
   it('Test function getSignInInfo()', () => {    
     const signInInfo = getSignInInfo(testSessionRequest);
@@ -21,6 +36,21 @@ describe('SessionUtils test suite', () => {
   it('Test function checkUserSignedIn()', () => {
     const userSignedIn = checkUserSignedIn(testSessionRequest);
     expect(userSignedIn).equal(Boolean(testSignedIn));
+  });
+
+  it('Test function getPermissions()', () => {
+    const testPermission = getPermissions(testSessionWithPermission);
+    expect(testPermission).has.key(PERMISSIONS_PATH);
+  });
+
+  it('Test function checkPermission()', () => {
+    const testPermission = checkPermission(testSessionWithPermission);
+    expect(testPermission).equal(Boolean(1));
+  });
+
+  it('Test function getLoggedInUserEmail()', () => {
+    const testPermission = getLoggedInUserEmail(testSessionWithPermission);
+    expect(testPermission).equal("userWithPermission@ch.gov.uk");
   });
 
 });

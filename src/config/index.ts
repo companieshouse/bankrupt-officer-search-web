@@ -7,7 +7,6 @@ export const getEnvironmentValue = (key: string): string => {
 
   return value;
 };
-  
 
 export const CDN_HOST = getEnvironmentValue("CDN_HOST");
 export const PIWIK_URL = getEnvironmentValue("PIWIK_URL");
@@ -24,3 +23,6 @@ export const SCOTTISH_BANKRUPT_OFFICER = "/admin/officer-search/scottish-bankrup
 export const SCOTTISH_BANKRUPT_OFFICER_DETAILS = "/admin/officer-search/scottish-bankrupt-officer/:id";
 
 export const ORACLE_QUERY_API_ENDPOINT = "/officer-search/scottish-bankrupt-officers/";
+
+export const PERMISSIONS_PATH = SCOTTISH_BANKRUPT_OFFICER;
+export const QUERY_API_URL = `${ORACLE_QUERY_API_URL}${ORACLE_QUERY_API_ENDPOINT}`;
