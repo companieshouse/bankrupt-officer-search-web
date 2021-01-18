@@ -73,14 +73,4 @@ describe('BankruptOfficerController test suite', () => {
     expect(res.render).to.have.been.calledWith('error-pages/404-link-expired');
   });
 
-  it('should catch any error and call next function', async () => {
-    const resThrowsToBeCatched = { render: sinon.stub().throws() } as unknown as Response;
-        
-    await bankruptOfficer(req, resThrowsToBeCatched, nextFunctionSpy);
-  
-    expect(nextFunctionSpy).to.have.been.calledOnce;
-    expect(res.status).not.called;
-    expect(res.render).not.called;
-  });
-
 });
