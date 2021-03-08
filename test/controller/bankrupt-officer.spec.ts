@@ -9,7 +9,7 @@ import { logger, formattingOfficersInfo } from '../../src/utils';
 
 import { 
   mockAxiosResponse,
-  mockBankruptOfficer,
+  mockFullBankruptOfficer,
   statusCode
 } from '../__mocks__/utils.mock';
 
@@ -50,7 +50,7 @@ describe('BankruptOfficerController test suite', () => {
 
     expect(nextFunctionSpy).not.called;
     expect(res.render).to.have.been.calledOnce;
-    expect(res.render).to.have.been.calledWith('bankrupt_officer', { bankruptOfficer: mockBankruptOfficer });
+    expect(res.render).to.have.been.calledWith('bankrupt_officer', { bankruptOfficer: mockFullBankruptOfficer });
   });
 
   it('should return bankruptOfficer with status code 500 and render error-pages/500 page', async () => {
