@@ -1,7 +1,6 @@
 import { 
   BankruptOfficerSearchFilters, 
   BankruptOfficerSearchQuery,
-  BankruptOfficer,
   FullBankruptOfficer
 } from "../../src/types";
 
