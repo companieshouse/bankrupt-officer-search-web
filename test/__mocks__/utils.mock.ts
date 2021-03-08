@@ -1,7 +1,7 @@
 import { 
   BankruptOfficerSearchFilters, 
   BankruptOfficerSearchQuery,
-  BankruptOfficer
+  FullBankruptOfficer
 } from "../../src/types";
 
 export const PAGE_NOT_FOUND = "page not found";
@@ -26,25 +26,32 @@ export const mockSearchQuery: BankruptOfficerSearchQuery = {
   filters: mockFilters
 };
 
-export const mockBankruptOfficer: BankruptOfficer = {
+export const mockFullBankruptOfficer: FullBankruptOfficer = {
   ephemeralKey: "B6A94E743AD86973E05400144FFBDD12",
-  forename1: "Kermit",
-  forename2: "The",
-  surname: "Frog",
-  addressLine1: "123 Fake Lane",
+  forename1: "KERMIT",
+  forename2: "THE",
+  alias: "ALIAS",
+  surname: "FROG",
+  dateOfBirth: "1940-01-02",
+  addressLine1: "123 FAKE LANE",
   addressLine2: "456 SECOND LANE",
   addressLine3: "789 THIRD LANE",
-  town: "Muppet Town",
+  town: "MUPPET TOWN",
   county: "SOME COUNTY",
   postcode: "MP12 3TW",
-  dateOfBirth: "1940-01-02"
+  caseType: "TRUST DEED",
+  caseReference: "CASE REFERENCE",
+  bankruptcyType: "BANKRUPTCY TYPE",
+  startDate: "2000-01-02",
+  debtorDischargeDate: "2030-01-02",
+  trusteeDischargeDate: "2030-01-02"
 };
 
 export const BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS = { 
   itemsPerPage: 1, 
   startIndex: 0, 
   totalResults: 1, 
-  items: [mockBankruptOfficer]
+  items: [mockFullBankruptOfficer]
 };
 
 export const BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS = { 
@@ -63,7 +70,7 @@ export const statusCode = {
 export const mockAxiosResponse = { 
   ok: {
     status: statusCode.ok,
-    data: mockBankruptOfficer
+    data: mockFullBankruptOfficer
   },  
   data_results: {
     status: statusCode.ok,

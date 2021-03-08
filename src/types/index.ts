@@ -10,6 +10,7 @@ export interface BankruptOfficer extends Address {
   ephemeralKey: string
   forename1?: string
   forename2?: string
+  alias?: string
   surname?: string
   dateOfBirth?: string
 }
