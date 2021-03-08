@@ -3,19 +3,11 @@ import { expect } from 'chai';
 import { mockFullBankruptOfficer } from "../__mocks__/utils.mock";
 
 import { 
-  dateFormatting, 
   firstCharacterUpperCase, 
   formattingOfficersInfo 
 } from "../../src/utils/script/formatting";
 
 describe('Formatting test suite', () => {
-
-  it('Test function dateFormatting', () => {
-    const shouldbe = "02/01/1940";
-    expect(dateFormatting("")).equal("");
-    expect(dateFormatting(undefined)).equal(undefined);
-    expect(dateFormatting(mockFullBankruptOfficer.dateOfBirth)).equal(shouldbe);
-  });
 
   it('Test function firstCharacterUpperCase', () => {
     expect(firstCharacterUpperCase("")).equal("");
@@ -39,6 +31,7 @@ describe('Formatting test suite', () => {
     expect(officer.forename2).equal("The");
     expect(officer.alias).equal("Alias");
     expect(officer.surname).equal("Frog");
+    expect(officer.dateOfBirth).equal("20/06/1997");
     expect(officer.addressLine1).equal("123 fake lane");
     expect(officer.addressLine2).equal("456 second lane");
     expect(officer.addressLine3).equal("789 third lane");
@@ -46,6 +39,9 @@ describe('Formatting test suite', () => {
     expect(officer.county).equal("Some county");
     expect(officer.caseType).equal("Trust deed");
     expect(officer.bankruptcyType).equal("Bankruptcy type");
+    expect(officer.startDate).equal("2000-01-02");
+    expect(officer.debtorDischargeDate).equal("2030-01-02");
+    expect(officer.trusteeDischargeDate).equal("2030-01-02");
   });
     
 });

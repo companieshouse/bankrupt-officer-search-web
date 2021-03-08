@@ -27,6 +27,7 @@
     "govuk-frontend": "^3.10.1",
     "helmet": "^4.2.0",
     "ioredis": "^4.19.4",
+    "moment": "^2.29.1",
     "nunjucks": "^3.2.2",
     "validator": "^13.5.2",
     "yargs": "^16.2.0"
