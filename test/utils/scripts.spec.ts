@@ -31,7 +31,7 @@ describe('Formatting test suite', () => {
     expect(officer.forename2).equal("The");
     expect(officer.alias).equal("Alias");
     expect(officer.surname).equal("Frog");
-    expect(officer.dateOfBirth).equal("20/06/1997");
+    expect(officer.dateOfBirth).equal("18/05/1950");
     expect(officer.addressLine1).equal("123 fake lane");
     expect(officer.addressLine2).equal("456 second lane");
     expect(officer.addressLine3).equal("789 third lane");
@@ -39,9 +39,10 @@ describe('Formatting test suite', () => {
     expect(officer.county).equal("Some county");
     expect(officer.caseType).equal("Trust deed");
     expect(officer.bankruptcyType).equal("Bankruptcy type");
-    expect(officer.startDate).equal("2000-01-02");
-    expect(officer.debtorDischargeDate).equal("2030-01-02");
-    expect(officer.trusteeDischargeDate).equal("2030-01-02");
+    expect(officer.startDate).equal("2 January 2000");
+    expect(officer.debtorDischargeDate).equal("2 January 2030");
+    expect(officer.trusteeDischargeDate).equal("2 January 2030");
+    console.log(officer);
   });
     
 });

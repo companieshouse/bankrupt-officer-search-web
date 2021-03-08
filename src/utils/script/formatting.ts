@@ -17,19 +17,18 @@ export const formattingOfficersInfo = (officersList: Array<FullBankruptOfficer>)
 
 function formatDatesForDisplay(officer: FullBankruptOfficer) {
   if (officer.dateOfBirth != null) {
-    officer.dateOfBirth = moment(officer.dateOfBirth, 'DD-MM-YYY').format('L');
+    officer.dateOfBirth = moment(officer.dateOfBirth, 'YYYY-MM-DD').format('DD/MM/YYYY');
   }
 
   if (officer.startDate != null) {
-    officer.startDate = moment(officer.startDate, 'DD-MM-YYY').format('D MMMM YYYY');
+    officer.startDate = moment(officer.startDate, 'YYYY-MM-DD').format('D MMMM YYYY');
   }
 
   if (officer.debtorDischargeDate != null) {
-    officer.debtorDischargeDate = moment(officer.debtorDischargeDate, 'DD-MM-YYY').format('D MMMM YYYY');
+    officer.debtorDischargeDate = moment(officer.debtorDischargeDate, 'YYYY-MM-DD').format('D MMMM YYYY');
   }
   
   if (officer.trusteeDischargeDate != null) {
-    officer.trusteeDischargeDate = moment(officer.trusteeDischargeDate, 'DD-MM-YYY').format('D MMMM YYYY');
+    officer.trusteeDischargeDate = moment(officer.trusteeDischargeDate, 'YYYY-MM-DD').format('D MMMM YYYY');
   }
 }
-
