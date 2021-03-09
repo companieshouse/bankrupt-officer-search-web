@@ -3,18 +3,26 @@ import { expect } from 'chai';
 import { mockFullBankruptOfficer } from "../__mocks__/utils.mock";
 
 import { 
-  dateFormatting, 
   firstCharacterUpperCase, 
+  formatDateForDisplay,
+  dateOfBirthFormatting,
   formattingOfficersInfo 
 } from "../../src/utils/script/formatting";
 
 describe('Formatting test suite', () => {
 
   it('Test function dateFormatting', () => {
-    const shouldbe = "02/01/1940";
-    expect(dateFormatting("")).equal("");
-    expect(dateFormatting(undefined)).equal(undefined);
-    expect(dateFormatting(mockFullBankruptOfficer.dateOfBirth)).equal(shouldbe);
+    expect(dateOfBirthFormatting("")).equal("");
+    expect(dateOfBirthFormatting(undefined)).equal(undefined);
+    expect(dateOfBirthFormatting(mockFullBankruptOfficer.dateOfBirth)).equal("18/05/1950");
+  });
+
+  it('Test function formatDateForDisplay', () => {
+    expect("").equal("");
+    expect(formatDateForDisplay(undefined)).equal(undefined);
+    expect(formatDateForDisplay(mockFullBankruptOfficer.startDate)).equal("2 January 2000");
+    expect(formatDateForDisplay(mockFullBankruptOfficer.debtorDischargeDate)).equal("2 January 2030");
+    expect(formatDateForDisplay(mockFullBankruptOfficer.trusteeDischargeDate)).equal("2 January 2030");
   });
 
   it('Test function firstCharacterUpperCase', () => {
@@ -39,6 +47,7 @@ describe('Formatting test suite', () => {
     expect(officer.forename2).equal("The");
     expect(officer.alias).equal("Alias");
     expect(officer.surname).equal("Frog");
+    expect(officer.dateOfBirth).equal("18/05/1950");
     expect(officer.addressLine1).equal("123 fake lane");
     expect(officer.addressLine2).equal("456 second lane");
     expect(officer.addressLine3).equal("789 third lane");
@@ -46,6 +55,9 @@ describe('Formatting test suite', () => {
     expect(officer.county).equal("Some county");
     expect(officer.caseType).equal("Trust deed");
     expect(officer.bankruptcyType).equal("Bankruptcy type");
+    expect(officer.startDate).equal("2 January 2000");
+    expect(officer.debtorDischargeDate).equal("2 January 2030");
+    expect(officer.trusteeDischargeDate).equal("2 January 2030");
   });
     
 });
