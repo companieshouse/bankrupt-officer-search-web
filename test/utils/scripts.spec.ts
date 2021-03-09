@@ -4,10 +4,26 @@ import { mockFullBankruptOfficer } from "../__mocks__/utils.mock";
 
 import { 
   firstCharacterUpperCase, 
+  formatDateForDisplay,
+  dateOfBirthFormatting,
   formattingOfficersInfo 
 } from "../../src/utils/script/formatting";
 
 describe('Formatting test suite', () => {
+
+  it('Test function dateFormatting', () => {
+    expect(dateOfBirthFormatting("")).equal("");
+    expect(dateOfBirthFormatting(undefined)).equal(undefined);
+    expect(dateOfBirthFormatting(mockFullBankruptOfficer.dateOfBirth)).equal("18/05/1950");
+  });
+
+  it('Test function formatDateForDisplay', () => {
+    expect("").equal("");
+    expect(formatDateForDisplay(undefined)).equal(undefined);
+    expect(formatDateForDisplay(mockFullBankruptOfficer.startDate)).equal("2 January 2000");
+    expect(formatDateForDisplay(mockFullBankruptOfficer.debtorDischargeDate)).equal("2 January 2030");
+    expect(formatDateForDisplay(mockFullBankruptOfficer.trusteeDischargeDate)).equal("2 January 2030");
+  });
 
   it('Test function firstCharacterUpperCase', () => {
     expect(firstCharacterUpperCase("")).equal("");
@@ -42,7 +58,6 @@ describe('Formatting test suite', () => {
     expect(officer.startDate).equal("2 January 2000");
     expect(officer.debtorDischargeDate).equal("2 January 2030");
     expect(officer.trusteeDischargeDate).equal("2 January 2030");
-    console.log(officer);
   });
     
 });
