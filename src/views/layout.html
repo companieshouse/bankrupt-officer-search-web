@@ -45,6 +45,12 @@
   }) }}
 {% endblock %}
 
+{% block beforeContent %}
+ 
+  {% include "components/sign-out-user-banner.njk" %}
+  
+{% endblock %}
+
 {% block footer %}
     {{ chFooter({
       classes: "ch",
