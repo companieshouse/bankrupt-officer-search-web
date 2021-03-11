@@ -21,6 +21,7 @@
   "dependencies": {
     "@companieshouse/node-session-handler": "^4.1.6",
     "@companieshouse/structured-logging-node": "^1.0.4",
+    "private-api-sdk-node": "git+ssh://git@github.com/companieshouse/private-api-sdk-node.git#feature/bi-6537-integrate-bados-web-application",
     "axios": "^0.21.0",
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
