@@ -21,7 +21,6 @@ export default (req: Request, res: Response, next: NextFunction): void => {
       return res.redirect(`/signin?return_to=${SCOTTISH_BANKRUPT_OFFICER}`);
     } 
 
-    req.app.locals.userEmail = userSession.getLoggedInUserEmail(req.session);
     if(userSession.checkPermission(req.session)){
       logger.info(`User (${userSession.getLoggedInUserEmail(req.session)}) is signed in`);
       next();
