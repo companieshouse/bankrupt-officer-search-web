@@ -28,14 +28,13 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
     const filters: BankruptOfficerSearchFilters = { forename1, surname, dateOfBirth, postcode };
     const body: BankruptOfficerSearchQuery = { startIndex: 0, itemsPerPage: 10, filters};
 
-    const results = await fetchBankruptOfficers(body);
-
+    const results = await fetchBankruptOfficers(req.session, body);
     // Not found officers has to be rendered anyway with an empty list 
-    if(!results.error || results.status === 404){
-      const { itemsPerPage = 0, startIndex = 0, totalResults = 0, items = [] } = results.data || {};
+    if(results.httpStatusCode === 404  || results.httpStatusCode === 200){
+      const { itemsPerPage = 0, startIndex = 0, totalResults = 0, items = [] } = results.resource || {};
       return res.render('bankrupt', { itemsPerPage, startIndex, totalResults, items: formattingOfficersInfo(items), searched: true });
     } else {
-      return res.status(results.status).render('error-pages/500');
+      return res.status(results.httpStatusCode).render('error-pages/500');
     } 
 
   } catch (err) {

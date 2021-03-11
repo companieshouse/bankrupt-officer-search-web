@@ -3,6 +3,7 @@ import { SessionKey } from '@companieshouse/node-session-handler/lib/session/key
 import { SignInInfoKeys } from '@companieshouse/node-session-handler/lib/session/keys/SignInInfoKeys';
 import { UserProfileKeys } from '@companieshouse/node-session-handler//lib/session/keys/UserProfileKeys';
 import { ISignInInfo } from '@companieshouse/node-session-handler/lib/session/model/SessionInterfaces';
+import { AccessTokenKeys } from '@companieshouse/node-session-handler/lib/session/keys/AccessTokenKeys';
 
 import {
   PERMISSIONS_PATH
@@ -36,4 +37,9 @@ export function getUserId(session): string{
 export function checkUserSignedIn(session): boolean {
   const signInInfo = getSignInInfo(session);
   return signInInfo?.[SignInInfoKeys.SignedIn] === 1;
+}
+
+export function getAccessToken(session): string {
+  const signInInfo = getSignInInfo(session);
+  return signInInfo?.[SignInInfoKeys.AccessToken]?.[AccessTokenKeys.AccessToken] as string;
 }

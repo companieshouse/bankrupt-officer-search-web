@@ -4,15 +4,15 @@ import { logger, formattingOfficersInfo } from '../../utils';
 
 export default async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const bankruptOfficer = await fetchBankruptOfficer(req.params?.id);
+    const bankruptOfficer = await fetchBankruptOfficer(req.session, req.params?.id);
 
-    if(!bankruptOfficer.error){
-      const officer = (bankruptOfficer.data) ? formattingOfficersInfo([bankruptOfficer.data])[0] : {};
+    if (bankruptOfficer.httpStatusCode === 200){
+      const officer = (bankruptOfficer.resource) ? formattingOfficersInfo([bankruptOfficer.resource])[0] : {};
       return res.render('bankrupt_officer', { bankruptOfficer: officer });
-    } else if( bankruptOfficer.status === 500) {
-      return res.status(bankruptOfficer.status).render('error-pages/500');
+    } else if( bankruptOfficer.httpStatusCode === 404) {
+      return res.status(bankruptOfficer.httpStatusCode).render('error-pages/404-link-expired');
     } else {
-      return res.status(bankruptOfficer.status).render('error-pages/404-link-expired');
+      return res.status(bankruptOfficer.httpStatusCode).render('error-pages/500');
     }
 
   } catch (err) {

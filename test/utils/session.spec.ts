@@ -8,7 +8,8 @@ import {
   getSessionRequestWithPermission,
   getSessionRequest,
   testSignedIn,
-  testUserProfile 
+  testUserProfile,
+  testAccessToken
 } from '../__mocks__/session.mock';
 import { 
   checkUserSignedIn,
@@ -16,7 +17,8 @@ import {
   checkPermission,
   getLoggedInUserEmail,
   getSignInInfo,
-  getUserId
+  getUserId,
+  getAccessToken
 } from '../../src/utils/session/session';
 
 describe('SessionUtils test suite', () => {  
@@ -25,17 +27,7 @@ describe('SessionUtils test suite', () => {
 
   it('Test function getSignInInfo()', () => {    
     const signInInfo = getSignInInfo(testSessionRequest);
-    expect(signInInfo).has.keys(SignInInfoKeys.SignedIn, SignInInfoKeys.UserProfile);
-  });
-
-  it('Test function getUserId()', () => {
-    const userId = getUserId(testSessionRequest);
-    expect(userId).equal(testUserProfile.id);
-  });
-
-  it('Test function checkUserSignedIn()', () => {
-    const userSignedIn = checkUserSignedIn(testSessionRequest);
-    expect(userSignedIn).equal(Boolean(testSignedIn));
+    expect(signInInfo).has.keys(SignInInfoKeys.SignedIn, SignInInfoKeys.UserProfile, SignInInfoKeys.AccessToken);
   });
 
   it('Test function getPermissions()', () => {
@@ -53,4 +45,18 @@ describe('SessionUtils test suite', () => {
     expect(testPermission).equal("userWithPermission@ch.gov.uk");
   });
 
+  it('Test function getUserId()', () => {
+    const userId = getUserId(testSessionRequest);
+    expect(userId).equal(testUserProfile.id);
+  });
+
+  it('Test function checkUserSignedIn()', () => {
+    const userSignedIn = checkUserSignedIn(testSessionRequest);
+    expect(userSignedIn).equal(Boolean(testSignedIn));
+  });
+
+  it('Test function getAccessToken()', () => {
+    const signInInfo = getAccessToken(testSessionRequest);
+    expect(signInInfo).equal(testAccessToken.access_token);
+  });
 });

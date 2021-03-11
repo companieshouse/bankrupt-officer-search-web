@@ -1,3 +1,4 @@
+import { createPrivateApiClient } from "private-api-sdk-node";
 import { 
   BankruptOfficerSearchFilters, 
   BankruptOfficerSearchQuery,
@@ -8,6 +9,7 @@ export const PAGE_NOT_FOUND = "page not found";
 export const LINK_EXPIRED = "This link has expired";
 export const SERVER_ERROR = "Sorry, there is a problem with the service";
 export const EPHEMERALKEY = "B687FDB8F0E171DBE05400144FFBDD12";
+export const mockApiClient = createPrivateApiClient(undefined, "OAUTH_TOKEN", "TEST_URL");
 
 export const FAKE_URL = { 
   path: "tryAgainNoLuck" 
@@ -67,25 +69,16 @@ export const statusCode = {
   server_error: 500
 };
 
-export const mockAxiosResponse = { 
-  ok: {
-    status: statusCode.ok,
-    data: mockFullBankruptOfficer
-  },  
-  data_results: {
-    status: statusCode.ok,
-    data: BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS
-  }, 
-  no_data: {
-    status: statusCode.client_error,
-    data: null
-  },
-  client_error: {
-    statusCode: statusCode.client_error,
-    error: { message: "failed to execute http request" }
-  },
-  server_error: {
-    statusCode: statusCode.server_error,
-    error: { message: "failed to execute http request" }
-  }
+export const mockPostResponse = { 
+  "200": { status: 200, body: BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS },
+  "401": { status: 401, error: "Unauthorised" },
+  "404": { status: 404, error: "No Scottish bankrupt officers found" },
+  "500": { status: 500, error: "Internal server error" }
+};
+
+export const mockGetResponse = { 
+  "200": { status: 200, body: mockFullBankruptOfficer },
+  "401": { status: 401, error: "Unauthorised" },
+  "404": { status: 404, error: "Scottish bankrupt officer not found" },
+  "500": { status: 500, error: "Internal server error" }
 };

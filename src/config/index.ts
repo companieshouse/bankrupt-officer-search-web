@@ -16,13 +16,10 @@ export const CACHE_SERVER = getEnvironmentValue("CACHE_SERVER");
 export const CHS_URL = getEnvironmentValue("CHS_URL");
 export const API_KEY = getEnvironmentValue("CHS_API_KEY");
 export const COOKIE_DOMAIN = getEnvironmentValue("COOKIE_DOMAIN");
-export const ORACLE_QUERY_API_URL = getEnvironmentValue("ORACLE_QUERY_API_URL");
+export const INTERNAL_API_URL = getEnvironmentValue("INTERNAL_API_URL");
 
 export const APPLICATION_NAME = "bankrupt-officer-search-web";
 export const SCOTTISH_BANKRUPT_OFFICER = "/admin/officer-search/scottish-bankrupt-officer";
 export const SCOTTISH_BANKRUPT_OFFICER_DETAILS = "/admin/officer-search/scottish-bankrupt-officer/:id";
 
-export const ORACLE_QUERY_API_ENDPOINT = "/officer-search/scottish-bankrupt-officers/";
-
 export const PERMISSIONS_PATH = SCOTTISH_BANKRUPT_OFFICER;
-export const QUERY_API_URL = `${ORACLE_QUERY_API_URL}${ORACLE_QUERY_API_ENDPOINT}`;
