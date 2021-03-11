@@ -1,4 +1,4 @@
-import { NextFunction, request, Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
 import { logger, formattingOfficersInfo, userSession } from '../../utils';
 import { fetchBankruptOfficers } from '../../service';
@@ -7,7 +7,6 @@ import { BankruptOfficerSearchFilters, BankruptOfficerSearchQuery } from '../../
 export const getSearchPage = (req: Request, res: Response, next: NextFunction): void => {
   try {
       const userEmail = userSession.getLoggedInUserEmail(req.session);
-      console.log(userEmail);
     res.render('bankrupt', { userEmail });
   } catch (err) {
     logger.error(`${err}`);
@@ -37,7 +36,7 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
       const { itemsPerPage = 0, startIndex = 0, totalResults = 0, items = [] } = results.data || {};
       return res.render('bankrupt', { itemsPerPage, startIndex, totalResults, items: formattingOfficersInfo(items), searched: true , userEmail});
     } else {
-        return res.status(results.status).render('error-pages/500', { userEmail });
+        return res.status(results.status).render('error-pages/500');
     } 
 
   } catch (err) {
