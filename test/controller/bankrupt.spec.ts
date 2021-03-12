@@ -6,6 +6,7 @@ import axios from 'axios';
 
 import { getSearchPage, postSearchPage } from "../../src/controller";
 import { logger } from '../../src/utils';
+import { userSession } from '../../src/utils';
 
 import { 
   BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS,
@@ -49,11 +50,12 @@ describe("BankruptController test suite", () => {
   describe("search page get", () => {
 
     it("should renders the bankrupt officer search page", async () => {
+      sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
+
       await getSearchPage(req, res, nextFunctionSpy);
-      
       expect(nextFunctionSpy).not.called;
       expect(res.render).to.have.been.calledOnce;
-      expect(res.render).to.have.been.calledWith('bankrupt');  
+      expect(res.render).to.have.been.calledWith('bankrupt', { userEmail: "test@testemail.com" });  
     });
 
     it('should catch any error and call next function', async () => {
@@ -68,27 +70,31 @@ describe("BankruptController test suite", () => {
 
   });
 
+  
+
   describe("search page post", () => {
     it("should renders the bankrupt officer search page with the list of officers", async () => {
       sinon.stub(axios, 'post').resolves(mockAxiosResponse.data_results);
       req.body = mockSearchQuery;
 
+      sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
       await postSearchPage(req, res, nextFunctionSpy);
       
       expect(nextFunctionSpy).not.called;
       expect(res.render).to.have.been.calledOnce;
-      expect(res.render).to.have.been.calledWith('bankrupt', {searched: true, ...BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS});
+      expect(res.render).to.have.been.calledWith('bankrupt', {searched: true, ...BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS, userEmail: "test@testemail.com" });
     });
 
     it("should renders the bankrupt officer search page with not officers", async () => {
       sinon.stub(axios, 'post').resolves(mockAxiosResponse.no_data);
       req.body = mockSearchQuery;
-  
+
+      sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
       await postSearchPage(req, res, nextFunctionSpy);
         
       expect(nextFunctionSpy).not.called;
       expect(res.render).to.have.been.calledOnce;
-      expect(res.render).to.have.been.calledWith('bankrupt', {searched: true, ...BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS});
+      expect(res.render).to.have.been.calledWith('bankrupt', {searched: true, ...BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS, userEmail: "test@testemail.com" });
     });
 
     it('should return none data with status code 500 and render error-pages/500 page', async () => {

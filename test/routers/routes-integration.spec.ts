@@ -72,4 +72,29 @@ describe('Routers test suite', () => {
     });
   });
 
+  describe('Should hit SCOTTISH_BANKRUPT_OFFICER Endpoint and return signout info', () => {
+    it("should find " + SCOTTISH_BANKRUPT_OFFICER + " page url", async () => {
+      return await request(app)
+        .get(SCOTTISH_BANKRUPT_OFFICER)
+        .set('Cookie', signedInCookie)
+        .then(response => {
+          expect(response.text).to.include('userWithPermission@ch.gov.uk');
+          expect(response.text).to.include('/signout');
+          expect(response.status).equal(200);
+        });
+    });
+  });
+  describe('Should hit SCOTTISH_BANKRUPT_OFFICER_DETAILS Endpoint and should no return signout info', () => {
+    it("should find " + SCOTTISH_BANKRUPT_OFFICER + " page url", async () => {
+      return await request(app)
+        .get(SCOTTISH_BANKRUPT_OFFICER_DETAILS)
+        .set('Cookie', signedInCookie)
+        .then(response => {
+          expect(response.text).not.to.include('userWithPermission@ch.gov.uk');
+          expect(response.text).not.to.include('/signout');
+          expect(response.status).equal(404);
+        });
+    });
+  });
+
 });
