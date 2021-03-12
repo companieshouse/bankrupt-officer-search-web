@@ -7,7 +7,7 @@ export default async (req: Request, res: Response, next: NextFunction): Promise<
     const bankruptOfficer = await fetchBankruptOfficer(req.params?.id);
       
     if (!bankruptOfficer.error) {
-      officer = (bankruptOfficer.data) ? formattingOfficersInfo([bankruptOfficer.data])[0] : {};
+      const officer = (bankruptOfficer.data) ? formattingOfficersInfo([bankruptOfficer.data])[0] : {};
       return res.render('bankrupt_officer', { bankruptOfficer: officer } );
     } else if( bankruptOfficer.status === 500) {
       return res.status(bankruptOfficer.status).render('error-pages/500');
