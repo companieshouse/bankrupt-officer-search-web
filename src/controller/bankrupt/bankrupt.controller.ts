@@ -6,7 +6,7 @@ import { BankruptOfficerSearchFilters, BankruptOfficerSearchQuery } from '../../
 
 export const getSearchPage = (req: Request, res: Response, next: NextFunction): void => {
   try {
-      const userEmail = userSession.getLoggedInUserEmail(req.session);
+    const userEmail = userSession.getLoggedInUserEmail(req.session);
     res.render('bankrupt', { userEmail });
   } catch (err) {
     logger.error(`${err}`);
@@ -36,7 +36,7 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
       const { itemsPerPage = 0, startIndex = 0, totalResults = 0, items = [] } = results.data || {};
       return res.render('bankrupt', { itemsPerPage, startIndex, totalResults, items: formattingOfficersInfo(items), searched: true , userEmail});
     } else {
-        return res.status(results.status).render('error-pages/500');
+      return res.status(results.status).render('error-pages/500');
     } 
 
   } catch (err) {
