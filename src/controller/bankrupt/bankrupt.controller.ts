@@ -16,7 +16,6 @@ export const getSearchPage = (req: Request, res: Response, next: NextFunction): 
 
 export const postSearchPage = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const userEmail = userSession.getLoggedInUserEmail(req.session);
     // Get data from request body - dateOfBirth needs to be checked 
     const { forename1 = '', surname = '', postcode = '' } = req.body;
 
@@ -30,9 +29,9 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
     const body: BankruptOfficerSearchQuery = { startIndex: 0, itemsPerPage: 10, filters};
 
     const results = await fetchBankruptOfficers(body);
-
     // Not found officers has to be rendered anyway with an empty list 
-    if(!results.error || results.status === 404){
+    if (!results.error || results.status === 404) {
+      const userEmail = userSession.getLoggedInUserEmail(req.session);
       const { itemsPerPage = 0, startIndex = 0, totalResults = 0, items = [] } = results.data || {};
       return res.render('bankrupt', { itemsPerPage, startIndex, totalResults, items: formattingOfficersInfo(items), searched: true , userEmail});
     } else {

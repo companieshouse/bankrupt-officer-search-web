@@ -70,6 +70,8 @@ describe("BankruptController test suite", () => {
 
   });
 
+  
+
   describe("search page post", () => {
     it("should renders the bankrupt officer search page with the list of officers", async () => {
       sinon.stub(axios, 'post').resolves(mockAxiosResponse.data_results);
