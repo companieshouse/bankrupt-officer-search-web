@@ -9,6 +9,4 @@ process.env.COOKIE_DOMAIN = "testTBD";
 process.env.APPLICATION_NAME = 'bankrupt-officer-search-web';
 process.env.SCOTTISH_BANKRUPT_OFFICER = '/admin/officer-search/scottish-bankrupt-officer';
 process.env.SCOTTISH_BANKRUPT_OFFICER_DETAILS = '/admin/officer-search/scottish-bankrupt-officer/:id';
-process.env.ORACLE_QUERY_API_URL = 'http://oracle-query-api:8080';
-process.env.ORACLE_QUERY_API_ENDPOINT = '/officer-search/scottish-bankrupt-officers/';
-process.env.INTERNAL_API_URL = 'http://chs.local'
+process.env.INTERNAL_API_URL = 'http://chs.local';

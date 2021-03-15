@@ -35,19 +35,39 @@ describe('SessionUtils test suite', () => {
     expect(testPermission).has.key(PERMISSIONS_PATH);
   });
 
+  it('Test function getPermissions() when session is empty', () => {
+    const testPermission = getPermissions({});
+    expect(testPermission).to.be.undefined;
+  });
+
   it('Test function checkPermission()', () => {
     const testPermission = checkPermission(testSessionWithPermission);
     expect(testPermission).equal(Boolean(1));
   });
 
+  it('Test function checkPermission() when session is empty', () => {
+    const testPermission = checkPermission({});
+    expect(testPermission).to.be.false;
+  });
+
   it('Test function getLoggedInUserEmail()', () => {
-    const testPermission = getLoggedInUserEmail(testSessionWithPermission);
-    expect(testPermission).equal("userWithPermission@ch.gov.uk");
+    const testEmail = getLoggedInUserEmail(testSessionWithPermission);
+    expect(testEmail).equal("userWithPermission@ch.gov.uk");
+  });
+
+  it('Test function getLoggedInUserEmail() when session is empty', () => {
+    const testEmail = getLoggedInUserEmail({});
+    expect(testEmail).to.be.undefined;
   });
 
   it('Test function getUserId()', () => {
     const userId = getUserId(testSessionRequest);
     expect(userId).equal(testUserProfile.id);
+  });
+
+  it('Test function getUserId() when session is empty', () => {
+    const userId = getUserId({});
+    expect(userId).to.be.undefined;
   });
 
   it('Test function checkUserSignedIn()', () => {

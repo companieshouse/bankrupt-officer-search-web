@@ -9,14 +9,6 @@ import {
   signedInCookie
 } from "../__mocks__/session.mock";
 
-import {  
-  LINK_EXPIRED,
-  PAGE_NOT_FOUND, 
-  // SERVER_ERROR,
-  FAKE_URL,
-  EPHEMERALKEY
-} from "../__mocks__/utils.mock";
-
 import {
   SCOTTISH_BANKRUPT_OFFICER,
   SCOTTISH_BANKRUPT_OFFICER_DETAILS

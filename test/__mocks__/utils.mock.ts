@@ -29,7 +29,7 @@ export const mockSearchQuery: BankruptOfficerSearchQuery = {
 };
 
 export const mockFullBankruptOfficer: FullBankruptOfficer = {
-  ephemeralKey: "B6A94E743AD86973E05400144FFBDD12",
+  ephemeralKey: EPHEMERALKEY,
   forename1: "KERMIT",
   forename2: "THE",
   alias: "ALIAS",
@@ -63,22 +63,18 @@ export const BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS = {
   items: []
 };
 
-export const statusCode = {
-  ok: 200,
-  client_error: 404,
-  server_error: 500
-};
+export const errorSatatusCode = [401, 404, 500];
 
 export const mockPostResponse = { 
-  "200": { status: 200, body: BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS },
-  "401": { status: 401, error: "Unauthorised" },
-  "404": { status: 404, error: "No Scottish bankrupt officers found" },
-  "500": { status: 500, error: "Internal server error" }
+  "200": { httpStatusCode: 200, resource: BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS },
+  "401": { httpStatusCode: 401 },
+  "404": { httpStatusCode: 404 },
+  "500": { httpStatusCode: 500 }
 };
 
 export const mockGetResponse = { 
-  "200": { status: 200, body: mockFullBankruptOfficer },
-  "401": { status: 401, error: "Unauthorised" },
-  "404": { status: 404, error: "Scottish bankrupt officer not found" },
-  "500": { status: 500, error: "Internal server error" }
+  "200": { httpStatusCode: 200, resource: mockFullBankruptOfficer },
+  "401": { httpStatusCode: 401 },
+  "404": { httpStatusCode: 404 },
+  "500": { httpStatusCode: 500 }
 };
