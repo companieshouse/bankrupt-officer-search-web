@@ -34,7 +34,7 @@ export const mockFullBankruptOfficer: FullBankruptOfficer = {
   forename2: "THE",
   alias: "ALIAS",
   surname: "FROG",
-  dateOfBirth: "1940-01-02",
+  dateOfBirth: "1950-05-18",
   addressLine1: "123 FAKE LANE",
   addressLine2: "456 SECOND LANE",
   addressLine3: "789 THIRD LANE",

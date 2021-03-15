@@ -19,8 +19,8 @@
 {% block head %}
 <meta name="format-detection" content="telephone=no">
 <!--[if !IE 8]><!-->
-<link rel="stylesheet" type="text/css" media="all" href="//{{CDN_HOST}}/stylesheets/services/bankrupt-officers/app.css" />
-<link rel="stylesheet" type="text/css" media="all" href="//{{CDN_HOST}}/stylesheets/services/bankrupt-officers/footer.css" />
+<link rel="stylesheet" type="text/css" media="all" href="//{{CDN_HOST}}/stylesheets/services/bankrupt-officers/app.min.css" />
+<link rel="stylesheet" type="text/css" media="all" href="//{{CDN_HOST}}/stylesheets/services/bankrupt-officers/footer.min.css" />
 <!--<![endif]-->
 <link rel="SHORTCUT ICON" href="//{{CDN_HOST}}/images/favicon.ico" />
 <link rel="icon" href="//{{CDN_HOST}}/images/favicon.ico" type="image/x-icon" />
@@ -43,6 +43,10 @@
     serviceUrl: "/admin/officer-search/scottish-bankrupt-officer",
     containerClasses: "govuk-width-container"
   }) }}
+{% endblock %}
+
+{% block signOutBanner %}
+  {% include "components/sign-out-user-banner.njk" %}
 {% endblock %}
 
 {% block footer %}

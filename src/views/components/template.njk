@@ -1,6 +1,7 @@
 {% from "govuk/components/skip-link/macro.njk" import govukSkipLink -%}
 {% from "govuk/components/header/macro.njk" import govukHeader -%}
 {% from "govuk/components/footer/macro.njk" import govukFooter -%}
+
 {# specify absolute url for the static assets folder e.g. http://wwww.domain.com/assets #}
 {%- set assetUrl = assetUrl | default(assetPath) -%}
 <!DOCTYPE html>
@@ -45,7 +46,8 @@
     {% block main %}
     <div class="entire-wrapper">
       <div class="govuk-width-container">
-        {% block beforeContent %}{% endblock %}
+        {% block signOutBanner %}{% endblock %}
+        {% block beforeContent %}{% endblock %}  
         <main class="govuk-main-wrapper {{ mainClasses }}" id="main-content" role="main">
           {% block content %}{% endblock %}
         </main>

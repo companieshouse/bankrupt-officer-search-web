@@ -5,6 +5,7 @@ import sinon from "sinon";
 
 import { BadosService } from 'private-api-sdk-node/dist/services/bankrupt-officer';
 import { getSearchPage, postSearchPage } from "../../src/controller";
+import { userSession } from '../../src/utils';
 
 import {
   BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS,
@@ -51,10 +52,12 @@ describe("BankruptController test suite", () => {
   describe("search page get", () => {
 
     it("should renders the bankrupt officer search page", async () => {
+      sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
+
       await getSearchPage(req, res, nextFunctionSpy);
 
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt');
+      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { userEmail: "test@testemail.com" });
     });
 
     it('should catch any error and call next function', async () => {
@@ -68,16 +71,18 @@ describe("BankruptController test suite", () => {
     });
   });
 
+  
+
   describe("search page post", () => {
 
     it("should renders the bankrupt officer search page with the list of officers", async () => {
       req.body = mockSearchQuery;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').resolves(mockPostResponse[200]);
-
+      sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
       await postSearchPage(req, res, nextFunctionSpy);
 
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { searched: true, ...BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS });
+      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { searched: true, ...BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS, userEmail: "test@testemail.com"  });
     });
 
     it("should renders the bankrupt officer search page with the list of officers considering the DAB", async () => {
@@ -85,20 +90,22 @@ describe("BankruptController test suite", () => {
       req.body["dob-dd"] = 1; req.body["dob-mm"] = 11; req.body["dob-yyyy"] = 1989;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').resolves(mockPostResponse[200]);
 
+      sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
       await postSearchPage(req, res, nextFunctionSpy);
 
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { searched: true, ...BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS });
+      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { searched: true, ...BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS, userEmail: "test@testemail.com" });
     });
 
     it("should renders the bankrupt officer search page with not officers", async () => {
       req.body = mockSearchQuery;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
+      sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
 
       await postSearchPage(req, res, nextFunctionSpy);
 
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { searched: true, ...BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS });
+      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { searched: true, ...BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS, userEmail: "test@testemail.com" });
     });
 
     it('should return none data with status code 500 and render error-pages/500 page', async () => {
