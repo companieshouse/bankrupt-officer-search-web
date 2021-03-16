@@ -6,7 +6,7 @@ import {
   EPHEMERALKEY,
   mockSearchQuery,
   mockGetResponse,
-  errorSatatusCode,
+  errorStatusCode,
   mockPostResponse,
 } from "../__mocks__/utils.mock";
 
@@ -51,7 +51,7 @@ describe('ApiService Test suite', () => {
       expect(results.resource).to.be.not.undefined;
     });
   
-    errorSatatusCode.forEach( httpStatus => {
+    errorStatusCode.forEach( httpStatus => {
       it(`should return the error object with the ${httpStatus} in httpStatusCode field`, async () => {
         const stubRequest = sinon.stub(BadosService.prototype, 'getBankruptOfficer').rejects(mockGetResponse[httpStatus]);
 
@@ -75,7 +75,7 @@ describe('ApiService Test suite', () => {
       expect(results.resource).to.be.not.undefined;
     });
   
-    errorSatatusCode.forEach( httpStatus => {
+    errorStatusCode.forEach( httpStatus => {
       it(`should return the error object with the ${httpStatus} in httpStatusCode field`, async () => {
         const stubRequest = sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[httpStatus]);
 

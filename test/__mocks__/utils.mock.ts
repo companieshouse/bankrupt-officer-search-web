@@ -63,7 +63,7 @@ export const BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS = {
   items: []
 };
 
-export const errorSatatusCode = [401, 404, 500];
+export const errorStatusCode = [401, 404, 500];
 
 export const mockPostResponse = { 
   "200": { httpStatusCode: 200, resource: BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS },
