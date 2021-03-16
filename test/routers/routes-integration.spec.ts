@@ -9,14 +9,6 @@ import {
   signedInCookie
 } from "../__mocks__/session.mock";
 
-import {  
-  LINK_EXPIRED,
-  PAGE_NOT_FOUND, 
-  // SERVER_ERROR,
-  FAKE_URL,
-  EPHEMERALKEY
-} from "../__mocks__/utils.mock";
-
 import {
   SCOTTISH_BANKRUPT_OFFICER,
   SCOTTISH_BANKRUPT_OFFICER_DETAILS
@@ -84,15 +76,15 @@ describe('Routers test suite', () => {
         });
     });
   });
+
   describe('Should hit SCOTTISH_BANKRUPT_OFFICER_DETAILS Endpoint and should no return signout info', () => {
-    it("should find " + SCOTTISH_BANKRUPT_OFFICER + " page url", async () => {
+    it("should find " + SCOTTISH_BANKRUPT_OFFICER_DETAILS + " page url", async () => {
       return await request(app)
         .get(SCOTTISH_BANKRUPT_OFFICER_DETAILS)
         .set('Cookie', signedInCookie)
         .then(response => {
           expect(response.text).not.to.include('userWithPermission@ch.gov.uk');
           expect(response.text).not.to.include('/signout');
-          expect(response.status).equal(404);
         });
     });
   });

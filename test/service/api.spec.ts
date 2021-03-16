@@ -1,22 +1,28 @@
-import axios from "axios";
 import chai, { expect } from 'chai';
 import sinonChai from "sinon-chai";
 import sinon from "sinon";
 
 import { 
   EPHEMERALKEY,
-  statusCode,
-  mockAxiosResponse,
-  mockSearchQuery
+  mockSearchQuery,
+  mockGetResponse,
+  errorStatusCode,
+  mockPostResponse,
 } from "../__mocks__/utils.mock";
 
-import { 
+import {
+  getSessionRequest
+} from "../__mocks__/session.mock";
+
+import {
+  createOAuthApiClient,
   fetchBankruptOfficer,
-  fetchBankruptOfficers,
-  failedExecHttpRequest
+  fetchBankruptOfficers
 } from "../../src/service/api/api.service";
 
 import { logger } from "../../src/utils";
+import { BadosService } from 'private-api-sdk-node/dist/services/bankrupt-officer';
+import PrivateApiClient from 'private-api-sdk-node/dist/client';
 
 chai.use(sinonChai);
 
@@ -36,79 +42,58 @@ describe('ApiService Test suite', () => {
 
   describe('fetchBankruptOfficer()', () => {
     it('should return the response object with the correct fields', async () => {
-      // stub the call
-      const stubRequest = sinon.stub(axios, 'get').resolves(mockAxiosResponse.ok);
-      // set the call
-      const results = await fetchBankruptOfficer(EPHEMERALKEY);
-      // check results
+      const stubRequest = sinon.stub(BadosService.prototype, 'getBankruptOfficer').resolves(mockGetResponse[200]);
+
+      const results = await fetchBankruptOfficer(getSessionRequest(), EPHEMERALKEY);
+      
       expect(stubRequest).to.have.been.calledOnce;
-      expect(results.error).to.be.undefined;
-      expect(results.data).equal(mockAxiosResponse.ok.data);
-      expect(results.status).equal(statusCode.ok);
+      expect(results.httpStatusCode).to.equal(200);
+      expect(results.resource).to.be.not.undefined;
     });
   
-    it('should return the error object with the correct fields', async () => {
-      const stubRequest = sinon.stub(axios, 'get').rejects(mockAxiosResponse.client_error);
-      const results = await fetchBankruptOfficer(EPHEMERALKEY);
+    errorStatusCode.forEach( httpStatus => {
+      it(`should return the error object with the ${httpStatus} in httpStatusCode field`, async () => {
+        const stubRequest = sinon.stub(BadosService.prototype, 'getBankruptOfficer').rejects(mockGetResponse[httpStatus]);
 
-      expect(stubRequest).to.have.been.calledOnce;
-      expect(results.data).to.be.undefined;
-      expect(results.error).to.deep.equal(mockAxiosResponse.client_error.error);
-      expect(results.status).equal(statusCode.client_error);
-    });
-  
-    it('should catch any error and call next function', async () => {
-      const stubRequest = sinon.stub(axios, 'get').throws();
-      const results = await fetchBankruptOfficer(EPHEMERALKEY);
+        const results = await fetchBankruptOfficer(getSessionRequest(), EPHEMERALKEY);
 
-      expect(stubRequest).to.have.been.calledOnce;
-      expect(results.data).to.be.undefined;
-      expect(results.error).to.deep.equal(mockAxiosResponse.server_error.error);
-      expect(results.status).equal(statusCode.server_error);
+        expect(stubRequest).to.have.been.calledOnce;
+        expect(results.httpStatusCode).equal(httpStatus);
+        expect(results.resource).to.be.undefined;
+      });
     });
   });
 
   describe('fetchBankruptOfficers()', () => {
     it('should return the response object with the correct fields', async () => {
-      const stubRequest = sinon.stub(axios, 'post').resolves(mockAxiosResponse.ok);
-      const results = await fetchBankruptOfficers(mockSearchQuery);
+      const stubRequest = sinon.stub(BadosService.prototype, 'getBankruptOfficers').resolves(mockPostResponse[200]);
 
+      const results = await fetchBankruptOfficers(getSessionRequest(), mockSearchQuery);
+      
       expect(stubRequest).to.have.been.calledOnce;
-      expect(results.error).to.be.undefined;
-      expect(results.data).equal(mockAxiosResponse.ok.data);
-      expect(results.status).equal(statusCode.ok);
+      expect(results.httpStatusCode).to.equal(200);
+      expect(results.resource).to.be.not.undefined;
     });
-    
-    it('should return the error object with the correct fields', async () => {
-      const stubRequest = sinon.stub(axios, 'post').rejects(mockAxiosResponse.client_error);
-      const results = await fetchBankruptOfficers(mockSearchQuery);
   
-      expect(stubRequest).to.have.been.calledOnce;
-      expect(results.data).to.be.undefined;
-      expect(results.error).to.deep.equal(mockAxiosResponse.client_error.error);
-      expect(results.status).equal(statusCode.client_error);
-    });
-    
-    it('should catch any error and call next function', async () => {
-      const stubRequest = sinon.stub(axios, 'post').throws();
-      const results = await fetchBankruptOfficers(mockSearchQuery);
-  
-      expect(stubRequest).to.have.been.calledOnce;
-      expect(results.data).to.be.undefined;
-      expect(results.error).to.deep.equal(mockAxiosResponse.server_error.error);
-      expect(results.status).equal(statusCode.server_error);
+    errorStatusCode.forEach( httpStatus => {
+      it(`should return the error object with the ${httpStatus} in httpStatusCode field`, async () => {
+        const stubRequest = sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[httpStatus]);
+
+        const results = await fetchBankruptOfficers(getSessionRequest(), mockSearchQuery);
+
+        expect(stubRequest).to.have.been.calledOnce;
+        expect(results.httpStatusCode).equal(httpStatus);
+        expect(results.resource).to.be.undefined;
+      });
     });
   });
 
-  describe('failedExecHttpRequest()', () => {
-    it('should return the error object with the correct fields', () => {
-      const e = {    
-        statusCode: statusCode.server_error,
-        response: { body: "failed to execute http request" }};
-      const results = failedExecHttpRequest(e, statusCode.server_error);
-
-      expect(results.error).to.deep.equal(e.response.body);
-      expect(results.status).equal(e.statusCode);
+  describe('createOAuthApiClient', () => {
+    it('check instance of PrivateApiClient', () => {
+      const client = createOAuthApiClient(getSessionRequest());
+      expect(client).instanceOf(PrivateApiClient);
+      expect(client.badosService).instanceOf(BadosService);
+      expect(client.badosService).is.not.null;
     });
   });
   

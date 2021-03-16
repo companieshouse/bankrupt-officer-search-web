@@ -1,3 +1,4 @@
+import { createPrivateApiClient } from "private-api-sdk-node";
 import { 
   BankruptOfficerSearchFilters, 
   BankruptOfficerSearchQuery,
@@ -8,6 +9,7 @@ export const PAGE_NOT_FOUND = "page not found";
 export const LINK_EXPIRED = "This link has expired";
 export const SERVER_ERROR = "Sorry, there is a problem with the service";
 export const EPHEMERALKEY = "B687FDB8F0E171DBE05400144FFBDD12";
+export const mockApiClient = createPrivateApiClient(undefined, "OAUTH_TOKEN", "TEST_URL");
 
 export const FAKE_URL = { 
   path: "tryAgainNoLuck" 
@@ -27,7 +29,7 @@ export const mockSearchQuery: BankruptOfficerSearchQuery = {
 };
 
 export const mockFullBankruptOfficer: FullBankruptOfficer = {
-  ephemeralKey: "B6A94E743AD86973E05400144FFBDD12",
+  ephemeralKey: EPHEMERALKEY,
   forename1: "KERMIT",
   forename2: "THE",
   alias: "ALIAS",
@@ -61,31 +63,18 @@ export const BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS = {
   items: []
 };
 
-export const statusCode = {
-  ok: 200,
-  client_error: 404,
-  server_error: 500
+export const errorStatusCode = [401, 404, 500];
+
+export const mockPostResponse = { 
+  "200": { httpStatusCode: 200, resource: BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS },
+  "401": { httpStatusCode: 401 },
+  "404": { httpStatusCode: 404 },
+  "500": { httpStatusCode: 500 }
 };
 
-export const mockAxiosResponse = { 
-  ok: {
-    status: statusCode.ok,
-    data: mockFullBankruptOfficer
-  },  
-  data_results: {
-    status: statusCode.ok,
-    data: BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS
-  }, 
-  no_data: {
-    status: statusCode.client_error,
-    data: null
-  },
-  client_error: {
-    statusCode: statusCode.client_error,
-    error: { message: "failed to execute http request" }
-  },
-  server_error: {
-    statusCode: statusCode.server_error,
-    error: { message: "failed to execute http request" }
-  }
+export const mockGetResponse = { 
+  "200": { httpStatusCode: 200, resource: mockFullBankruptOfficer },
+  "401": { httpStatusCode: 401 },
+  "404": { httpStatusCode: 404 },
+  "500": { httpStatusCode: 500 }
 };

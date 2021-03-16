@@ -1,7 +1,7 @@
 import moment from "moment";
 import { FullBankruptOfficer } from "types";
 
-const DISPLAY_DATE_FORMAT: string = "D MMMM YYYY";
+const DISPLAY_DATE_FORMAT = "D MMMM YYYY";
 
 export const dateOfBirthFormatting = (date: string | undefined): string | undefined => {
   return (date) ? date.split("-").reverse().join("/") : date;

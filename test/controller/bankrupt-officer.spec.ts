@@ -2,16 +2,20 @@ import { NextFunction, Request, Response } from 'express';
 import chai, { expect } from 'chai';
 import sinonChai from "sinon-chai";
 import sinon from "sinon";
-import axios from 'axios';
 
+import { BadosService } from 'private-api-sdk-node/dist/services/bankrupt-officer';
 import { bankruptOfficer } from "../../src/controller";
-import { logger, formattingOfficersInfo } from '../../src/utils';
+import { logger } from '../../src/utils';
 
 import { 
-  mockAxiosResponse,
+  mockGetResponse,
   mockFullBankruptOfficer,
-  statusCode
+  EPHEMERALKEY,
 } from '../__mocks__/utils.mock';
+
+import { 
+  getSessionRequest
+} from '../__mocks__/session.mock';
 
 chai.use(sinonChai);
 
@@ -20,9 +24,9 @@ const mockResponse = () => {
   const res = { render : {}, status : {}};
   res.render = sinon.stub().returns(res);
   res.status = sinon.stub().returns(res);
-  return res as unknown as Response;
+  return res as Response;
 };
-const req = { } as unknown as Request;
+const req = { session: getSessionRequest() } as Request;
 let res: Response;
 
 describe('BankruptOfficerController test suite', () => {
@@ -43,34 +47,51 @@ describe('BankruptOfficerController test suite', () => {
   });
 
   it('should return bankruptOfficer with data object and render bankrupt_officer page', async () => {
-    sinon.stub(formattingOfficersInfo([]));
-    sinon.stub(axios, 'get').resolves(mockAxiosResponse.ok);
+    sinon.stub(BadosService.prototype, 'getBankruptOfficer').resolves(mockGetResponse[200]);
 
     await bankruptOfficer(req, res, nextFunctionSpy);
 
     expect(nextFunctionSpy).not.called;
-    expect(res.render).to.have.been.calledOnce;
-    expect(res.render).to.have.been.calledWith('bankrupt_officer', { bankruptOfficer: mockFullBankruptOfficer });
+    expect(res.render).to.have.been.calledOnceWithExactly('bankrupt_officer', { bankruptOfficer: mockFullBankruptOfficer });
+  });
+
+
+  it('should return bankruptOfficer with no data object and render a blank bankrupt_officer page', async () => {
+    sinon.stub(BadosService.prototype, 'getBankruptOfficer').resolves({ httpStatusCode: 200, resource: undefined },);
+    req['params'] = { id: EPHEMERALKEY + 0 };
+    await bankruptOfficer(req, res, nextFunctionSpy);
+
+    expect(nextFunctionSpy).not.called;
+    expect(res.render).to.have.been.calledOnceWithExactly('bankrupt_officer', { bankruptOfficer: {} });
   });
 
   it('should return bankruptOfficer with status code 500 and render error-pages/500 page', async () => {
-    sinon.stub(axios, 'get').rejects(mockAxiosResponse.server_error);
+    sinon.stub(BadosService.prototype, 'getBankruptOfficer').resolves(mockGetResponse[500]);
 
     await bankruptOfficer(req, res, nextFunctionSpy);
 
     expect(nextFunctionSpy).not.called;
-    expect(res.status).to.have.been.calledWith(statusCode.server_error);
-    expect(res.render).to.have.been.calledWith('error-pages/500');
+    expect(res.status).to.have.been.calledOnceWithExactly(500);
+    expect(res.render).to.have.been.calledOnceWithExactly('error-pages/500');
   });
 
   it('should return bankruptOfficer with status code 404 and render error-pages/404-link-expired page', async () => {
-    sinon.stub(axios, 'get').rejects(mockAxiosResponse.client_error);
+    sinon.stub(BadosService.prototype, 'getBankruptOfficer').resolves(mockGetResponse[404]);
 
     await bankruptOfficer(req, res, nextFunctionSpy);
 
     expect(nextFunctionSpy).not.called;
-    expect(res.status).to.have.been.calledWith(statusCode.client_error);
-    expect(res.render).to.have.been.calledWith('error-pages/404-link-expired');
+    expect(res.status).to.have.been.calledOnceWithExactly(404);
+    expect(res.render).to.have.been.calledOnceWithExactly('error-pages/404-link-expired');
+  });
+
+  it('should catch the error on bankruptOfficer function and call the next middleware', async () => {
+    req.session = undefined;
+    await bankruptOfficer(req, res, nextFunctionSpy);
+
+    expect(nextFunctionSpy).to.have.been.calledOnce;
+    expect(res.status).not.called;
+    expect(res.render).not.called;
   });
 
 });
