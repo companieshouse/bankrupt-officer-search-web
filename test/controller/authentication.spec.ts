@@ -18,7 +18,7 @@ const mockResponse = () => {
   res.render = sinon.stub().returns(res);
   res.status = sinon.stub().returns(res);
   res.redirect = sinon.stub().returns(res);
-  return res as unknown as Response;
+  return res as Response;
 };
 let res: Response = {} as Response;
 let nextFunctionSpy: NextFunction;

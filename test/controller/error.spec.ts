@@ -14,9 +14,9 @@ const mockResponse = () => {
   const res = { render : {}, status : {}};
   res.render = sinon.stub().returns(res);
   res.status = sinon.stub().returns(res);
-  return res as unknown as Response;
+  return res as Response;
 };
-const req = { } as unknown as Request;
+const req = { } as Request;
 const err = { statusCode: undefined };
 let res: Response;
 

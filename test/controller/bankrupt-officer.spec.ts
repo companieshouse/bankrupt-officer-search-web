@@ -24,9 +24,9 @@ const mockResponse = () => {
   const res = { render : {}, status : {}};
   res.render = sinon.stub().returns(res);
   res.status = sinon.stub().returns(res);
-  return res as unknown as Response;
+  return res as Response;
 };
-const req = { session: getSessionRequest() } as unknown as Request;
+const req = { session: getSessionRequest() } as Request;
 let res: Response;
 
 describe('BankruptOfficerController test suite', () => {
