@@ -30,7 +30,7 @@
     "moment": "^2.29.1",
     "nunjucks": "^3.2.2",
     "private-api-sdk-node": "git+ssh://git@github.com/companieshouse/private-api-sdk-node.git#0.1.8",
-    "validator": "^13.5.2",
+    "validator": "^13.7.0",
     "yargs": "^16.2.0"
   },
   "devDependencies": {
