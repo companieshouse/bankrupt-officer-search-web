@@ -15,16 +15,9 @@ clean:
 build-app:
 	npm run build
 
-.PHONY: npm-install
-npm-install:
-	npm i
-
-.PHONY: gulp-install
-gulp-install:
-	npm install gulp-cli -g
-
 .PHONY: init
-init: npm-install gulp-install
+init:
+	npm i
 
 .PHONY: lint
 lint:
