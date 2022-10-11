@@ -17,7 +17,7 @@ export const getSearchPage = (req: Request, res: Response, next: NextFunction): 
 export const postSearchPage = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     // Get data from request body - dateOfBirth needs to be checked 
-    const { forename1 = '', surname = '', postcode = '' } = req.body;
+    const { forename1 = '', surname = '', alias = '', postcode = '' } = req.body;
 
     // Deal with fragmented date of birth
     const dateOfBirth = 
@@ -25,7 +25,7 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
         `${req.body["dob-yyyy"]}-${req.body["dob-mm"]}-${req.body["dob-dd"]}` : '';
 
     // Set post query data
-    const filters: BankruptOfficerSearchFilters = { forename1, surname, dateOfBirth, postcode };
+    const filters: BankruptOfficerSearchFilters = { forename1, surname, alias, dateOfBirth, postcode };
     const body: BankruptOfficerSearchQuery = { startIndex: 0, itemsPerPage: 10, filters};
 
     const results = await fetchBankruptOfficers(req.session, body);
