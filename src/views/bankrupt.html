@@ -70,7 +70,6 @@
   <button class="govuk-button" data-module="govuk-button">
     Search
   </button>
-
 </form>
 
 {% if searched %}
@@ -90,17 +89,14 @@
         </tr>
       </thead>
       <tbody class="govuk-table__body">
-        {% for bankruptOfficer in bankruptOfficers  %}
+        {% for item in items %}
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell"><a href='/admin/officer-search/scottish-bankrupt-officer/{{ bankruptOfficer.ephemeralKey }}' class='govuk-link'>{{ bankruptOfficer.forename1 }}</a></td>
-          <td class="govuk-table__cell">{{ bankruptOfficer.surname }}</td>
-          <td class="govuk-table__cell">{{ bankruptOfficer.dateOfBirth }}</td>
-          <td class="govuk-table__cell">{{ bankruptOfficer.postcode }}</td>
-          
-          <td class="govuk-table__cell">{{  bankruptOfficer.debtorDischargeDate }}</td>
-{% endfor %}
-
-
+          <td class="govuk-table__cell"><a href='/admin/officer-search/scottish-bankrupt-officer/{{ item.ephemeralKey }}' class='govuk-link'>{{ item.forename1 }}</a></td>
+          <td class="govuk-table__cell">{{ item.surname }}</td>
+          <td class="govuk-table__cell">{{ item.dateOfBirth }}</td>
+          <td class="govuk-table__cell">{{ item.postcode }}</td>
+          <td class="govuk-table__cell">{{ item.debtorDischargeDate }}</td>
+        {% endfor %}
       </tr>
       </tbody>
     </table>
@@ -109,5 +105,4 @@
     {% endif %}
   </div>
 {% endif %}
-
 {% endblock %}

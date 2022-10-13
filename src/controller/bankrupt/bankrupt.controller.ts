@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 
 import { logger, formattingOfficersInfo, userSession } from '../../utils';
-import { fetchBankruptOfficers, fetchBankruptOfficer } from '../../service';
+import { fetchBankruptOfficers } from '../../service';
 import { BankruptOfficerSearchFilters, BankruptOfficerSearchQuery } from '../../types';
 
 
@@ -30,13 +30,11 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
     const body: BankruptOfficerSearchQuery = { startIndex: 0, itemsPerPage: 10, filters};
 
     const results = await fetchBankruptOfficers(req.session, body);
-    logger.info(JSON.stringify(results));
    
     if(results.httpStatusCode === 404  || results.httpStatusCode === 200){
       const userEmail = userSession.getLoggedInUserEmail(req.session);
       const { itemsPerPage = 0, startIndex = 0, totalResults = 0, items = [] } = results.resource || {};
-      const bankruptOfficers = await retrieveDebtorDischarge(req, items);
-      return res.render('bankrupt', { itemsPerPage, startIndex, totalResults, items: formattingOfficersInfo(items), bankruptOfficers:bankruptOfficers, searched: true, userEmail });
+      return res.render('bankrupt', { itemsPerPage, startIndex, totalResults, items: formattingOfficersInfo(items), searched: true, userEmail });
     } else {
       return res.status(results.httpStatusCode).render('error-pages/500');
     } 
@@ -45,16 +43,3 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
     next(err);
   }
 };
-
-
-async function retrieveDebtorDischarge(req,  items ){
-  const bankruptOfficersList: unknown[] = []; 
-  for (const item in items){
-    items[item];
-    const bankruptOfficer = await fetchBankruptOfficer(req.session, items[item].ephemeralKey);
-    const officer = (bankruptOfficer.resource) ? formattingOfficersInfo([bankruptOfficer.resource])[0] : {};
-    bankruptOfficersList.push(officer);
-  }
-  return bankruptOfficersList;
-}
-  
