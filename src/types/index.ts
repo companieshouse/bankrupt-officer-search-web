@@ -7,6 +7,7 @@ export interface Address {
   postcode?: string
 }
 export interface BankruptOfficer extends Address {
+  debtorDischargeDate?: string
   ephemeralKey: string
   forename1?: string
   forename2?: string
@@ -19,7 +20,6 @@ export interface FullBankruptOfficer extends BankruptOfficer {
   caseType?: string
   bankruptcyType?: string
   startDate?: string
-  debtorDischargeDate?: string
   trusteeDischargeDate?: string
 }
 export interface BankruptOfficerSearchQuery {

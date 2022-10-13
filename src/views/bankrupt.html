@@ -92,12 +92,12 @@
       <tbody class="govuk-table__body">
         {% for bankruptOfficer in bankruptOfficers  %}
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell"><a href='/admin/officer-search/scottish-bankrupt-officer/{{ bankruptOfficer.resource.ephemeralKey }}' class='govuk-link'>{{ bankruptOfficer.resource.forename1 }}</a></td>
-          <td class="govuk-table__cell">{{ bankruptOfficer.resource.surname }}</td>
-          <td class="govuk-table__cell">{{ bankruptOfficer.resource.dateOfBirth }}</td>
-          <td class="govuk-table__cell">{{ bankruptOfficer.resource.postcode }}</td>
+          <td class="govuk-table__cell"><a href='/admin/officer-search/scottish-bankrupt-officer/{{ bankruptOfficer.ephemeralKey }}' class='govuk-link'>{{ bankruptOfficer.forename1 }}</a></td>
+          <td class="govuk-table__cell">{{ bankruptOfficer.surname }}</td>
+          <td class="govuk-table__cell">{{ bankruptOfficer.dateOfBirth }}</td>
+          <td class="govuk-table__cell">{{ bankruptOfficer.postcode }}</td>
           
-          <td class="govuk-table__cell">{{  bankruptOfficer.resource.debtorDischargeDate }}</td>
+          <td class="govuk-table__cell">{{  bankruptOfficer.debtorDischargeDate }}</td>
 {% endfor %}
 
 
