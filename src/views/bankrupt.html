@@ -86,17 +86,22 @@
           <th scope="col" class="govuk-table__header">Last name</th>
           <th scope="col" class="govuk-table__header">Date of birth</th>
           <th scope="col" class="govuk-table__header govuk--width-one-quarter">Postcode</th>
+          <th scope="col" class="govuk-table__header govuk--width-one-quarter">Debtor Discharge Date</th>
         </tr>
       </thead>
       <tbody class="govuk-table__body">
-        {% for item in items %}
+        {% for bankruptOfficer in bankruptOfficers  %}
         <tr class="govuk-table__row">
-          <td class="govuk-table__cell"><a href='/admin/officer-search/scottish-bankrupt-officer/{{ item.ephemeralKey }}' class='govuk-link'>{{ item.forename1 }}</a></td>
-          <td class="govuk-table__cell">{{ item.surname }}</td>
-          <td class="govuk-table__cell">{{ item.dateOfBirth }}</td>
-          <td class="govuk-table__cell">{{ item.postcode }}</td>
-        </tr>
-        {% endfor %}
+          <td class="govuk-table__cell"><a href='/admin/officer-search/scottish-bankrupt-officer/{{ bankruptOfficer.resource.ephemeralKey }}' class='govuk-link'>{{ bankruptOfficer.resource.forename1 }}</a></td>
+          <td class="govuk-table__cell">{{ bankruptOfficer.resource.surname }}</td>
+          <td class="govuk-table__cell">{{ bankruptOfficer.resource.dateOfBirth }}</td>
+          <td class="govuk-table__cell">{{ bankruptOfficer.resource.postcode }}</td>
+          
+          <td class="govuk-table__cell">{{  bankruptOfficer.resource.debtorDischargeDate }}</td>
+{% endfor %}
+
+
+      </tr>
       </tbody>
     </table>
     {% if not items or not items|length %}
