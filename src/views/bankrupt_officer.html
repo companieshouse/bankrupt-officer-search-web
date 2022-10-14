@@ -54,11 +54,20 @@
       </dt>
       <dd class="govuk-summary-list__value">{{ bankruptOfficer.dateOfBirth }}</dd>
     </div>
+  </dl>
+  <h2 class="govuk-heading-m">Discharge dates</h2>
+  <dl class="govuk-summary-list govuk-!-margin-bottom-9">
     <div class="govuk-summary-list__row">
       <dt class="govuk-summary-list__key">
         Debtor Discharge Date
       </dt>
       <dd class="govuk-summary-list__value">{{ bankruptOfficer.debtorDischargeDate }}</dd>
+    </div>
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+        Trustee discharge date
+      </dt>
+      <dd class="govuk-summary-list__value">{{ bankruptOfficer.trusteeDischargeDate }}</dd>
     </div>
   </dl>
   <h2 class="govuk-heading-m">Address details</h2>
@@ -126,12 +135,6 @@
       <dd class="govuk-summary-list__value">{{ bankruptOfficer.startDate }}</dd>
     </div>
   </dl>
-    <div class="govuk-summary-list__row">
-      <dt class="govuk-summary-list__key">
-        Trustee discharge date
-      </dt>
-      <dd class="govuk-summary-list__value">{{ bankruptOfficer.trusteeDischargeDate }}</dd>
-    </div>
   </dl>
 
 {% endblock %}
