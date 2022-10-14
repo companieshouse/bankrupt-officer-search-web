@@ -30,6 +30,7 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
     const body: BankruptOfficerSearchQuery = { startIndex: 0, itemsPerPage: 10, filters};
 
     const results = await fetchBankruptOfficers(req.session, body);
+      // Not found officers has to be rendered anyway with an empty list 
    
     if(results.httpStatusCode === 404  || results.httpStatusCode === 200){
       const userEmail = userSession.getLoggedInUserEmail(req.session);

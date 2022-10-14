@@ -7,13 +7,13 @@ export interface Address {
   postcode?: string
 }
 export interface BankruptOfficer extends Address {
-  debtorDischargeDate?: string
   ephemeralKey: string
   forename1?: string
   forename2?: string
   alias?: string
   surname?: string
   dateOfBirth?: string
+  debtorDischargeDate?: string
 }
 export interface FullBankruptOfficer extends BankruptOfficer {
   caseReference?: string
