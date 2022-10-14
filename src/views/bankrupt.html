@@ -70,7 +70,6 @@
   <button class="govuk-button" data-module="govuk-button">
     Search
   </button>
-
 </form>
 
 {% if searched %}
@@ -85,7 +84,8 @@
           <th scope="col" class="govuk-table__header">First name</th>
           <th scope="col" class="govuk-table__header">Last name</th>
           <th scope="col" class="govuk-table__header">Date of birth</th>
-          <th scope="col" class="govuk-table__header govuk--width-one-quarter">Postcode</th>
+          <th scope="col" class="govuk-table__header">Postcode</th>
+          <th scope="col" class="govuk-table__header govuk--width-one-quarter">Debtor Discharge Date</th>
         </tr>
       </thead>
       <tbody class="govuk-table__body">
@@ -95,8 +95,9 @@
           <td class="govuk-table__cell">{{ item.surname }}</td>
           <td class="govuk-table__cell">{{ item.dateOfBirth }}</td>
           <td class="govuk-table__cell">{{ item.postcode }}</td>
-        </tr>
+          <td class="govuk-table__cell">{{ item.debtorDischargeDate }}</td>
         {% endfor %}
+      </tr>
       </tbody>
     </table>
     {% if not items or not items|length %}
@@ -104,5 +105,4 @@
     {% endif %}
   </div>
 {% endif %}
-
 {% endblock %}
