@@ -30,7 +30,6 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
 
     const results = await fetchBankruptOfficers(req.session, body);
     // Not found officers has to be rendered anyway with an empty list 
-   
     if(results.httpStatusCode === 404  || results.httpStatusCode === 200){
       const userEmail = userSession.getLoggedInUserEmail(req.session);
       const { itemsPerPage = 0, startIndex = 0, totalResults = 0, items = [] } = results.resource || {};
@@ -38,7 +37,7 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
     } else {
       return res.status(results.httpStatusCode).render('error-pages/500');
     } 
-    
+
   } catch (err) {
     logger.error(`${err}`);
     next(err);
