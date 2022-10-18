@@ -1,13 +1,12 @@
-import { BankruptOfficerSearchResults, PageItem, PaginationData } from '../../types';
-import { SCOTTISH_BANKRUPT_OFFICER, ADD_TO_FRONT, ADD_TO_END, RESULTS_PER_PAGE } from '../../config';
-import { Resource } from "api-sdk-node";
+import { PageItem, PaginationData } from '../../types';
+import { ADD_TO_FRONT, ADD_TO_END } from '../../config';
 import { logger } from '../../utils';
 
-const addPageItem = (items: PageItem[], pageNumber: number, operation: string, current: boolean) => {
+const addPageItem = (items: PageItem[], pageNumber: number, operation: string, current: boolean, prefix: string) => {
   let page: PageItem;
   page = {
     number: pageNumber,
-    href: `${SCOTTISH_BANKRUPT_OFFICER}?page=${pageNumber}`, 
+    href: `${prefix}?page=${pageNumber}`, 
   }
   if (current) page.current = true;
   switch (operation) {
@@ -17,67 +16,84 @@ const addPageItem = (items: PageItem[], pageNumber: number, operation: string, c
   }
 }
 
-const buildLeftSide = (paginationData: PageItem[], actualPage: number) => {
+const buildLeftSide = (pageItems: PageItem[], currentPage: number, prefix: string) => {
   let pagesAdded = 0;
-  let currentPage = actualPage - 1;
-  while (pagesAdded < 2 && currentPage >= 1) {
-    addPageItem(paginationData, currentPage, ADD_TO_FRONT, false);
-    currentPage--;
+  let pageInLoop = currentPage - 1;
+  while (pagesAdded < 2 && pageInLoop >= 1) {
+    addPageItem(pageItems, pageInLoop, ADD_TO_FRONT, false, prefix);
+    pageInLoop--;
     pagesAdded++;
   }
-  if (currentPage === 1) {
-    addPageItem(paginationData, currentPage, ADD_TO_FRONT, false);
-  }
-  if (paginationData[0].number !== 1) {
-    paginationData.unshift({
+  if (pageItems[0].number !== 1) {
+    pageItems.unshift({
       ellipsis: true
     })
-    addPageItem(paginationData, 1, ADD_TO_FRONT, false);
+    addPageItem(pageItems, 1, ADD_TO_FRONT, false, prefix);
   }
 }
 
-const buildRightSide = (paginationData: PageItem[], actualPage: number, numOfPages: number) => {
+const buildRightSide = (pageItems: PageItem[], currentPage: number, numOfPages: number, prefix: string) => {
   let pagesAdded = 0;
-  let currentPage = actualPage + 1;
-  while (pagesAdded < 2 && currentPage <= numOfPages) {
-    addPageItem(paginationData, currentPage, ADD_TO_END, false);
-    currentPage++;
+  let pageInLoop = currentPage + 1;
+  while (pagesAdded < 2 && pageInLoop <= numOfPages) {
+    addPageItem(pageItems, pageInLoop, ADD_TO_END, false, prefix);
+    pageInLoop++;
     pagesAdded++;
   }
-  if (currentPage === numOfPages) {
-    addPageItem(paginationData, currentPage, ADD_TO_END, false);
-  }
-  if (paginationData[paginationData.length-1].number !== numOfPages) {
-    paginationData.push({
+  if (pageItems[pageItems.length-1].number !== numOfPages) {
+    pageItems.push({
       ellipsis: true
     })
-    addPageItem(paginationData, numOfPages, ADD_TO_END, false);
+    addPageItem(pageItems, numOfPages, ADD_TO_END, false, prefix);
   }
 }
 
-export const buildPaginationData = (searchResults: Resource<BankruptOfficerSearchResults>): PaginationData =>  {
-  const {startIndex = 0, totalResults = 0, itemsPerPage = 0} = searchResults.resource || {};
-          
+/**
+ * Generates an object required by the GOV.UK Pagination component to display pagination data.
+ * The returned object can be directly passed to the Pagination Nunjucks macro.
+ * Always includes a link to the first and last page.
+ * Adds ellipses to replace any skipped pages.
+ * 
+ * @param currentPage the page number that the user on, this will be highlighted in the component. Starts from 1. 
+ * @param numOfPages the total number of pages to be included in the pagination component.
+ * @param prefix the prefix for the link (href) that will be added to the page numbers. 
+ * A query parameter "page" will be appended to the link e.g. if prefix is "/my-service" and page number is 5, the link will be "/my-service?page=5".
+ */
+export const buildPaginationData = (currentPage: number, numOfPages: number, prefix: string): PaginationData =>  {    
   const pagination: PaginationData = {items: []}; 
-  const actualPage = startIndex + 1; // index starts at 0 so need to add 1 to get the actual page number
-  const paginationData: PageItem[] = [];
+  const pageItems: PageItem[] = [];
+  if (numOfPages < 1 || currentPage < 1) return pagination;
 
-  const numOfPages = Math.ceil(totalResults / itemsPerPage);
-  if (actualPage !== 1) pagination.previous = {href: `${SCOTTISH_BANKRUPT_OFFICER}?page=${actualPage-1}`}
-  if (actualPage !== numOfPages) pagination.next = {href: `${SCOTTISH_BANKRUPT_OFFICER}?page=${actualPage+1}`}
+  if (currentPage !== 1) pagination.previous = {href: `${prefix}?page=${currentPage-1}`}
+  if (currentPage !== numOfPages) pagination.next = {href: `${prefix}?page=${currentPage+1}`}
 
-  // If there are less than 8 pages, just display all the links
-  if (numOfPages < 8) {
+  // If there are less than 10 pages, just display all the links
+  if (numOfPages < 10) {
     for (let i = 0; i<numOfPages; i++) {
       const pageNumber: number = i + 1;
-      const current = pageNumber === actualPage;
-      addPageItem(paginationData, pageNumber, ADD_TO_END, current);
+      const current = pageNumber === currentPage;
+      addPageItem(pageItems, pageNumber, ADD_TO_END, current, prefix);
+    }
+  } else if (currentPage <= 5) {
+    for (let i = 0; i<=7; i++) {
+      const pageNumber: number = i + 1;
+      const current = pageNumber === currentPage;
+      addPageItem(pageItems, pageNumber, ADD_TO_END, current, prefix);
+    }
+    pageItems.push({ellipsis: true})
+    addPageItem(pageItems, numOfPages, ADD_TO_END, false, prefix);
+  } else if (numOfPages - currentPage <= 4) {
+    addPageItem(pageItems, 1, ADD_TO_FRONT, false, prefix);
+    pageItems.push({ellipsis: true})
+    for (let i = numOfPages - 6; i<= numOfPages; i++) {
+      const current = i === currentPage;
+      addPageItem(pageItems, i, ADD_TO_END, current, prefix);
     }
   } else {
-    addPageItem(paginationData, actualPage, ADD_TO_END, true);
-    buildLeftSide(paginationData, actualPage);
-    buildRightSide(paginationData, actualPage, numOfPages);
+    addPageItem(pageItems, currentPage, ADD_TO_END, true, prefix);
+    buildLeftSide(pageItems, currentPage, prefix);
+    buildRightSide(pageItems, currentPage, numOfPages, prefix);
   }
-  pagination.items = paginationData;
+  pagination.items = pageItems;
   return pagination;
 }

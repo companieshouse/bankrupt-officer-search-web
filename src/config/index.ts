@@ -39,3 +39,5 @@ export const ADD_TO_FRONT: string = "add_to_front";
 export const ADD_TO_END: string = "add_to_end";
 export const ADD_ELLIPSIS: string = "add_ellipsis";
 export const RESULTS_PER_PAGE: number = Number(getEnvironmentValueOrDefault("RESULTS_PER_PAGE", "20"));
+export const BANKRUPT_OFFICER_SEARCH_SESSION: string = "bankrupt-officer-search-session";
+export const SESSION_FILTER = "filters";

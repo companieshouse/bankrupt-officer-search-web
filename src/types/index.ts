@@ -1,3 +1,5 @@
+import { SESSION_FILTER } from "../config";
+
 export interface Address {
   addressLine1?: string
   addressLine2?: string
@@ -57,4 +59,8 @@ export interface PageItem {
   href?: string,
   current?: boolean,
   ellipsis?: boolean
+}
+
+export interface BankruptOfficerSearchSessionExtraData {
+  [SESSION_FILTER]?: BankruptOfficerSearchFilters
 }
