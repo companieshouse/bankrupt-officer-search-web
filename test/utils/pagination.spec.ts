@@ -21,7 +21,7 @@ describe('Pagination test suite', () => {
     expect(paginationData).to.deep.equal(expectedData);
   });
 
-  it('Should add an ellipsis in the end when the number of pages is 9 or larger and the current page is < 5', () => {
+  it('Should add an ellipsis in the end when the number of pages is 9 or larger and the current page is <= 5', () => {
     const numOfPages = 10;
     const currentPage = 4;
     const paginationData = buildPaginationData(currentPage, numOfPages, prefix);
@@ -44,7 +44,7 @@ describe('Pagination test suite', () => {
     expect(paginationData).to.deep.equal(expectedData);
   });
 
-  it('Should add an ellipsis at the front when the number of pages is 9 or larger and the difference between the last page and the current page is < 5', () => {
+  it('Should add an ellipsis at the front when the number of pages is 9 or larger and the difference between the last page and the current page is <= 4', () => {
     const numOfPages = 10;
     const currentPage = 7;
     const paginationData = buildPaginationData(currentPage, numOfPages, prefix);
