@@ -8,7 +8,7 @@ import { BANKRUPT_OFFICER_SEARCH_SESSION, RESULTS_PER_PAGE, SCOTTISH_BANKRUPT_OF
 export const getSearchPage = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const sessionExtraData: undefined | BankruptOfficerSearchSessionExtraData = req.session?.getExtraData(BANKRUPT_OFFICER_SEARCH_SESSION);
-    if (req.query.page && sessionExtraData?.filters) {
+    if (req.query?.page && sessionExtraData?.filters) {
       return await renderSearchResultsPage(req, res, sessionExtraData.filters);
     } 
     const userEmail = userSession.getLoggedInUserEmail(req.session);
@@ -43,7 +43,7 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
 };
 
 const renderSearchResultsPage = async (req: Request, res: Response, filters: BankruptOfficerSearchFilters) => {
-  const body: BankruptOfficerSearchQuery = { startIndex: req.query.page ? Number(req.query.page) - 1 : 0, itemsPerPage: RESULTS_PER_PAGE, filters};
+  const body: BankruptOfficerSearchQuery = { startIndex: req.query?.page ? Number(req.query.page) - 1 : 0, itemsPerPage: RESULTS_PER_PAGE, filters};
 
   const results = await fetchBankruptOfficers(req.session, body);
   // Not found officers has to be rendered anyway with an empty list 
