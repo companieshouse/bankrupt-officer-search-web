@@ -59,4 +59,4 @@ const renderSearchResultsPage = async (req: Request, res: Response, filters: Ban
   } else {
     return res.status(results.httpStatusCode).render('error-pages/500');
   } 
-}
+};

@@ -15,13 +15,13 @@ export interface BankruptOfficer extends Address {
   alias?: string
   surname?: string
   dateOfBirth?: string
+  debtorDischargeDate?: string
 }
 export interface FullBankruptOfficer extends BankruptOfficer {
   caseReference?: string
   caseType?: string
   bankruptcyType?: string
   startDate?: string
-  debtorDischargeDate?: string
   trusteeDischargeDate?: string
 }
 export interface BankruptOfficerSearchQuery {
