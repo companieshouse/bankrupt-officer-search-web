@@ -74,7 +74,7 @@ export const PAGINATION_RESULTS = {
       }
     ]
   }
-}
+};
 
 export const errorStatusCode = [401, 404, 500];
 

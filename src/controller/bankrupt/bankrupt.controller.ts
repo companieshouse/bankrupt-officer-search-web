@@ -33,20 +33,8 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
       (req.body["to-dob-dd"] && req.body["to-dob-mm"] && req.body["to-dob-yyyy"]) ?
         `${req.body["to-dob-yyyy"]}-${req.body["to-dob-mm"]}-${req.body["to-dob-dd"]}` : '';
 
-    // Set post query data
     const filters: BankruptOfficerSearchFilters = { forename1, surname, fromDateOfBirth, toDateOfBirth, postcode };
-    const body: BankruptOfficerSearchQuery = { startIndex: 0, itemsPerPage: 10, filters};
-
-    const results = await fetchBankruptOfficers(req.session, body);
-    // Not found officers has to be rendered anyway with an empty list 
-    if(results.httpStatusCode === 404  || results.httpStatusCode === 200){
-      const userEmail = userSession.getLoggedInUserEmail(req.session);
-      const { itemsPerPage = 0, startIndex = 0, totalResults = 0, items = [] } = results.resource || {};
-      return res.render('bankrupt', { itemsPerPage, startIndex, totalResults, items: formattingOfficersInfo(items), searched: true, userEmail });
-    } else {
-      return res.status(results.httpStatusCode).render('error-pages/500');
-    } 
-
+    
     let sessionExtraData: undefined | BankruptOfficerSearchSessionExtraData = req.session?.getExtraData(BANKRUPT_OFFICER_SEARCH_SESSION);
     sessionExtraData = {...sessionExtraData, filters};
     req.session?.setExtraData(BANKRUPT_OFFICER_SEARCH_SESSION, sessionExtraData);
