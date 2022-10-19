@@ -113,10 +113,10 @@
 {% if searched %}
   <h2 class="govuk-heading-l">Search results</h2>
   <span id="results-hint" class="govuk-hint">
-    Showing {{ itemsPerPage + startIndex }} of {{ totalResults }} results
+    Showing {{ itemsPerPage }} of {{ totalResults }} results
   </span>
   <div class="govuk-grid-column-full-width">
-    <table class="govuk-table">
+    <table id="results-table" class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header">First name</th>
@@ -141,6 +141,11 @@
     {% if not items or not items|length %}
       <h2 class="govuk-heading-s">No results found matching your search criteria.</h2>
     {% endif %}
-  </div>
+    {% if pagination %}
+    <div id="pagination-container">
+      {{ govukPagination(pagination) }}
+    </div>
+    {% endif %}
+  </div>   
 {% endif %}
 {% endblock %}

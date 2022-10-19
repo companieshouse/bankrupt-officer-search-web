@@ -15,10 +15,12 @@
 {% from "./components/header/macro.njk"               import chHeader %}
 {% from "./components/footer/macro.njk"               import chFooter %}
 {% from "govuk/components/table/macro.njk"            import govukTable %}
+{% from "govuk/components/pagination/macro.njk"       import govukPagination %}
 
 {% block head %}
 <meta name="format-detection" content="telephone=no">
 <!--[if !IE 8]><!-->
+<link rel="stylesheet" type="text/css" media="all" href="//{{CDN_HOST}}/stylesheets/govuk-frontend/v4.3.1/govuk-frontend-4.3.1.min.css" />
 <link rel="stylesheet" type="text/css" media="all" href="//{{CDN_HOST}}/stylesheets/services/bankrupt-officers/app.min.css" />
 <link rel="stylesheet" type="text/css" media="all" href="//{{CDN_HOST}}/stylesheets/services/bankrupt-officers/footer.min.css" />
 <!--<![endif]-->
@@ -83,6 +85,7 @@
     (function() {
       bindPiwikListener('bankruptcy', '{{PIWIK_URL}}', {{PIWIK_SITE_ID}});
     }());
+    location.href = "#results-table";
   </script>
   <noscript>
     <p>
