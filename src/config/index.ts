@@ -8,6 +8,16 @@ export const getEnvironmentValue = (key: string): string => {
   return value;
 };
 
+export const getEnvironmentValueOrDefault = (key: string, defaultValue: any): string => {
+  const value: string = process.env[key] || "";
+
+  if (!value) {
+    return defaultValue;
+  }
+
+  return value;
+};
+
 export const CDN_HOST = getEnvironmentValue("CDN_HOST");
 export const PIWIK_URL = getEnvironmentValue("PIWIK_URL");
 export const PIWIK_SITE_ID = getEnvironmentValue("PIWIK_SITE_ID");
@@ -23,3 +33,11 @@ export const SCOTTISH_BANKRUPT_OFFICER = "/admin/officer-search/scottish-bankrup
 export const SCOTTISH_BANKRUPT_OFFICER_DETAILS = "/admin/officer-search/scottish-bankrupt-officer/:id";
 
 export const PERMISSIONS_PATH = SCOTTISH_BANKRUPT_OFFICER;
+
+// For pagination component
+export const ADD_TO_FRONT: string = "add_to_front";
+export const ADD_TO_END: string = "add_to_end";
+export const ADD_ELLIPSIS: string = "add_ellipsis";
+export const RESULTS_PER_PAGE: number = Number(getEnvironmentValueOrDefault("RESULTS_PER_PAGE", "20"));
+export const BANKRUPT_OFFICER_SEARCH_SESSION: string = "bankrupt-officer-search-session";
+export const SESSION_FILTER = "filters";

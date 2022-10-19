@@ -63,6 +63,18 @@ export const BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS = {
   items: []
 };
 
+export const PAGINATION_RESULTS = {
+  pagination: {
+    items: [
+      {
+        current: true,
+        href: "/admin/officer-search/scottish-bankrupt-officer?page=1",
+        number: 1
+      }
+    ]
+  }
+}
+
 export const errorStatusCode = [401, 404, 500];
 
 export const mockPostResponse = { 

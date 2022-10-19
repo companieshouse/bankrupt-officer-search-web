@@ -1,3 +1,5 @@
+import { SESSION_FILTER } from "../config";
+
 export interface Address {
   addressLine1?: string
   addressLine2?: string
@@ -40,4 +42,25 @@ export interface BankruptOfficerSearchResults {
   startIndex: number
   totalResults: number
   items: BankruptOfficer[]
+}
+
+export interface PaginationData {
+  previous?: PaginationPreviousNext,
+  next?: PaginationPreviousNext,
+  items: PageItem[]
+}
+
+export interface PaginationPreviousNext {
+  href: string
+}
+
+export interface PageItem {
+  number?: number,
+  href?: string,
+  current?: boolean,
+  ellipsis?: boolean
+}
+
+export interface BankruptOfficerSearchSessionExtraData {
+  [SESSION_FILTER]?: BankruptOfficerSearchFilters
 }

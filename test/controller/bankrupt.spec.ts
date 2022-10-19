@@ -11,7 +11,8 @@ import {
   BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS,
   BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS,
   mockPostResponse,
-  mockSearchQuery
+  mockSearchQuery,
+  PAGINATION_RESULTS
 } from '../__mocks__/utils.mock';
 
 import { getSessionRequest } from '../__mocks__/session.mock';
@@ -82,7 +83,7 @@ describe("BankruptController test suite", () => {
       await postSearchPage(req, res, nextFunctionSpy);
 
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { searched: true, ...BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS, userEmail: "test@testemail.com"  });
+      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { searched: true, ...BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS, ...PAGINATION_RESULTS, userEmail: "test@testemail.com"  });
     });
 
     it("should renders the bankrupt officer search page with the list of officers considering the DAB", async () => {
@@ -94,7 +95,7 @@ describe("BankruptController test suite", () => {
       await postSearchPage(req, res, nextFunctionSpy);
 
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { searched: true, ...BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS, userEmail: "test@testemail.com" });
+      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { searched: true, ...BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS, ...PAGINATION_RESULTS, userEmail: "test@testemail.com" });
     });
 
     it("should renders the bankrupt officer search page with not officers", async () => {
@@ -105,7 +106,7 @@ describe("BankruptController test suite", () => {
       await postSearchPage(req, res, nextFunctionSpy);
 
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { searched: true, ...BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS, userEmail: "test@testemail.com" });
+      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { searched: true, ...BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS, pagination: undefined, userEmail: "test@testemail.com" });
     });
 
     it('should return none data with status code 500 and render error-pages/500 page', async () => {
