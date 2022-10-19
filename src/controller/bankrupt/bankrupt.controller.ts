@@ -25,8 +25,8 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
         `${req.body["from-dob-yyyy"]}-${req.body["from-dob-mm"]}-${req.body["from-dob-dd"]}` : '';
     
     const toDateOfBirth = 
-      (req.body["to-dd"] && req.body["to-mm"] && req.body["to-yyyy"]) ?
-        `${req.body["to-yyyy"]}-${req.body["to-mm"]}-${req.body["to-dd"]}` : '';
+      (req.body["to-dob-dd"] && req.body["to-dob-mm"] && req.body["to-dob-yyyy"]) ?
+        `${req.body["to-dob-yyyy"]}-${req.body["to-dob-mm"]}-${req.body["to-dob-dd"]}` : '';
 
     // Set post query data
     const filters: BankruptOfficerSearchFilters = { forename1, surname, fromDateOfBirth, toDateOfBirth, postcode };

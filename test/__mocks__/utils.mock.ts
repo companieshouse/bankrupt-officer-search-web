@@ -16,7 +16,8 @@ export const FAKE_URL = {
 };
 
 export const mockFilters: BankruptOfficerSearchFilters = { 
-  dateOfBirth: '', 
+  fromDateOfBirth: '', 
+  toDateOfBirth: '',
   forename1: 'Kermit', 
   surname: '', 
   postcode: '' 
