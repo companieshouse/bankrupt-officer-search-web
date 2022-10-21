@@ -33,6 +33,7 @@ export interface BankruptOfficerSearchQuery {
 export interface BankruptOfficerSearchFilters {
   forename1?: string
   surname?: string
+  alias?: string
   fromDateOfBirth?: string
   toDateOfBirth?: string
   postcode?: string

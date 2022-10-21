@@ -22,7 +22,7 @@ export const getSearchPage = async (req: Request, res: Response, next: NextFunct
 export const postSearchPage = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     // Get data from request body - dateOfBirth needs to be checked 
-    const { forename1 = '', surname = '', postcode = '',  } = req.body;
+    const { forename1 = '', surname = '', alias = '', postcode = '' } = req.body;
 
     // Deal with fragmented date of birth
     const fromDateOfBirth = 
@@ -33,7 +33,8 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
       (req.body["to-dob-dd"] && req.body["to-dob-mm"] && req.body["to-dob-yyyy"]) ?
         `${req.body["to-dob-yyyy"]}-${req.body["to-dob-mm"]}-${req.body["to-dob-dd"]}` : '';
 
-    const filters: BankruptOfficerSearchFilters = { forename1, surname, fromDateOfBirth, toDateOfBirth, postcode };
+    // Set post query data
+    const filters: BankruptOfficerSearchFilters = { forename1, surname, alias, fromDateOfBirth, toDateOfBirth, postcode };
     
     let sessionExtraData: undefined | BankruptOfficerSearchSessionExtraData = req.session?.getExtraData(BANKRUPT_OFFICER_SEARCH_SESSION);
     sessionExtraData = {...sessionExtraData, filters};
