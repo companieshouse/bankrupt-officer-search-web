@@ -22,15 +22,19 @@ export const getSearchPage = async (req: Request, res: Response, next: NextFunct
 export const postSearchPage = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     // Get data from request body - dateOfBirth needs to be checked 
-    const { forename1 = '', surname = '', postcode = '' } = req.body;
+    const { forename1 = '', surname = '', postcode = '',  } = req.body;
 
     // Deal with fragmented date of birth
-    const dateOfBirth = 
-      (req.body["dob-dd"] && req.body["dob-mm"] && req.body["dob-yyyy"]) ?
-        `${req.body["dob-yyyy"]}-${req.body["dob-mm"]}-${req.body["dob-dd"]}` : '';
+    const fromDateOfBirth = 
+      (req.body["from-dob-dd"] && req.body["from-dob-mm"] && req.body["from-dob-yyyy"]) ?
+        `${req.body["from-dob-yyyy"]}-${req.body["from-dob-mm"]}-${req.body["from-dob-dd"]}` : '';
+    
+    const toDateOfBirth = 
+      (req.body["to-dob-dd"] && req.body["to-dob-mm"] && req.body["to-dob-yyyy"]) ?
+        `${req.body["to-dob-yyyy"]}-${req.body["to-dob-mm"]}-${req.body["to-dob-dd"]}` : '';
 
-    const filters: BankruptOfficerSearchFilters = { forename1, surname, dateOfBirth, postcode };
-
+    const filters: BankruptOfficerSearchFilters = { forename1, surname, fromDateOfBirth, toDateOfBirth, postcode };
+    
     let sessionExtraData: undefined | BankruptOfficerSearchSessionExtraData = req.session?.getExtraData(BANKRUPT_OFFICER_SEARCH_SESSION);
     sessionExtraData = {...sessionExtraData, filters};
     req.session?.setExtraData(BANKRUPT_OFFICER_SEARCH_SESSION, sessionExtraData);
