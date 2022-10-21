@@ -1,3 +1,5 @@
+import { SESSION_FILTER } from "../config";
+
 export interface Address {
   addressLine1?: string
   addressLine2?: string
@@ -13,13 +15,13 @@ export interface BankruptOfficer extends Address {
   alias?: string
   surname?: string
   dateOfBirth?: string
+  debtorDischargeDate?: string
 }
 export interface FullBankruptOfficer extends BankruptOfficer {
   caseReference?: string
   caseType?: string
   bankruptcyType?: string
   startDate?: string
-  debtorDischargeDate?: string
   trusteeDischargeDate?: string
 }
 export interface BankruptOfficerSearchQuery {
@@ -32,7 +34,8 @@ export interface BankruptOfficerSearchFilters {
   forename1?: string
   surname?: string
   alias?: string
-  dateOfBirth?: string
+  fromDateOfBirth?: string
+  toDateOfBirth?: string
   postcode?: string
 }
 
@@ -41,4 +44,25 @@ export interface BankruptOfficerSearchResults {
   startIndex: number
   totalResults: number
   items: BankruptOfficer[]
+}
+
+export interface PaginationData {
+  previous?: PaginationPreviousNext,
+  next?: PaginationPreviousNext,
+  items: PageItem[]
+}
+
+export interface PaginationPreviousNext {
+  href: string
+}
+
+export interface PageItem {
+  number?: number,
+  href?: string,
+  current?: boolean,
+  ellipsis?: boolean
+}
+
+export interface BankruptOfficerSearchSessionExtraData {
+  [SESSION_FILTER]?: BankruptOfficerSearchFilters
 }

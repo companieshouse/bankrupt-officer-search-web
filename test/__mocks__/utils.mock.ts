@@ -16,8 +16,42 @@ export const FAKE_URL = {
 };
 
 export const mockFilters: BankruptOfficerSearchFilters = { 
-  dateOfBirth: '', 
+  fromDateOfBirth: '', 
+  toDateOfBirth: '',
   forename1: 'Kermit', 
+  surname: '', 
+  postcode: '' 
+};
+
+export const mockFiltersDOBRanges: BankruptOfficerSearchFilters = {
+  fromDateOfBirth: '1940-01-02', 
+  toDateOfBirth: '1950-01-02',
+  forename1: '', 
+  surname: '', 
+  postcode: '' 
+};
+
+export const mockFiltersNoOfficerDOBRanges: BankruptOfficerSearchFilters = {
+  fromDateOfBirth: '1980-01-02', 
+  toDateOfBirth: '1985-01-02',
+  forename1: '', 
+  surname: '', 
+  postcode: '' 
+};
+
+
+export const mockFiltersFromDOBRanges: BankruptOfficerSearchFilters = {
+  fromDateOfBirth: '1940-01-02', 
+  toDateOfBirth: '',
+  forename1: '', 
+  surname: '', 
+  postcode: '' 
+};
+
+export const mockFiltersToDOBRanges: BankruptOfficerSearchFilters = {
+  fromDateOfBirth: '', 
+  toDateOfBirth: '1950-01-02',
+  forename1: '', 
   surname: '', 
   postcode: '' 
 };
@@ -26,6 +60,30 @@ export const mockSearchQuery: BankruptOfficerSearchQuery = {
   startIndex: 0, 
   itemsPerPage: 10, 
   filters: mockFilters
+};
+
+export const mockSearchQueryDOBNoOfficer: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFiltersNoOfficerDOBRanges
+};
+
+export const mockSearchQueryDOBRanges: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFiltersDOBRanges
+};
+
+export const mockSearchQueryFromDOB: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFiltersFromDOBRanges
+};
+
+export const mockSearchQueryToDOB: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFiltersToDOBRanges
 };
 
 export const mockFullBankruptOfficer: FullBankruptOfficer = {
@@ -61,6 +119,18 @@ export const BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS = {
   startIndex: 0, 
   totalResults: 0, 
   items: []
+};
+
+export const PAGINATION_RESULTS = {
+  pagination: {
+    items: [
+      {
+        current: true,
+        href: "/admin/officer-search/scottish-bankrupt-officer?page=1",
+        number: 1
+      }
+    ]
+  }
 };
 
 export const errorStatusCode = [401, 404, 500];

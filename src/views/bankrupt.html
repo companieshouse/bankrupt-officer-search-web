@@ -26,42 +26,80 @@
     <input class="govuk-input govuk-!-width-one-half" id="alias" type="text" name="alias" aria-describedby="alias-hint">
   </div>
   <div class="govuk-form-group">
-    <fieldset class="govuk-fieldset" role="group" aria-describedby="dob-hint">
+    <fieldset class="govuk-fieldset" role="group" aria-describedby="from-dob-hint">
       <legend class="govuk-fieldset__legend">
-        Date of birth
+        From Date of Birth
       </legend>
       <div id="dob-hint" class="govuk-hint">
-        For example, 31 3 1980
+        For example, 31 03 1980
       </div>
-      <div class="govuk-date-input" id="dob">
+      <div class="govuk-date-input" id="from-dob">
         <div class="govuk-date-input__item">
           <div class="govuk-form-group">
-            <label class="govuk-label govuk-date-input__label" for="dob-day">
+            <label class="govuk-label govuk-date-input__label" for="from-dob-day">
               Day
             </label>
-            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-dd"
-              name="dob-dd" autocomplete="bday-day" type="text" pattern="[0-9]*" inputmode="numeric">
+            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="from-dob-dd"
+              name="from-dob-dd" autocomplete="bday-day" type="text" pattern="[0-9]*" inputmode="numeric">
           </div>
         </div>
         <div class="govuk-date-input__item">
           <div class="govuk-form-group">
-            <label class="govuk-label govuk-date-input__label" for="dob-mm">
+            <label class="govuk-label govuk-date-input__label" for="from-dob-mm">
               Month
             </label>
-            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-mm"
-              name="dob-mm" autocomplete="bday-month" type="text" pattern="[0-9]*" inputmode="numeric">
+            <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="from-dob-mm"
+              name="from-dob-mm" autocomplete="bday-month" type="text" pattern="[0-9]*" inputmode="numeric">
           </div>
         </div>
         <div class="govuk-date-input__item">
           <div class="govuk-form-group">
-            <label class="govuk-label govuk-date-input__label" for="dob-yyyy">
+            <label class="govuk-label govuk-date-input__label" for="from-dob-yyyy">
               Year
             </label>
-            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="dob-yyyy"
-              name="dob-yyyy" autocomplete="bday-year" type="text" pattern="[0-9]*" inputmode="numeric">
+            <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="from-dob-yyyy"
+              name="from-dob-yyyy" autocomplete="bday-year" type="text" pattern="[0-9]*" inputmode="numeric">
+            </div>
           </div>
         </div>
-      </div>
+  </fieldset>
+      </div><div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" role="group" aria-describedby="to-dob-hint">
+          <legend class="govuk-fieldset__legend">
+           To Date of Birth:
+          </legend>
+          <div id="dob-hint" class="govuk-hint">
+            For example, 31 03 1985
+          </div>
+          <div class="govuk-date-input" id="to-dob">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="to-dob-day">
+                  Day
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="to-dob-dd"
+                  name="to-dob-dd" autocomplete="bday-day" type="text" pattern="[0-9]*" inputmode="numeric">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="to-dob-mm">
+                  Month
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="to-dob-mm"
+                  name="to-dob-mm" autocomplete="bday-month" type="text" pattern="[0-9]*" inputmode="numeric">
+              </div>
+            </div>
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="to-dob-yyyy">
+                  Year
+                </label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="to-dob-yyyy"
+                  name="to-dob-yyyy" autocomplete="bday-year" type="text" pattern="[0-9]*" inputmode="numeric">
+              </div>
+            </div>
+          </div>
     </fieldset>
   </div>
   <div class="govuk-form-group">
@@ -74,22 +112,22 @@
   <button class="govuk-button" data-module="govuk-button">
     Search
   </button>
-
 </form>
 
 {% if searched %}
   <h2 class="govuk-heading-l">Search results</h2>
   <span id="results-hint" class="govuk-hint">
-    Showing {{ itemsPerPage + startIndex }} of {{ totalResults }} results
+    Showing {{ itemsPerPage }} of {{ totalResults }} results
   </span>
   <div class="govuk-grid-column-full-width">
-    <table class="govuk-table">
+    <table id="results-table" class="govuk-table">
       <thead class="govuk-table__head">
         <tr class="govuk-table__row">
           <th scope="col" class="govuk-table__header">First name</th>
           <th scope="col" class="govuk-table__header">Last name</th>
           <th scope="col" class="govuk-table__header">Date of birth</th>
-          <th scope="col" class="govuk-table__header govuk--width-one-quarter">Postcode</th>
+          <th scope="col" class="govuk-table__header">Postcode</th>
+          <th scope="col" class="govuk-table__header govuk--width-one-quarter">Debtor Discharge Date</th>
         </tr>
       </thead>
       <tbody class="govuk-table__body">
@@ -99,14 +137,19 @@
           <td class="govuk-table__cell">{{ item.surname }}</td>
           <td class="govuk-table__cell">{{ item.dateOfBirth }}</td>
           <td class="govuk-table__cell">{{ item.postcode }}</td>
-        </tr>
+          <td class="govuk-table__cell">{{ item.debtorDischargeDate }}</td>
         {% endfor %}
+      </tr>
       </tbody>
     </table>
     {% if not items or not items|length %}
       <h2 class="govuk-heading-s">No results found matching your search criteria.</h2>
     {% endif %}
-  </div>
+    {% if pagination %}
+    <div id="pagination-container">
+      {{ govukPagination(pagination) }}
+    </div>
+    {% endif %}
+  </div>   
 {% endif %}
-
 {% endblock %}
