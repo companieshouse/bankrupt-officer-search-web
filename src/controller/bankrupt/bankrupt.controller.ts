@@ -4,6 +4,7 @@ import { logger, formattingOfficersInfo, userSession, buildPaginationData } from
 import { fetchBankruptOfficers } from '../../service';
 import { BankruptOfficerSearchFilters, BankruptOfficerSearchQuery, BankruptOfficerSearchSessionExtraData } from '../../types';
 import { BANKRUPT_OFFICER_SEARCH_SESSION, RESULTS_PER_PAGE, SCOTTISH_BANKRUPT_OFFICER } from '../../config';
+import { Validation } from '../../validation';
 
 export const getSearchPage = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
@@ -36,6 +37,14 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
     // Set post query data
     const filters: BankruptOfficerSearchFilters = { forename1, surname, alias, fromDateOfBirth, toDateOfBirth, postcode };
     
+    const userEmail = userSession.getLoggedInUserEmail(req.session);
+
+    // Validation
+    const validationResults = new Validation(filters).validate();
+    if (validationResults.errorMessages.length > 0) {
+      res.render('bankrupt', { userEmail, errors: validationResults })
+    }
+
     let sessionExtraData: undefined | BankruptOfficerSearchSessionExtraData = req.session?.getExtraData(BANKRUPT_OFFICER_SEARCH_SESSION);
     sessionExtraData = {...sessionExtraData, filters};
     req.session?.setExtraData(BANKRUPT_OFFICER_SEARCH_SESSION, sessionExtraData);

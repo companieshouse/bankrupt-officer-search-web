@@ -8,21 +8,53 @@
 
 {% block content %}
 
+{% if errors %}
+<div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" data-module="govuk-error-summary">
+  <h2 class="govuk-error-summary__title" id="error-summary-title">
+    There is a problem
+  </h2>
+  <div class="govuk-error-summary__body">
+    <ul class="govuk-list govuk-error-summary__list">
+      {% for errorMessage in errors.errorMessages %}
+      <li>
+        <a href="#">{{errorMessage}}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endif %}
+
 <h1 class="govuk-heading-l">
   Search for a bankrupt and disqualified officer
 </h1>
 
 <form method="post">
-  <div class="govuk-form-group">
+  <div class="govuk-form-group {% if errors.fieldsWithErrors.forename1 %} govuk-form-group--error {% endif %}">
     <label class="govuk-label" for="forename1">First name</label>
+    {% if errors.fieldsWithErrors.forename1 %}
+    <p id="forename1-error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span> Enter valid characters
+    </p>
+    {% endif %}
     <input class="govuk-input govuk-!-width-one-half" id="forename1" type="text" name="forename1" aria-describedby="forename1-hint">
   </div>
-  <div class="govuk-form-group">
+  <div class="govuk-form-group {% if errors.fieldsWithErrors.surname %} govuk-form-group--error {% endif %}">
     <label class="govuk-label" for="surname">Last name</label>
+    {% if errors.fieldsWithErrors.surname %}
+    <p id="surname-error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span> Enter valid characters
+    </p>
+    {% endif %}
     <input class="govuk-input govuk-!-width-one-half" id="surname" type="text" name="surname" aria-describedby="surname-hint">
   </div>
-  <div class="govuk-form-group">
+  <div class="govuk-form-group {% if errors.fieldsWithErrors.alias %} govuk-form-group--error {% endif %}">
     <label class="govuk-label" for="alias">Alias</label>
+    {% if errors.fieldsWithErrors.surname %}
+    <p id="alias-error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span> Enter valid characters
+    </p>
+    {% endif %}
     <input class="govuk-input govuk-!-width-one-half" id="alias" type="text" name="alias" aria-describedby="alias-hint">
   </div>
   <div class="govuk-form-group">
@@ -102,10 +134,15 @@
           </div>
     </fieldset>
   </div>
-  <div class="govuk-form-group">
+  <div class="govuk-form-group {% if errors.fieldsWithErrors.postcode %} govuk-form-group--error {% endif %}">
     <label class="govuk-label" for="postcode">
       Postcode
     </label>
+    {% if errors.fieldsWithErrors.postcode %}
+      <p id="forename1-error" class="govuk-error-message">
+        <span class="govuk-visually-hidden">Error:</span> Enter valid characters
+      </p>
+    {% endif %}
     <input class="govuk-input govuk-input--width-10" id="postcode" name="postcode" type="text"
       autocomplete="postal-code" aria-describedby="postcode-hint">
   </div>
