@@ -43,9 +43,9 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
     sessionExtraData = {...sessionExtraData, filters};
     req.session?.setExtraData(BANKRUPT_OFFICER_SEARCH_SESSION, sessionExtraData);
 
-  if (filters.fromDateOfBirth === '' && filters.toDateOfBirth === '') {
-      const validationResult = new ValidationResult([new ValidationError('noDob', 'Enter a Date Of Birth')]);
-      return res.render('bankrupt', {  validationResult, whereTo: "noDob"});
+    if (filters.fromDateOfBirth === '' && filters.toDateOfBirth === '' && filters.surname === '') {
+      const validationResult = new ValidationResult([new ValidationError('noInfo', 'Enter a Date Of Birth or Last Name')]);
+      return res.render('bankrupt', {  validationResult, whereTo: "noInfo"});
     }
 
     return await renderSearchResultsPage(req, res, filters);
