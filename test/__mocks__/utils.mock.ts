@@ -19,7 +19,7 @@ export const mockFilters: BankruptOfficerSearchFilters = {
   fromDateOfBirth: '', 
   toDateOfBirth: '',
   forename1: 'Kermit', 
-  surname: '', 
+  surname: 'Frog', 
   postcode: '' 
 };
 
