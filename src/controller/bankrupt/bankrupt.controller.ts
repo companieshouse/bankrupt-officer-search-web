@@ -45,7 +45,8 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
 
     if (filters.fromDateOfBirth === '' && filters.toDateOfBirth === '' && filters.surname === '') {
       const validationResult = new ValidationResult([new ValidationError('noInfo', 'Enter a Date Of Birth or Last Name')]);
-      return res.render('bankrupt', {  validationResult, whereTo: "noInfo"});
+      const userEmail = userSession.getLoggedInUserEmail(req.session);
+      return res.render('bankrupt', { userEmail, validationResult, whereTo: "noInfo"});
     }
 
     return await renderSearchResultsPage(req, res, filters);
