@@ -10,19 +10,27 @@ import { userSession } from '../../src/utils';
 import {
   BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS,
   BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS,
+
   mockPostResponse,
   mockSearchQuery,
   PAGINATION_RESULTS,
   mockSearchQueryFromDOB,
   mockSearchQueryToDOB,
   mockSearchQueryDOBNoOfficer,
-  mockSearchQueryDOBRanges
+  mockSearchQueryDOBRanges,
+  mockSearchQueryInvalidFromDOB,
+
+
 } from '../__mocks__/utils.mock';
+
+
 
 import { getSessionRequest } from '../__mocks__/session.mock';
 import { logger } from '../../src/utils';
 
 chai.use(sinonChai);
+
+
 
 const mockResponse = () => {
   const res = { render: {}, status: {} };
@@ -81,7 +89,7 @@ describe("BankruptController test suite", () => {
   describe("search page post", () => {
 
     it("should renders the bankrupt officer search page with the list of officers", async () => {
-      req.body = mockSearchQuery;
+      req.body = mockSearchQuery.filters;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').resolves(mockPostResponse[200]);
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
       await postSearchPage(req, res, nextFunctionSpy);
@@ -91,7 +99,7 @@ describe("BankruptController test suite", () => {
     });
   
     it("should render the bankrupt officer search page with list of officers when DOB filters are used", async () => {
-      req.body = mockSearchQueryDOBRanges;
+      req.body = mockSearchQueryDOBRanges.filters;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').resolves(mockPostResponse[200]);
 
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
@@ -103,7 +111,7 @@ describe("BankruptController test suite", () => {
 
 
     it("should render the bankrupt officer search page from only FROM_DOB filters with the list of officers", async () => {
-      req.body = mockSearchQueryFromDOB;
+      req.body = mockSearchQueryFromDOB.filters;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').resolves(mockPostResponse[200]);
 
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
@@ -114,18 +122,19 @@ describe("BankruptController test suite", () => {
     });
 
     it("should render the bankrupt officer search page from only TO_DOB filters with the list of officers", async () => {
-      req.body = mockSearchQueryToDOB;
+      req.body = mockSearchQueryToDOB.filters;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').resolves(mockPostResponse[200]);
 
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
       await postSearchPage(req, res, nextFunctionSpy);
 
       expect(nextFunctionSpy).not.called;
+      console.log(req, req.body,);
       expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { searched: true, ...BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS, ...PAGINATION_RESULTS, userEmail: "test@testemail.com" });
     });
 
     it("should renders the bankrupt officer search page with not officers", async () => {
-      req.body = mockSearchQuery;
+      req.body = mockSearchQuery.filters;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
 
@@ -136,11 +145,27 @@ describe("BankruptController test suite", () => {
     });
 
 
-    it("should render the bankrupt officer search page with no results when no officers have dob requested in filter", async () => {
-      req.body = mockSearchQueryDOBNoOfficer;
+    it("should render the bankrupt officer search page with dob contains letters or se", async () => {
+      req.body = mockSearchQueryInvalidFromDOB.filters;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
 
+      await postSearchPage(req, res, nextFunctionSpy);
+
+      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { searched: true, pagination: undefined, userEmail: "test@testemail.com" });
+
+
+      
+    });
+
+
+    it("should render the bankrupt officer search page with no results when no officers have dob requested in filter", async () => {
+      req.body = mockSearchQueryDOBNoOfficer.filters;
+      sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
+      sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
+
+      console.log(req);
+      console.log(req.body); 
       await postSearchPage(req, res, nextFunctionSpy);
 
       expect(nextFunctionSpy).not.called;
@@ -148,7 +173,7 @@ describe("BankruptController test suite", () => {
     });
 
     it('should return none data with status code 500 and render error-pages/500 page', async () => {
-      req.body = mockSearchQuery;
+      req.body = mockSearchQuery.filters;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[500]);
 
       await postSearchPage(req, res, nextFunctionSpy);
@@ -159,7 +184,7 @@ describe("BankruptController test suite", () => {
     });
 
     it('should return none data with status code 401 and render error-pages/500 page', async () => {
-      req.body = mockSearchQuery;
+      req.body = mockSearchQuery.filters;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[401]);
 
       await postSearchPage(req, res, nextFunctionSpy);

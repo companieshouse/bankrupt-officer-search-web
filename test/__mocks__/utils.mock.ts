@@ -24,12 +24,46 @@ export const mockFilters: BankruptOfficerSearchFilters = {
 };
 
 export const mockFiltersDOBRanges: BankruptOfficerSearchFilters = {
-  fromDateOfBirth: '1940-01-02', 
+  fromDateOfBirth: '1940-01-01', 
+  toDateOfBirth: '1910-01-01',
+  forename1: '', 
+  surname: '', 
+  postcode: '' 
+};
+
+export const mockFiltersInvalidFromDates: BankruptOfficerSearchFilters = {
+  fromDateOfBirth: 'incorrect-date-02', 
   toDateOfBirth: '1950-01-02',
   forename1: '', 
   surname: '', 
   postcode: '' 
 };
+
+export const mockFiltersInvalidToDates: BankruptOfficerSearchFilters = {
+  fromDateOfBirth: '', 
+  toDateOfBirth: 'incorrect-date-02',
+  forename1: '', 
+  surname: '', 
+  postcode: '' 
+};
+
+export const mockFiltersInvalidBothDates: BankruptOfficerSearchFilters = {
+  fromDateOfBirth: 'dodgydate', 
+  toDateOfBirth: 'incorrect-date-02',
+  forename1: '', 
+  surname: '', 
+  postcode: '' 
+};
+
+export const mockFiltersPreviousToDate: BankruptOfficerSearchFilters = {
+  fromDateOfBirth: '1950-01-02',
+  toDateOfBirth: '1960-01-01',
+  forename1: '', 
+  surname: '', 
+  postcode: '' 
+};
+
+
 
 export const mockFiltersNoOfficerDOBRanges: BankruptOfficerSearchFilters = {
   fromDateOfBirth: '1980-01-02', 
@@ -86,6 +120,13 @@ export const mockSearchQueryToDOB: BankruptOfficerSearchQuery = {
   filters: mockFiltersToDOBRanges
 };
 
+export const mockSearchQueryInvalidFromDOB: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFiltersInvalidFromDates
+};
+
+
 export const mockFullBankruptOfficer: FullBankruptOfficer = {
   ephemeralKey: EPHEMERALKEY,
   forename1: "KERMIT",
@@ -118,7 +159,15 @@ export const BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS = {
   itemsPerPage: 0, 
   startIndex: 0, 
   totalResults: 0, 
-  items: []
+  items: [], 
+};
+
+export const BANKRUPT_OFFICER_SEARCH_ERROR = { 
+  itemsPerPage: 0, 
+  startIndex: 0, 
+  totalResults: 0, 
+
+ 
 };
 
 export const PAGINATION_RESULTS = {

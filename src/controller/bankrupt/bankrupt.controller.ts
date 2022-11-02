@@ -5,6 +5,13 @@ import { fetchBankruptOfficers } from '../../service';
 import { BankruptOfficerSearchFilters, BankruptOfficerSearchQuery, BankruptOfficerSearchSessionExtraData } from '../../types';
 import { BANKRUPT_OFFICER_SEARCH_SESSION, RESULTS_PER_PAGE, SCOTTISH_BANKRUPT_OFFICER } from '../../config';
 
+import { ValidationResult } from './ValidationResult';
+import { ValidationError } from './ValidationError';
+import { isValidDate, checkFromDob, checkToDob} from './validation';
+
+
+
+
 export const getSearchPage = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const sessionExtraData: undefined | BankruptOfficerSearchSessionExtraData = req.session?.getExtraData(BANKRUPT_OFFICER_SEARCH_SESSION);
@@ -20,6 +27,7 @@ export const getSearchPage = async (req: Request, res: Response, next: NextFunct
 };
 
 export const postSearchPage = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  
   try {
     // Get data from request body - dateOfBirth needs to be checked 
     const { forename1 = '', surname = '', alias = '', postcode = '' } = req.body;
@@ -40,6 +48,20 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
     sessionExtraData = {...sessionExtraData, filters};
     req.session?.setExtraData(BANKRUPT_OFFICER_SEARCH_SESSION, sessionExtraData);
 
+    if(isValidDate(fromDateOfBirth) == false && isValidDate(toDateOfBirth) === false){
+      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Please enter a valid date ')]);
+      return res.render('bankrupt', {  validationResult, whereTo: "invalidFromDob", dobError: "invalidToDob"});
+    } else if(checkFromDob(fromDateOfBirth)){
+      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Please enter a valid date ')]);
+      return res.render('bankrupt', {  validationResult, whereTo: "invalidFromDob"});
+    } 
+    if(checkToDob(fromDateOfBirth,toDateOfBirth)){
+      console.log(("valid in to: "));
+      const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Please enter a valid date ')]);
+      return res.render('bankrupt', {  validationResult, dobError: "invalidToDob"});
+    }
+    
+    
     return await renderSearchResultsPage(req, res, filters);
   } catch (err) {
     logger.error(`${err}`);
@@ -65,3 +87,4 @@ const renderSearchResultsPage = async (req: Request, res: Response, filters: Ban
     return res.status(results.httpStatusCode).render('error-pages/500');
   } 
 };
+
