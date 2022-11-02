@@ -31,6 +31,12 @@ export interface BankruptOfficerSearchQuery {
 }
 
 export interface BankruptOfficerSearchFilters {
+  "to-dob-dd"?: string
+  "to-dob-mm"?: string
+  "to-dob-yyyy"?: string
+  "from-dob-dd"?: string
+  "from-dob-mm"?: string
+  "from-dob-yyyy"?: string
   forename1?: string
   surname?: string
   alias?: string

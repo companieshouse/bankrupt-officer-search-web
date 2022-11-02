@@ -16,6 +16,12 @@ export const FAKE_URL = {
 };
 
 export const mockFilters: BankruptOfficerSearchFilters = { 
+  "from-dob-dd": '',
+  "from-dob-mm": '',
+  "from-dob-yyyy": '',  
+  "to-dob-dd": '',
+  "to-dob-mm": '',
+  "to-dob-yyyy": '',
   fromDateOfBirth: '', 
   toDateOfBirth: '',
   forename1: 'Kermit', 
@@ -24,6 +30,12 @@ export const mockFilters: BankruptOfficerSearchFilters = {
 };
 
 export const mockFiltersDOBRanges: BankruptOfficerSearchFilters = {
+  "from-dob-dd": '02',
+  "from-dob-mm": '01',
+  "from-dob-yyyy": '1940', 
+  "to-dob-dd": '02',
+  "to-dob-mm": '01',
+  "to-dob-yyyy": '1950',
   fromDateOfBirth: '1940-01-02', 
   toDateOfBirth: '1950-01-02',
   forename1: '', 
@@ -32,6 +44,12 @@ export const mockFiltersDOBRanges: BankruptOfficerSearchFilters = {
 };
 
 export const mockFiltersNoOfficerDOBRanges: BankruptOfficerSearchFilters = {
+  "from-dob-dd": '02',
+  "from-dob-mm": '01',
+  "from-dob-yyyy": '1980', 
+  "to-dob-dd": '02',
+  "to-dob-mm": '01',
+  "to-dob-yyyy": '1985',
   fromDateOfBirth: '1980-01-02', 
   toDateOfBirth: '1985-01-02',
   forename1: '', 
@@ -41,6 +59,12 @@ export const mockFiltersNoOfficerDOBRanges: BankruptOfficerSearchFilters = {
 
 
 export const mockFiltersFromDOBRanges: BankruptOfficerSearchFilters = {
+  "from-dob-dd": '02',
+  "from-dob-mm": '01',
+  "from-dob-yyyy": '1940',
+  "to-dob-dd": '',
+  "to-dob-mm": '',
+  "to-dob-yyyy": '',
   fromDateOfBirth: '1940-01-02', 
   toDateOfBirth: '',
   forename1: '', 
@@ -49,6 +73,12 @@ export const mockFiltersFromDOBRanges: BankruptOfficerSearchFilters = {
 };
 
 export const mockFiltersToDOBRanges: BankruptOfficerSearchFilters = {
+  "from-dob-dd": '',
+  "from-dob-mm": '',
+  "from-dob-yyyy": '',  
+  "to-dob-dd": '02',
+  "to-dob-mm": '01',
+  "to-dob-yyyy": '1950',
   fromDateOfBirth: '', 
   toDateOfBirth: '1950-01-02',
   forename1: '', 
