@@ -7,10 +7,7 @@ import { BANKRUPT_OFFICER_SEARCH_SESSION, RESULTS_PER_PAGE, SCOTTISH_BANKRUPT_OF
 
 import { ValidationResult } from './ValidationResult';
 import { ValidationError } from './ValidationError';
-import { isValidDate, checkFromDob, checkToDob} from './validation';
-
-
-
+import { isValidDate, fromDobInvalid, toDobInvalid} from './validation';
 
 export const getSearchPage = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
@@ -32,9 +29,9 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
     // Get data from request body - dateOfBirth needs to be checked 
     const { forename1 = '', surname = '', alias = '', postcode = '' } = req.body;
 
-    // Deal with fragmented date of birth , if one field is blank, then it is null
+    // Deal with fragmented date of birth
     const fromDateOfBirth = (req.body["from-dob-dd"] || req.body["from-dob-mm"] || req.body["from-dob-yyyy"]) ?
-        `${req.body["from-dob-yyyy"]}-${req.body["from-dob-mm"]}-${req.body["from-dob-dd"]}` : '';
+      `${req.body["from-dob-yyyy"]}-${req.body["from-dob-mm"]}-${req.body["from-dob-dd"]}` : '';
     
     const toDateOfBirth = 
       (req.body["to-dob-dd"] || req.body["to-dob-mm"] || req.body["to-dob-yyyy"]) ?
@@ -46,24 +43,23 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
     let sessionExtraData: undefined | BankruptOfficerSearchSessionExtraData = req.session?.getExtraData(BANKRUPT_OFFICER_SEARCH_SESSION);
     sessionExtraData = {...sessionExtraData, filters};
     req.session?.setExtraData(BANKRUPT_OFFICER_SEARCH_SESSION, sessionExtraData);
-    
-    if (filters.fromDateOfBirth === '' && filters.toDateOfBirth === '') {
-      const validationResult = new ValidationResult([new ValidationError('noDob', 'Enter a Date Of Birth')]);
-      return res.render('bankrupt', {  validationResult, whereTo: "noDob"});
-    }
+ 
 
-    if(isValidDate(fromDateOfBirth) == false && isValidDate(toDateOfBirth) === false){
-      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Please enter a valid date ')]);
-      return res.render('bankrupt', {  validationResult, whereTo: "invalidFromDob", dobError: "invalidToDob"});
-    } else if(checkFromDob(fromDateOfBirth)){
+    if(isValidDate(fromDateOfBirth) === false && isValidDate(toDateOfBirth) === false){
+      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Please enter a valid date')]);
+      const userEmail = userSession.getLoggedInUserEmail(req.session);
+      return res.render('bankrupt', { userEmail, validationResult, whereTo: "invalidFromDob", dobError: "invalidToDob"});
+    } else if(fromDobInvalid(fromDateOfBirth)){
       console.log(("valid in from: "));
-      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Please enter a valid date ')]);
-      return res.render('bankrupt', {  validationResult, whereTo: "invalidFromDob"});
+      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Please enter a valid date')]);
+      const userEmail = userSession.getLoggedInUserEmail(req.session);
+      return res.render('bankrupt', { userEmail, validationResult, whereTo: "invalidFromDob"});
     } 
-    if(checkToDob(fromDateOfBirth,toDateOfBirth)){
+    if(toDobInvalid(toDateOfBirth,fromDateOfBirth)){
       console.log(("valid in to: "));
-      const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Please enter a valid date ')]);
-      return res.render('bankrupt', {  validationResult, dobError: "invalidToDob"});
+      const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Please enter a valid date')]);
+      const userEmail = userSession.getLoggedInUserEmail(req.session);
+      return res.render('bankrupt', { userEmail, validationResult, dobError: "invalidToDob"});
     }
     
     

@@ -16,56 +16,40 @@ export const FAKE_URL = {
 };
 
 export const mockFilters: BankruptOfficerSearchFilters = { 
+  "from-dob-dd": '',
+  "from-dob-mm": '',
+  "from-dob-yyyy": '',  
+  "to-dob-dd": '',
+  "to-dob-mm": '',
+  "to-dob-yyyy": '',
   fromDateOfBirth: '', 
   toDateOfBirth: '',
   forename1: 'Kermit', 
-  surname: '', 
+  surname: 'Frog', 
   postcode: '' 
 };
 
 export const mockFiltersDOBRanges: BankruptOfficerSearchFilters = {
-  fromDateOfBirth: '1940-01-01', 
-  toDateOfBirth: '1910-01-01',
-  forename1: '', 
-  surname: '', 
-  postcode: '' 
-};
-
-export const mockFiltersInvalidFromDates: BankruptOfficerSearchFilters = {
-  fromDateOfBirth: 'incorrect-date-02', 
+  "from-dob-dd": '02',
+  "from-dob-mm": '01',
+  "from-dob-yyyy": '1940', 
+  "to-dob-dd": '02',
+  "to-dob-mm": '01',
+  "to-dob-yyyy": '1950',
+  fromDateOfBirth: '1940-01-02', 
   toDateOfBirth: '1950-01-02',
   forename1: '', 
   surname: '', 
   postcode: '' 
 };
 
-export const mockFiltersInvalidToDates: BankruptOfficerSearchFilters = {
-  fromDateOfBirth: '', 
-  toDateOfBirth: 'incorrect-date-02',
-  forename1: '', 
-  surname: '', 
-  postcode: '' 
-};
-
-export const mockFiltersInvalidBothDates: BankruptOfficerSearchFilters = {
-  fromDateOfBirth: 'dodgydate', 
-  toDateOfBirth: 'incorrect-date-02',
-  forename1: '', 
-  surname: '', 
-  postcode: '' 
-};
-
-export const mockFiltersPreviousToDate: BankruptOfficerSearchFilters = {
-  fromDateOfBirth: '1950-01-02',
-  toDateOfBirth: '1960-01-01',
-  forename1: '', 
-  surname: '', 
-  postcode: '' 
-};
-
-
-
 export const mockFiltersNoOfficerDOBRanges: BankruptOfficerSearchFilters = {
+  "from-dob-dd": '02',
+  "from-dob-mm": '01',
+  "from-dob-yyyy": '1980', 
+  "to-dob-dd": '02',
+  "to-dob-mm": '01',
+  "to-dob-yyyy": '1985',
   fromDateOfBirth: '1980-01-02', 
   toDateOfBirth: '1985-01-02',
   forename1: '', 
@@ -75,6 +59,12 @@ export const mockFiltersNoOfficerDOBRanges: BankruptOfficerSearchFilters = {
 
 
 export const mockFiltersFromDOBRanges: BankruptOfficerSearchFilters = {
+  "from-dob-dd": '02',
+  "from-dob-mm": '01',
+  "from-dob-yyyy": '1940',
+  "to-dob-dd": '',
+  "to-dob-mm": '',
+  "to-dob-yyyy": '',
   fromDateOfBirth: '1940-01-02', 
   toDateOfBirth: '',
   forename1: '', 
@@ -83,11 +73,268 @@ export const mockFiltersFromDOBRanges: BankruptOfficerSearchFilters = {
 };
 
 export const mockFiltersToDOBRanges: BankruptOfficerSearchFilters = {
+  "from-dob-dd": '',
+  "from-dob-mm": '',
+  "from-dob-yyyy": '',  
+  "to-dob-dd": '02',
+  "to-dob-mm": '01',
+  "to-dob-yyyy": '1950',
   fromDateOfBirth: '', 
   toDateOfBirth: '1950-01-02',
   forename1: '', 
   surname: '', 
   postcode: '' 
+};
+
+
+export const mockFiltersInvalidCharDDFromDOB: BankruptOfficerSearchFilters = {
+  "from-dob-dd": '!!!',
+  "from-dob-mm": '01',
+  "from-dob-yyyy": '1970',  
+  "to-dob-dd": '',
+  "to-dob-mm": '',
+  "to-dob-yyyy": '',
+  fromDateOfBirth: '', 
+  toDateOfBirth: '',
+  forename1: '', 
+  surname: '', 
+  postcode: '' 
+};
+
+
+export const mockFiltersInvalidCharMMFromDOB: BankruptOfficerSearchFilters = {
+  "from-dob-dd": '12',
+  "from-dob-mm": 'letters',
+  "from-dob-yyyy": '1970',  
+  "to-dob-dd": '',
+  "to-dob-mm": '',
+  "to-dob-yyyy": '',
+  fromDateOfBirth: '', 
+  toDateOfBirth: '',
+  forename1: '', 
+  surname: '', 
+  postcode: '' 
+};
+
+
+export const mockFiltersInvalidCharYYYYFromDOB: BankruptOfficerSearchFilters = {
+  "from-dob-dd": '12',
+  "from-dob-mm": '04',
+  "from-dob-yyyy": '!!&*(@462',  
+  "to-dob-dd": '',
+  "to-dob-mm": '',
+  "to-dob-yyyy": '',
+  fromDateOfBirth: '', 
+  toDateOfBirth: '',
+  forename1: '', 
+  surname: '', 
+  postcode: '' 
+};
+
+export const mockFiltersInvalidCharDDToDOB: BankruptOfficerSearchFilters = {
+  "from-dob-dd": '',
+  "from-dob-mm": '',
+  "from-dob-yyyy": '',  
+  "to-dob-dd": 'letters',
+  "to-dob-mm": '01',
+  "to-dob-yyyy": '2020',
+  fromDateOfBirth: '', 
+  toDateOfBirth: '',
+  forename1: '', 
+  surname: '', 
+  postcode: '' 
+};
+
+export const mockFiltersInvalidCharMMToDOB: BankruptOfficerSearchFilters = {
+  "from-dob-dd": '',
+  "from-dob-mm": '',
+  "from-dob-yyyy": '',  
+  "to-dob-dd": '01',
+  "to-dob-mm": 'r!random',
+  "to-dob-yyyy": '2020',
+  fromDateOfBirth: '', 
+  toDateOfBirth: '',
+  forename1: '', 
+  surname: '', 
+  postcode: '' 
+};
+
+
+export const mockFiltersInvalidCharYYYYToDOB: BankruptOfficerSearchFilters = {
+  "from-dob-dd": '',
+  "from-dob-mm": '',
+  "from-dob-yyyy": '',  
+  "to-dob-dd": '01',
+  "to-dob-mm": '02',
+  "to-dob-yyyy": '!£$£@$@',
+  fromDateOfBirth: '', 
+  toDateOfBirth: '',
+  forename1: '', 
+  surname: '', 
+  postcode: '' 
+};
+
+
+export const mockFiltersInvalidToandFromDOB: BankruptOfficerSearchFilters = {
+  "from-dob-dd": 'letters',
+  "from-dob-mm": 'and@£$£@',
+  "from-dob-yyyy": 'banned: ',  
+  "to-dob-dd": 'letters',
+  "to-dob-mm": '01',
+  "to-dob-yyyy": '£$',
+  fromDateOfBirth: '', 
+  toDateOfBirth: '',
+  forename1: '', 
+  surname: '', 
+  postcode: '' 
+};
+
+export const mockFiltersToDobBeforeFrom: BankruptOfficerSearchFilters = {
+  "from-dob-dd": '12',
+  "from-dob-mm": '01',
+  "from-dob-yyyy": '1990',  
+  "to-dob-dd": '12',
+  "to-dob-mm": '01',
+  "to-dob-yyyy": '1970',
+  fromDateOfBirth: '', 
+  toDateOfBirth: '',
+  forename1: '', 
+  surname: '', 
+  postcode: '' 
+};
+
+export const mockFiltersFutureFromDate: BankruptOfficerSearchFilters = {
+  "from-dob-dd": '12',
+  "from-dob-mm": '01',
+  "from-dob-yyyy": '2090',  
+  "to-dob-dd": '',
+  "to-dob-mm": '',
+  "to-dob-yyyy": '',
+  fromDateOfBirth: '', 
+  toDateOfBirth: '',
+  forename1: '', 
+  surname: '', 
+  postcode: '' 
+};
+
+export const mockFiltersFutureToDate: BankruptOfficerSearchFilters = {
+  "from-dob-dd": '',
+  "from-dob-mm": '',
+  "from-dob-yyyy": '',  
+  "to-dob-dd": '01',
+  "to-dob-mm": '02',
+  "to-dob-yyyy": '2070',
+  fromDateOfBirth: '', 
+  toDateOfBirth: '',
+  forename1: '', 
+  surname: '', 
+  postcode: '' 
+};
+
+
+
+export const mockFiltersNonExistantFromDate: BankruptOfficerSearchFilters = {
+  "from-dob-dd": '31',
+  "from-dob-mm": '02',
+  "from-dob-yyyy": '1970',  
+  "to-dob-dd": '',
+  "to-dob-mm": '',
+  "to-dob-yyyy": '',
+  fromDateOfBirth: '', 
+  toDateOfBirth: '',
+  forename1: '', 
+  surname: '', 
+  postcode: '' 
+};
+
+
+export const mockFiltersNonExistantToDate: BankruptOfficerSearchFilters = {
+  "from-dob-dd": '',
+  "from-dob-mm": '',
+  "from-dob-yyyy": '',  
+  "to-dob-dd": '31',
+  "to-dob-mm": '02',
+  "to-dob-yyyy": '1960',
+  fromDateOfBirth: '', 
+  toDateOfBirth: '',
+  forename1: '', 
+  surname: '', 
+  postcode: '' 
+};
+
+export const mockSearchQueryInvalidDDFromDob: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFiltersInvalidCharDDFromDOB
+};
+export const mockSearchQueryInvalidMMFromDob: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFiltersInvalidCharMMFromDOB
+};
+
+export const mockSearchQueryInvalidYYYYFromDob: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFiltersInvalidCharYYYYFromDOB
+};
+
+
+
+export const mockSearchQueryInvalidDDToDob: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFiltersInvalidCharDDToDOB
+};
+
+
+export const mockSearchQueryInvalidMMToDob: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFiltersInvalidCharMMToDOB
+};
+
+export const mockSearchQueryInvalidYYYYToDob: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFiltersInvalidCharYYYYToDOB
+};
+
+
+export const mockSearchQueryInvalidToAndFromDob: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFiltersInvalidToandFromDOB
+};
+export const mockSearchQueryToDobBeforeFrom: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFiltersToDobBeforeFrom
+};
+
+export const mockSearchQueryFutureFromDate: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFiltersFutureFromDate
+};
+
+export const mockSearchQueryFutureToDate: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFiltersFutureToDate
+};
+
+export const mockSearchQueryNonExistantFromDob: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFiltersNonExistantFromDate
+};
+
+
+export const mockSearchQueryNonExistantToDob: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFiltersNonExistantToDate
 };
 
 export const mockSearchQuery: BankruptOfficerSearchQuery = { 
@@ -119,13 +366,6 @@ export const mockSearchQueryToDOB: BankruptOfficerSearchQuery = {
   itemsPerPage: 10, 
   filters: mockFiltersToDOBRanges
 };
-
-export const mockSearchQueryInvalidFromDOB: BankruptOfficerSearchQuery = { 
-  startIndex: 0, 
-  itemsPerPage: 10, 
-  filters: mockFiltersInvalidFromDates
-};
-
 
 export const mockFullBankruptOfficer: FullBankruptOfficer = {
   ephemeralKey: EPHEMERALKEY,
@@ -159,15 +399,7 @@ export const BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS = {
   itemsPerPage: 0, 
   startIndex: 0, 
   totalResults: 0, 
-  items: [], 
-};
-
-export const BANKRUPT_OFFICER_SEARCH_ERROR = { 
-  itemsPerPage: 0, 
-  startIndex: 0, 
-  totalResults: 0, 
-
- 
+  items: []
 };
 
 export const PAGINATION_RESULTS = {
