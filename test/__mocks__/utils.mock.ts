@@ -22,8 +22,6 @@ export const mockFilters: BankruptOfficerSearchFilters = {
   "to-dob-dd": '',
   "to-dob-mm": '',
   "to-dob-yyyy": '',
-  fromDateOfBirth: '', 
-  toDateOfBirth: '',
   forename1: 'Kermit', 
   surname: 'Frog', 
   postcode: '' 
@@ -36,8 +34,6 @@ export const mockFiltersDOBRanges: BankruptOfficerSearchFilters = {
   "to-dob-dd": '02',
   "to-dob-mm": '01',
   "to-dob-yyyy": '1950',
-  fromDateOfBirth: '1940-01-02', 
-  toDateOfBirth: '1950-01-02',
   forename1: '', 
   surname: '', 
   postcode: '' 
@@ -50,8 +46,6 @@ export const mockFiltersNoOfficerDOBRanges: BankruptOfficerSearchFilters = {
   "to-dob-dd": '02',
   "to-dob-mm": '01',
   "to-dob-yyyy": '1985',
-  fromDateOfBirth: '1980-01-02', 
-  toDateOfBirth: '1985-01-02',
   forename1: '', 
   surname: '', 
   postcode: '' 
@@ -65,8 +59,6 @@ export const mockFiltersFromDOBRanges: BankruptOfficerSearchFilters = {
   "to-dob-dd": '',
   "to-dob-mm": '',
   "to-dob-yyyy": '',
-  fromDateOfBirth: '1940-01-02', 
-  toDateOfBirth: '',
   forename1: '', 
   surname: '', 
   postcode: '' 
@@ -79,8 +71,6 @@ export const mockFiltersToDOBRanges: BankruptOfficerSearchFilters = {
   "to-dob-dd": '02',
   "to-dob-mm": '01',
   "to-dob-yyyy": '1950',
-  fromDateOfBirth: '', 
-  toDateOfBirth: '1950-01-02',
   forename1: '', 
   surname: '', 
   postcode: '' 
