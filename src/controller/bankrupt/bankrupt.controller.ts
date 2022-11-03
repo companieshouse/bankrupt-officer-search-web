@@ -7,6 +7,7 @@ import { BANKRUPT_OFFICER_SEARCH_SESSION, RESULTS_PER_PAGE, SCOTTISH_BANKRUPT_OF
 import { ValidationResult } from './ValidationResult';
 import { ValidationError } from './ValidationError';
 
+import { isValidDate, fromDobInvalid, toDobInvalid} from '../../utils/validation/validation';
 
 export const getSearchPage = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
@@ -23,17 +24,17 @@ export const getSearchPage = async (req: Request, res: Response, next: NextFunct
 };
 
 export const postSearchPage = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  
   try {
     // Get data from request body - dateOfBirth needs to be checked 
     const { forename1 = '', surname = '', alias = '', postcode = '' } = req.body;
 
     // Deal with fragmented date of birth
-    const fromDateOfBirth = 
-      (req.body["from-dob-dd"] && req.body["from-dob-mm"] && req.body["from-dob-yyyy"]) ?
-        `${req.body["from-dob-yyyy"]}-${req.body["from-dob-mm"]}-${req.body["from-dob-dd"]}` : '';
+    const fromDateOfBirth = (req.body["from-dob-dd"] || req.body["from-dob-mm"] || req.body["from-dob-yyyy"]) ?
+      `${req.body["from-dob-yyyy"]}-${req.body["from-dob-mm"]}-${req.body["from-dob-dd"]}` : '';
     
     const toDateOfBirth = 
-      (req.body["to-dob-dd"] && req.body["to-dob-mm"] && req.body["to-dob-yyyy"]) ?
+      (req.body["to-dob-dd"] || req.body["to-dob-mm"] || req.body["to-dob-yyyy"]) ?
         `${req.body["to-dob-yyyy"]}-${req.body["to-dob-mm"]}-${req.body["to-dob-dd"]}` : '';
 
     // Set post query data
@@ -42,7 +43,23 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
     let sessionExtraData: undefined | BankruptOfficerSearchSessionExtraData = req.session?.getExtraData(BANKRUPT_OFFICER_SEARCH_SESSION);
     sessionExtraData = {...sessionExtraData, filters};
     req.session?.setExtraData(BANKRUPT_OFFICER_SEARCH_SESSION, sessionExtraData);
+ 
 
+    if(isValidDate(fromDateOfBirth) === false && isValidDate(toDateOfBirth) === false){
+      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Enter a valid date')]);
+      const userEmail = userSession.getLoggedInUserEmail(req.session);
+      return res.render('bankrupt', { userEmail, validationResult, whereTo: "invalidFromDob", toDobError: "invalidToDob"});
+    } else if(fromDobInvalid(fromDateOfBirth)){
+      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Enter a valid date')]);
+      const userEmail = userSession.getLoggedInUserEmail(req.session);
+      return res.render('bankrupt', { userEmail, validationResult, whereTo: "invalidFromDob"});
+    } 
+    if(toDobInvalid(toDateOfBirth,fromDateOfBirth)){
+      const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Enter a valid date')]);
+      const userEmail = userSession.getLoggedInUserEmail(req.session);
+      return res.render('bankrupt', { userEmail, validationResult, toDobError: "invalidToDob"});
+    }
+    
     if (filters.fromDateOfBirth === '' && filters.toDateOfBirth === '' && filters.surname === '') {
       const validationResult = new ValidationResult([new ValidationError('noInfo', 'Enter a Date Of Birth or Last Name')]);
       const userEmail = userSession.getLoggedInUserEmail(req.session);
@@ -74,3 +91,4 @@ const renderSearchResultsPage = async (req: Request, res: Response, filters: Ban
     return res.status(results.httpStatusCode).render('error-pages/500');
   } 
 };
+
