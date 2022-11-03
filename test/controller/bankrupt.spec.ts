@@ -16,13 +16,15 @@ import {
   mockSearchQueryFromDOB,
   mockSearchQueryToDOB,
   mockSearchQueryDOBNoOfficer,
-  mockSearchQueryDOBRanges
+  mockSearchQueryDOBRanges,
+  mockSearchQueryInvalidChars
 } from '../__mocks__/utils.mock';
 
 import { getSessionRequest } from '../__mocks__/session.mock';
 import { logger } from '../../src/utils';
 import { ValidationResult } from '../../src/controller/bankrupt/ValidationResult';
 import { ValidationError } from '../../src/controller/bankrupt/ValidationError';
+import { INVALID_CHARACTER_ERROR_MESSAGE } from '../../src/config';
 
 chai.use(sinonChai);
 
@@ -147,6 +149,17 @@ describe("BankruptController test suite", () => {
 
       expect(nextFunctionSpy).not.called;
       expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { searched: true, ...BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS, pagination: undefined, userEmail: "test@testemail.com" });
+    });
+
+    it("should render the bankrupt officer search page with errors if the text fields contain invalid characters", async () => {
+      req.body = mockSearchQueryInvalidChars.filters;
+      sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
+      const validationResult = new ValidationResult([new ValidationError('surname', INVALID_CHARACTER_ERROR_MESSAGE)]);
+
+      await postSearchPage(req, res, nextFunctionSpy);
+
+      expect(nextFunctionSpy).not.called;
+      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { whereTo: undefined, validationResult, userEmail: "test@testemail.com" });
     });
 
     it("should renders the bankrupt officer search page with errors when no filters are used", async () => {

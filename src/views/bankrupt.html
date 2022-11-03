@@ -23,21 +23,36 @@
     }) if validationResult and validationResult.errors.length > 0
 }}
 
-  <div class="govuk-form-group">
+  <div class="govuk-form-group {% if validationResult and validationResult.getErrorForField('forename1') %} govuk-form-group--error {% endif %}">
     <label class="govuk-label" for="forename1">First name</label>
+    {% if validationResult and validationResult.getErrorForField('forename1') %}
+    <p id="forename1-error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span> Enter valid characters
+    </p>
+    {% endif %}
     <input class="govuk-input govuk-!-width-one-half" id="forename1" type="text" name="forename1" aria-describedby="forename1-hint">
   </div>
-  <div class="govuk-form-group {% if whereTo === 'noInfo' %} govuk-form-group--error {% endif %}" >
+  <div class="govuk-form-group {% if whereTo === 'noInfo' or (validationResult and validationResult.getErrorForField('surname')) %} govuk-form-group--error {% endif %}" >
     {% if whereTo === 'noInfo' %}
     <label class="govuk-error-message" id=no-info-error >
       Enter a Date of Birth or a Last Name
     </label>
-  {% endif %}
+    {% endif %}
+    {% if validationResult and validationResult.getErrorForField('surname') %}
+    <p id="surname-error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span> Enter valid characters
+    </p>
+    {% endif %}
     <label class="govuk-label" for="surname">Last name</label>
     <input class="govuk-input govuk-!-width-one-half" id="surname" type="text" name="surname" aria-describedby="surname-hint">
   </div>
-  <div class="govuk-form-group">
+  <div class="govuk-form-group {% if validationResult and validationResult.getErrorForField('alias') %} govuk-form-group--error {% endif %}">
     <label class="govuk-label" for="alias">Alias</label>
+    {% if validationResult and validationResult.getErrorForField('alias') %}
+    <p id="alias-error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span> Enter valid characters
+    </p>
+    {% endif %}
     <input class="govuk-input govuk-!-width-one-half" id="alias" type="text" name="alias" aria-describedby="alias-hint">
   </div>
   <div class="govuk-form-group  {% if whereTo === 'noInfo' %} govuk-form-group--error     {% endif %}">
@@ -127,10 +142,15 @@
           </div>
     </fieldset>
   </div>
-  <div class="govuk-form-group">
+  <div class="govuk-form-group {% if validationResult and validationResult.getErrorForField('postcode') %} govuk-form-group--error {% endif %}">
     <label class="govuk-label" for="postcode">
       Postcode
     </label>
+    {% if validationResult and validationResult.getErrorForField('postcode') %}
+    <p id="postcode-error" class="govuk-error-message">
+      <span class="govuk-visually-hidden">Error:</span> Enter valid characters
+    </p>
+    {% endif %}
     <input class="govuk-input govuk-input--width-10" id="postcode" name="postcode" type="text"
       autocomplete="postal-code" aria-describedby="postcode-hint">
   </div>
