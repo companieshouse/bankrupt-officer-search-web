@@ -4,6 +4,9 @@ import { logger, formattingOfficersInfo, userSession, buildPaginationData } from
 import { fetchBankruptOfficers } from '../../service';
 import { BankruptOfficerSearchFilters, BankruptOfficerSearchQuery, BankruptOfficerSearchSessionExtraData } from '../../types';
 import { BANKRUPT_OFFICER_SEARCH_SESSION, RESULTS_PER_PAGE, SCOTTISH_BANKRUPT_OFFICER } from '../../config';
+import { ValidationResult } from './ValidationResult';
+import { ValidationError } from './ValidationError';
+
 
 export const getSearchPage = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
@@ -39,6 +42,12 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
     let sessionExtraData: undefined | BankruptOfficerSearchSessionExtraData = req.session?.getExtraData(BANKRUPT_OFFICER_SEARCH_SESSION);
     sessionExtraData = {...sessionExtraData, filters};
     req.session?.setExtraData(BANKRUPT_OFFICER_SEARCH_SESSION, sessionExtraData);
+
+    if (filters.fromDateOfBirth === '' && filters.toDateOfBirth === '' && filters.surname === '') {
+      const validationResult = new ValidationResult([new ValidationError('noInfo', 'Enter a Date Of Birth or Last Name')]);
+      const userEmail = userSession.getLoggedInUserEmail(req.session);
+      return res.render('bankrupt', { userEmail, validationResult, whereTo: "noInfo"});
+    }
 
     return await renderSearchResultsPage(req, res, filters);
   } catch (err) {
