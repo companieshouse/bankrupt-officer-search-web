@@ -262,10 +262,23 @@ export const mockFiltersNonExistantToDate: BankruptOfficerSearchFilters = {
   postcode: '' 
 };
 
+export const mockFiltersInvalidChars: BankruptOfficerSearchFilters = {
+  "to-dob-dd": '02',
+  "to-dob-mm": '01',
+  "to-dob-yyyy": '1950',
+  surname: 'filter_with_underscore', 
+};
+
 export const mockSearchQuery: BankruptOfficerSearchQuery = { 
   startIndex: 0, 
   itemsPerPage: 10, 
   filters: mockFilters
+};
+
+export const mockSearchQueryInvalidChars: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFiltersInvalidChars
 };
 
 export const mockSearchQueryDOBNoOfficer: BankruptOfficerSearchQuery = { 

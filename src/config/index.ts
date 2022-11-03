@@ -41,3 +41,5 @@ export const ADD_ELLIPSIS: string = "add_ellipsis";
 export const RESULTS_PER_PAGE: number = Number(getEnvironmentValueOrDefault("RESULTS_PER_PAGE", "20"));
 export const BANKRUPT_OFFICER_SEARCH_SESSION: string = "bankrupt-officer-search-session";
 export const SESSION_FILTER = "filters";
+
+export const INVALID_CHARACTER_ERROR_MESSAGE = "Enter valid characters";
