@@ -6,7 +6,7 @@ const now = moment();
 export function isValidDate(input: moment.MomentInput): boolean | undefined {
 
   if(input !== ''){
-    return  moment(input, 'YYYY-MM-DD', true).isValid();
+    return  moment(input, 'YYYY-M-D', true).isValid();
   }
 }
   
