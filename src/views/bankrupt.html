@@ -55,7 +55,7 @@
     {% endif %}
     <input class="govuk-input govuk-!-width-one-half" id="alias" type="text" name="alias" aria-describedby="alias-hint">
   </div>
-  <div class="govuk-form-group  {% if whereTo === 'noInfo' %} govuk-form-group--error     {% endif %}">
+  <div class="govuk-form-group  {% if whereTo === 'invalidFromDob' or whereTo === 'noInfo' %} govuk-form-group--error {% endif %}">
     <fieldset class="govuk-fieldset" role="group" aria-describedby="from-dob-hint">
       <legend class="govuk-fieldset__legend">
         From Date of Birth
@@ -68,6 +68,10 @@
           <label class="govuk-error-message">
             Enter a Date of Birth or a Last Name
           </label>>
+          {% elif whereTo === 'invalidFromDob' %}
+          <label class="govuk-error-message">
+            Enter a valid date
+          </label>
         {% endif %}
         <div class="govuk-date-input__item">
           <div class="govuk-form-group">
@@ -75,7 +79,7 @@
               Day
             </label>
             <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="from-dob-dd"
-              name="from-dob-dd" autocomplete="bday-day" type="text" pattern="[0-9]*" inputmode="numeric">
+              name="from-dob-dd" autocomplete="bday-day" type="text"  inputmode="numeric">
           </div>
         </div>
         <div class="govuk-date-input__item">
@@ -84,7 +88,7 @@
               Month
             </label>
             <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="from-dob-mm"
-              name="from-dob-mm" autocomplete="bday-month" type="text" pattern="[0-9]*" inputmode="numeric">
+              name="from-dob-mm" autocomplete="bday-month" type="text"  inputmode="numeric">
           </div>
         </div>
         <div class="govuk-date-input__item">
@@ -93,12 +97,12 @@
               Year
             </label>
             <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="from-dob-yyyy"
-              name="from-dob-yyyy" autocomplete="bday-year" type="text" pattern="[0-9]*" inputmode="numeric">
+              name="from-dob-yyyy" autocomplete="bday-year" type="text"  inputmode="numeric">
             </div>
           </div>
         </div>
   </fieldset>
-      </div><div class="govuk-form-group {% if whereTo === 'noInfo' %} govuk-form-group--error     {% endif %}">
+      </div><div class="govuk-form-group {% if toDobError === 'invalidToDob' or whereTo === 'noInfo'   %} govuk-form-group--error     {% endif %}">
         <fieldset class="govuk-fieldset" role="group" aria-describedby="to-dob-hint">
           <legend class="govuk-fieldset__legend">
            To Date of Birth:
@@ -106,10 +110,13 @@
           <div id="dob-hint" class="govuk-hint">
             For example, 31 03 1985
           </div>
-           {% if whereTo === 'noInfo' %}
+             {% if whereTo === 'noInfo' %}
             <label class="govuk-error-message">
               Enter a Date of Birth or a Last Name
-           </label>
+           {% elif toDobError === 'invalidToDob' %}
+           <label class="govuk-error-message">
+            Enter a valid date
+          </label>
            {% endif %}
           <div class="govuk-date-input" id="to-dob">
             <div class="govuk-date-input__item">
@@ -118,7 +125,7 @@
                   Day
                 </label>
                 <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="to-dob-dd"
-                  name="to-dob-dd" autocomplete="bday-day" type="text" pattern="[0-9]*" inputmode="numeric">
+                  name="to-dob-dd" autocomplete="bday-day" type="text" inputmode="numeric">
               </div>
             </div>
             <div class="govuk-date-input__item">
@@ -127,7 +134,7 @@
                   Month
                 </label>
                 <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="to-dob-mm"
-                  name="to-dob-mm" autocomplete="bday-month" type="text" pattern="[0-9]*" inputmode="numeric">
+                  name="to-dob-mm" autocomplete="bday-month" type="text"  inputmode="numeric">
               </div>
             </div>
             <div class="govuk-date-input__item">
@@ -136,7 +143,7 @@
                   Year
                 </label>
                 <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="to-dob-yyyy"
-                  name="to-dob-yyyy" autocomplete="bday-year" type="text" pattern="[0-9]*" inputmode="numeric">
+                  name="to-dob-yyyy" autocomplete="bday-year" type="text"  inputmode="numeric">
               </div>
             </div>
           </div>
