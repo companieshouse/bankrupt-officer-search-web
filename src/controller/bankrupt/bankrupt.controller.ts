@@ -7,7 +7,7 @@ import { BANKRUPT_OFFICER_SEARCH_SESSION, RESULTS_PER_PAGE, SCOTTISH_BANKRUPT_OF
 
 import { ValidationResult } from './ValidationResult';
 import { ValidationError } from './ValidationError';
-import { isValidDate, fromDobInvalid, toDobInvalid} from './validation';
+import { isValidDate, fromDobInvalid, toDobInvalid} from '../../utils/validation/validation';
 
 export const getSearchPage = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
@@ -46,23 +46,26 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
  
 
     if(isValidDate(fromDateOfBirth) === false && isValidDate(toDateOfBirth) === false){
-      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Please enter a valid date')]);
+      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Enter a valid date')]);
       const userEmail = userSession.getLoggedInUserEmail(req.session);
-      return res.render('bankrupt', { userEmail, validationResult, whereTo: "invalidFromDob", dobError: "invalidToDob"});
+      return res.render('bankrupt', { userEmail, validationResult, whereTo: "invalidFromDob", toDobError: "invalidToDob"});
     } else if(fromDobInvalid(fromDateOfBirth)){
-      console.log(("valid in from: "));
-      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Please enter a valid date')]);
+      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Enter a valid date')]);
       const userEmail = userSession.getLoggedInUserEmail(req.session);
       return res.render('bankrupt', { userEmail, validationResult, whereTo: "invalidFromDob"});
     } 
     if(toDobInvalid(toDateOfBirth,fromDateOfBirth)){
-      console.log(("valid in to: "));
-      const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Please enter a valid date')]);
+      const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Enter a valid date')]);
       const userEmail = userSession.getLoggedInUserEmail(req.session);
-      return res.render('bankrupt', { userEmail, validationResult, dobError: "invalidToDob"});
+      return res.render('bankrupt', { userEmail, validationResult, toDobError: "invalidToDob"});
     }
     
-    
+    if (filters.fromDateOfBirth === '' && filters.toDateOfBirth === '' && filters.surname === '') {
+      const validationResult = new ValidationResult([new ValidationError('noInfo', 'Enter a Date Of Birth or Last Name')]);
+      const userEmail = userSession.getLoggedInUserEmail(req.session);
+      return res.render('bankrupt', { userEmail, validationResult, whereTo: "noInfo"});
+    }
+
     return await renderSearchResultsPage(req, res, filters);
   } catch (err) {
     logger.error(`${err}`);

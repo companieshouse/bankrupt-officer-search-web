@@ -27,7 +27,12 @@
     <label class="govuk-label" for="forename1">First name</label>
     <input class="govuk-input govuk-!-width-one-half" id="forename1" type="text" name="forename1" aria-describedby="forename1-hint">
   </div>
-  <div class="govuk-form-group">
+  <div class="govuk-form-group {% if whereTo === 'noInfo' %} govuk-form-group--error {% endif %}" >
+    {% if whereTo === 'noInfo' %}
+    <label class="govuk-error-message" id=no-info-error >
+      Enter a Date of Birth or a Last Name
+    </label>
+  {% endif %}
     <label class="govuk-label" for="surname">Last name</label>
     <input class="govuk-input govuk-!-width-one-half" id="surname" type="text" name="surname" aria-describedby="surname-hint">
   </div>
@@ -35,7 +40,7 @@
     <label class="govuk-label" for="alias">Alias</label>
     <input class="govuk-input govuk-!-width-one-half" id="alias" type="text" name="alias" aria-describedby="alias-hint">
   </div>
-  <div class="govuk-form-group  {% if whereTo === 'invalidFromDob' %} govuk-form-group--error     {% endif %}">
+  <div class="govuk-form-group  {% if whereTo === 'invalidFromDob' or whereTo === 'noInfo' %} govuk-form-group--error {% endif %}">
     <fieldset class="govuk-fieldset" role="group" aria-describedby="from-dob-hint">
       <legend class="govuk-fieldset__legend">
         From Date of Birth
@@ -44,7 +49,11 @@
         For example, 31 03 1980
       </div>
       <div class="govuk-date-input" id="from-dob">
-          {% if whereTo === 'invalidFromDob' %}
+        {% if whereTo === 'noInfo' %}
+          <label class="govuk-error-message">
+            Enter a Date of Birth or a Last Name
+          </label>>
+          {% elif whereTo === 'invalidFromDob' %}
           <label class="govuk-error-message">
             Enter a valid date
           </label>
@@ -78,7 +87,7 @@
           </div>
         </div>
   </fieldset>
-      </div><div class="govuk-form-group {% if dobError === 'invalidToDob'  %} govuk-form-group--error     {% endif %}">
+      </div><div class="govuk-form-group {% if toDobError === 'invalidToDob' or whereTo === 'noInfo'   %} govuk-form-group--error     {% endif %}">
         <fieldset class="govuk-fieldset" role="group" aria-describedby="to-dob-hint">
           <legend class="govuk-fieldset__legend">
            To Date of Birth:
@@ -86,7 +95,10 @@
           <div id="dob-hint" class="govuk-hint">
             For example, 31 03 1985
           </div>
-           {% if dobError === 'invalidToDob' %}
+             {% if whereTo === 'noInfo' %}
+            <label class="govuk-error-message">
+              Enter a Date of Birth or a Last Name
+           {% elif toDobError === 'invalidToDob' %}
            <label class="govuk-error-message">
             Enter a valid date
           </label>

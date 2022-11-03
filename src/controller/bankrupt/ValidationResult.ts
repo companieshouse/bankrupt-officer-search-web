@@ -6,6 +6,4 @@ export class ValidationResult {
   public getErrorForField(field: string): ValidationError | undefined {
     return this.errors.find(error => error.field === field);
   }
-
-
 }

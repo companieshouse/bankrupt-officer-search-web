@@ -161,12 +161,23 @@ describe("BankruptController test suite", () => {
       expect(res.render).to.have.been.calledOnceWith('bankrupt', { searched: true, ...BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS, pagination: undefined, userEmail: "test@testemail.com" });
     });
 
+    it("should renders the bankrupt officer search page with errors when no filters are used", async () => {
+      req.body = '';
+      sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
+      sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
+      const validationResult = new ValidationResult([new ValidationError('noInfo', 'Enter a Date Of Birth or Last Name')]);
+      await postSearchPage(req, res, nextFunctionSpy);
+
+      expect(nextFunctionSpy).not.called;
+      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { whereTo: "noInfo", validationResult, userEmail: "test@testemail.com" });
+    });
+
 
     it("should render the bankrupt officer search page with errors when invalid date fromDob DD filters are used", async () => {
       req.body = mockSearchQueryInvalidDDFromDob.filters;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
-      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Please enter a valid date')]);
+      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Enter a valid date')]);
       await postSearchPage(req, res, nextFunctionSpy);
 
       expect(nextFunctionSpy).not.called;
@@ -177,7 +188,7 @@ describe("BankruptController test suite", () => {
       req.body = mockSearchQueryInvalidMMFromDob.filters;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
-      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Please enter a valid date')]);
+      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Enter a valid date')]);
       await postSearchPage(req, res, nextFunctionSpy);
 
       expect(nextFunctionSpy).not.called;
@@ -188,102 +199,100 @@ describe("BankruptController test suite", () => {
       req.body = mockSearchQueryInvalidYYYYFromDob.filters;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
-      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Please enter a valid date')]);
+      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Enter a valid date')]);
       await postSearchPage(req, res, nextFunctionSpy);
 
       expect(nextFunctionSpy).not.called;
       expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { whereTo: "invalidFromDob", validationResult, userEmail: "test@testemail.com"});
     });
 
-
-
     it("should render the bankrupt officer search page with errors when invalid toDob DD filters are used", async () => {
       req.body = mockSearchQueryInvalidDDToDob.filters;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
-      const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Please enter a valid date')]);
+      const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Enter a valid date')]);
+
       await postSearchPage(req, res, nextFunctionSpy);
 
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { dobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
+      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { toDobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
     });
 
     it("should render the bankrupt officer search page with errors when invalid toDob MM filters are used", async () => {
       req.body = mockSearchQueryInvalidMMToDob.filters;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
-      const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Please enter a valid date')]);
+      const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Enter a valid date')]);
       await postSearchPage(req, res, nextFunctionSpy);
 
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { dobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
+      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { toDobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
     });
 
     it("should render the bankrupt officer search page with errors when invalid toDob YYYY filters are used", async () => {
       req.body = mockSearchQueryInvalidYYYYToDob.filters;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
-      const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Please enter a valid date')]);
+      const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Enter a valid date')]);
       await postSearchPage(req, res, nextFunctionSpy);
 
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { dobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
+      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { toDobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
     });
     
 
-
-    it("should render the bankrupt officer search page with errors when invalid to and from filters are used", async () => {
+    it("should render the bankrupt officer search page with errors when invalid toDob and fromDob filters are used", async () => {
       req.body = mockSearchQueryInvalidToAndFromDob.filters;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
-      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Please enter a valid date')]);
+      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Enter a valid date')]);
       await postSearchPage(req, res, nextFunctionSpy);
 
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { whereTo: "invalidFromDob" , dobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
+      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { whereTo: "invalidFromDob" , toDobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
     });
 
     it("should render the bankrupt officer search page with errors when toDob is before fromDob", async () => {
       req.body = mockSearchQueryToDobBeforeFrom.filters;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
-      const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Please enter a valid date')]);
+      const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Enter a valid date')]);
       await postSearchPage(req, res, nextFunctionSpy);
 
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { dobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
+      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { toDobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
     });
 
 
-    it("should render the bankrupt officer search page with errors when from dob date is from the future", async () => {
+    it("should render the bankrupt officer search page with errors when fromDob date is from the future", async () => {
       req.body = mockSearchQueryFutureFromDate.filters;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
-      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Please enter a valid date')]);
+      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Enter a valid date')]);
       await postSearchPage(req, res, nextFunctionSpy);
 
       expect(nextFunctionSpy).not.called;
       expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { whereTo: "invalidFromDob", validationResult, userEmail: "test@testemail.com"});
     });
 
-    it("should render the bankrupt officer search page with errors when to dob date is from the future", async () => {
+    it("should render the bankrupt officer search page with errors when toDob date is from the future", async () => {
       req.body = mockSearchQueryFutureToDate.filters;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
-      const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Please enter a valid date')]);
+      const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Enter a valid date')]);
       await postSearchPage(req, res, nextFunctionSpy);
 
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { dobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
+      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { toDobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
     });
 
   });
 
-  it("should render the bankrupt officer search page with errors when non exisitant from date", async () => {
+  it("should render the bankrupt officer search page with errors when non exisitant from date used", async () => {
     req.body = mockSearchQueryNonExistantFromDob.filters;
     sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
     sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
-    const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Please enter a valid date')]);
+    const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Enter a valid date')]);
     await postSearchPage(req, res, nextFunctionSpy);
 
     expect(nextFunctionSpy).not.called;
@@ -291,15 +300,15 @@ describe("BankruptController test suite", () => {
   });
 
 
-  it("should render the bankrupt officer search page with errors when non exisitant to date", async () => {
+  it("should render the bankrupt officer search page with errors when non exisitant to date used", async () => {
     req.body = mockSearchQueryNonExistantToDob.filters;
     sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
     sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
-    const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Please enter a valid date')]);
+    const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Enter a valid date')]);
     await postSearchPage(req, res, nextFunctionSpy);
 
     expect(nextFunctionSpy).not.called;
-    expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { dobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
+    expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { toDobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
   });
 
 

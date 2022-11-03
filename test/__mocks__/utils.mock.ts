@@ -262,6 +262,36 @@ export const mockFiltersNonExistantToDate: BankruptOfficerSearchFilters = {
   postcode: '' 
 };
 
+export const mockSearchQuery: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFilters
+};
+
+export const mockSearchQueryDOBNoOfficer: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFiltersNoOfficerDOBRanges
+};
+
+export const mockSearchQueryDOBRanges: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFiltersDOBRanges
+};
+
+export const mockSearchQueryFromDOB: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFiltersFromDOBRanges
+};
+
+export const mockSearchQueryToDOB: BankruptOfficerSearchQuery = { 
+  startIndex: 0, 
+  itemsPerPage: 10, 
+  filters: mockFiltersToDOBRanges
+};
+
 export const mockSearchQueryInvalidDDFromDob: BankruptOfficerSearchQuery = { 
   startIndex: 0, 
   itemsPerPage: 10, 
@@ -279,14 +309,11 @@ export const mockSearchQueryInvalidYYYYFromDob: BankruptOfficerSearchQuery = {
   filters: mockFiltersInvalidCharYYYYFromDOB
 };
 
-
-
 export const mockSearchQueryInvalidDDToDob: BankruptOfficerSearchQuery = { 
   startIndex: 0, 
   itemsPerPage: 10, 
   filters: mockFiltersInvalidCharDDToDOB
 };
-
 
 export const mockSearchQueryInvalidMMToDob: BankruptOfficerSearchQuery = { 
   startIndex: 0, 
@@ -299,7 +326,6 @@ export const mockSearchQueryInvalidYYYYToDob: BankruptOfficerSearchQuery = {
   itemsPerPage: 10, 
   filters: mockFiltersInvalidCharYYYYToDOB
 };
-
 
 export const mockSearchQueryInvalidToAndFromDob: BankruptOfficerSearchQuery = { 
   startIndex: 0, 
@@ -335,36 +361,6 @@ export const mockSearchQueryNonExistantToDob: BankruptOfficerSearchQuery = {
   startIndex: 0, 
   itemsPerPage: 10, 
   filters: mockFiltersNonExistantToDate
-};
-
-export const mockSearchQuery: BankruptOfficerSearchQuery = { 
-  startIndex: 0, 
-  itemsPerPage: 10, 
-  filters: mockFilters
-};
-
-export const mockSearchQueryDOBNoOfficer: BankruptOfficerSearchQuery = { 
-  startIndex: 0, 
-  itemsPerPage: 10, 
-  filters: mockFiltersNoOfficerDOBRanges
-};
-
-export const mockSearchQueryDOBRanges: BankruptOfficerSearchQuery = { 
-  startIndex: 0, 
-  itemsPerPage: 10, 
-  filters: mockFiltersDOBRanges
-};
-
-export const mockSearchQueryFromDOB: BankruptOfficerSearchQuery = { 
-  startIndex: 0, 
-  itemsPerPage: 10, 
-  filters: mockFiltersFromDOBRanges
-};
-
-export const mockSearchQueryToDOB: BankruptOfficerSearchQuery = { 
-  startIndex: 0, 
-  itemsPerPage: 10, 
-  filters: mockFiltersToDOBRanges
 };
 
 export const mockFullBankruptOfficer: FullBankruptOfficer = {
