@@ -7,9 +7,6 @@ import { BANKRUPT_OFFICER_SEARCH_SESSION, RESULTS_PER_PAGE, SCOTTISH_BANKRUPT_OF
 import { ValidationResult } from './ValidationResult';
 import { ValidationError } from './ValidationError';
 
-
-import { ValidationResult } from './ValidationResult';
-import { ValidationError } from './ValidationError';
 import { isValidDate, fromDobInvalid, toDobInvalid} from '../../utils/validation/validation';
 
 export const getSearchPage = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
@@ -63,12 +60,6 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
       return res.render('bankrupt', { userEmail, validationResult, toDobError: "invalidToDob"});
     }
     
-    if (filters.fromDateOfBirth === '' && filters.toDateOfBirth === '' && filters.surname === '') {
-      const validationResult = new ValidationResult([new ValidationError('noInfo', 'Enter a Date Of Birth or Last Name')]);
-      const userEmail = userSession.getLoggedInUserEmail(req.session);
-      return res.render('bankrupt', { userEmail, validationResult, whereTo: "noInfo"});
-    }
-
     if (filters.fromDateOfBirth === '' && filters.toDateOfBirth === '' && filters.surname === '') {
       const validationResult = new ValidationResult([new ValidationError('noInfo', 'Enter a Date Of Birth or Last Name')]);
       const userEmail = userSession.getLoggedInUserEmail(req.session);

@@ -210,6 +210,7 @@ describe("BankruptController test suite", () => {
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
       const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Enter a valid date')]);
+      await postSearchPage(req, res, nextFunctionSpy);
       
       expect(nextFunctionSpy).not.called;
       expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { toDobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
