@@ -69,7 +69,7 @@
             Enter a Date of Birth or a Last Name
           </label>>
           {% elif whereTo === 'invalidFromDob' %}
-          <label class="govuk-error-message">
+          <label class="govuk-error-message" id="invalid-from-dob-error">
             Enter a valid date
           </label>
         {% endif %}
@@ -110,15 +110,16 @@
           <div id="dob-hint" class="govuk-hint">
             For example, 31 03 1985
           </div>
+          <div class="govuk-date-input" id="to-dob">
              {% if whereTo === 'noInfo' %}
             <label class="govuk-error-message">
               Enter a Date of Birth or a Last Name
+            </label>>
            {% elif toDobError === 'invalidToDob' %}
-           <label class="govuk-error-message">
+           <label class="govuk-error-message" id="invalid-to-dob-error">
             Enter a valid date
           </label>
            {% endif %}
-          <div class="govuk-date-input" id="to-dob">
             <div class="govuk-date-input__item">
               <div class="govuk-form-group">
                 <label class="govuk-label govuk-date-input__label" for="to-dob-day">

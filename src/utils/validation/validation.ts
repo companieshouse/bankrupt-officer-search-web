@@ -4,9 +4,9 @@ import moment from 'moment';
 const now = moment();
 
 export function isValidDate(input: moment.MomentInput): boolean | undefined {
-
+  const minDate = moment.utc("0001-01-01");
   if(input !== ''){
-    return  moment(input, 'YYYY-MM-DD', true).isValid();
+    return moment(input, 'YYYY-M-D', true).isValid() && (moment(input, 'YYYY-M-D').isAfter(minDate));
   }
 }
   
