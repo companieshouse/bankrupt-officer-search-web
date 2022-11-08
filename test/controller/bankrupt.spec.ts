@@ -171,7 +171,7 @@ describe("BankruptController test suite", () => {
       await postSearchPage(req, res, nextFunctionSpy);
 
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { whereTo: undefined, validationResult, userEmail: "test@testemail.com" });
+      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { validationResult, userEmail: "test@testemail.com" });
     });
 
     it("should renders the bankrupt officer search page with errors when no filters are used", async () => {
@@ -256,7 +256,10 @@ describe("BankruptController test suite", () => {
       req.body = mockSearchQueryInvalidToAndFromDob.filters;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
-      const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Enter a valid date')]);
+      const validationResult = new ValidationResult([
+        new ValidationError('invalidFromDob', 'Enter a valid date'),
+        new ValidationError('invalidToDob', 'Enter a valid date'),
+      ]);
       await postSearchPage(req, res, nextFunctionSpy);
 
       expect(nextFunctionSpy).not.called;

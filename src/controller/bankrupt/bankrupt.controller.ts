@@ -49,25 +49,38 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
 
     validationErrors = validationErrors.concat(validateTextFields(filters));
 
+    const userEmail = userSession.getLoggedInUserEmail(req.session);
+
+    let toDobError: undefined | string = undefined;
+    let whereTo: undefined | string = undefined;
+
     if(isValidDate(fromDateOfBirth) === false && isValidDate(toDateOfBirth) === false){
       validationErrors.push(new ValidationError('invalidFromDob', 'Enter a valid date'));
+      validationErrors.push(new ValidationError('invalidToDob', 'Enter a valid date'));
       const validationResult = new ValidationResult(validationErrors);
-      const userEmail = userSession.getLoggedInUserEmail(req.session);
+
       return res.render('bankrupt', { userEmail, validationResult, whereTo: "invalidFromDob", toDobError: "invalidToDob"});
     } else if(fromDobInvalid(fromDateOfBirth)){
       validationErrors.push(new ValidationError('invalidFromDob', 'Enter a valid date'));
-      const validationResult = new ValidationResult(validationErrors);
-      const userEmail = userSession.getLoggedInUserEmail(req.session);
-      return res.render('bankrupt', { userEmail, validationResult, whereTo: "invalidFromDob"});
-    } 
+      whereTo = "invalidFromDob";
+    }
+
     if(toDobInvalid(toDateOfBirth,fromDateOfBirth)){
       validationErrors.push(new ValidationError('invalidToDob', 'Enter a valid date'));
+      toDobError = "invalidToDob";
+    }
+
+    if (validationErrors.length > 0) {
       const validationResult = new ValidationResult(validationErrors);
-      const userEmail = userSession.getLoggedInUserEmail(req.session);
-      return res.render('bankrupt', { userEmail, validationResult, toDobError: "invalidToDob"});
+      const templateVariables = {
+        userEmail,
+        validationResult,
+        ...(whereTo && { whereTo }),
+        ...(toDobError && { toDobError })
+      }
+      return res.render('bankrupt', templateVariables);
     }
     
-    let whereTo: undefined | string = undefined;
     if (filters.fromDateOfBirth === '' && filters.toDateOfBirth === '' && filters.surname === '') {
       validationErrors.push(new ValidationError('noInfo', 'Enter a Date Of Birth or Last Name'));
       whereTo = "noInfo";
@@ -75,7 +88,6 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
 
     if (validationErrors.length > 0) {
       const validationResult = new ValidationResult(validationErrors);
-      const userEmail = userSession.getLoggedInUserEmail(req.session);
       return res.render('bankrupt', { userEmail, validationResult, whereTo});
     }
 
