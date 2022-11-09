@@ -69,6 +69,11 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
       validationErrors.push(new ValidationError('invalidToDob', 'Enter a valid date'));
       toDobError = "invalidToDob";
     }
+    
+    if (filters.fromDateOfBirth === '' && filters.toDateOfBirth === '' && filters.surname === '') {
+      validationErrors.push(new ValidationError('noInfo', 'Enter a Date Of Birth or Last Name'));
+      whereTo = "noInfo";
+    }
 
     if (validationErrors.length > 0) {
       const validationResult = new ValidationResult(validationErrors);
@@ -79,16 +84,6 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
         ...(toDobError && { toDobError })
       }
       return res.render('bankrupt', templateVariables);
-    }
-    
-    if (filters.fromDateOfBirth === '' && filters.toDateOfBirth === '' && filters.surname === '') {
-      validationErrors.push(new ValidationError('noInfo', 'Enter a Date Of Birth or Last Name'));
-      whereTo = "noInfo";
-    }
-
-    if (validationErrors.length > 0) {
-      const validationResult = new ValidationResult(validationErrors);
-      return res.render('bankrupt', { userEmail, validationResult, whereTo});
     }
 
     return await renderSearchResultsPage(req, res, filters);
