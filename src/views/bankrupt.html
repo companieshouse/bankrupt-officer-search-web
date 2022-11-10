@@ -180,6 +180,7 @@
           <th scope="col" class="govuk-table__header">Last name</th>
           <th scope="col" class="govuk-table__header">Date of birth</th>
           <th scope="col" class="govuk-table__header">Postcode</th>
+          <th scope="col" class="govuk-table__header">Case Type</th>
           <th scope="col" class="govuk-table__header govuk--width-one-quarter">Debtor Discharge Date</th>
         </tr>
       </thead>
@@ -190,6 +191,7 @@
           <td class="govuk-table__cell">{{ item.surname }}</td>
           <td class="govuk-table__cell">{{ item.dateOfBirth }}</td>
           <td class="govuk-table__cell">{{ item.postcode }}</td>
+          <td class="govuk-table__cell">{{ item.caseType }}</td>
           <td class="govuk-table__cell">{{ item.debtorDischargeDate }}</td>
         {% endfor %}
       </tr>

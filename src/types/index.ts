@@ -16,10 +16,10 @@ export interface BankruptOfficer extends Address {
   surname?: string
   dateOfBirth?: string
   debtorDischargeDate?: string
+  caseType?: string
 }
 export interface FullBankruptOfficer extends BankruptOfficer {
   caseReference?: string
-  caseType?: string
   bankruptcyType?: string
   startDate?: string
   trusteeDischargeDate?: string
