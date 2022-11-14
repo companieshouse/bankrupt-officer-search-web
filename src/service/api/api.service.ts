@@ -1,5 +1,5 @@
 import { Session } from '@companieshouse/node-session-handler';
-import { Resource } from "api-sdk-node";
+import { Resource } from '@companieshouse/api-sdk-node';
 import { createPrivateApiClient } from "private-api-sdk-node";
 import PrivateApiClient from 'private-api-sdk-node/dist/client';
 
