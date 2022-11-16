@@ -37,6 +37,7 @@ import { logger } from '../../src/utils';
 import { ValidationResult } from '../../src/controller/bankrupt/ValidationResult';
 import { ValidationError } from '../../src/controller/bankrupt/ValidationError';
 import { INVALID_CHARACTER_ERROR_MESSAGE } from '../../src/config';
+import { generateFiltersFromBody } from '../../src/controller/bankrupt/bankrupt.controller';
 
 chai.use(sinonChai);
 
@@ -78,7 +79,7 @@ describe("BankruptController test suite", () => {
       await getSearchPage(req, res, nextFunctionSpy);
 
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { userEmail: "test@testemail.com" });
+      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', {filters: undefined, userEmail: "test@testemail.com" });
     });
 
     it('should catch any error and call next function', async () => {
@@ -102,8 +103,9 @@ describe("BankruptController test suite", () => {
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
       await postSearchPage(req, res, nextFunctionSpy);
 
+      const filters = generateFiltersFromBody(req);
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { searched: true, ...BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS, ...PAGINATION_RESULTS, userEmail: "test@testemail.com"  });
+      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { filters, searched: true, ...BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS, ...PAGINATION_RESULTS, userEmail: "test@testemail.com" });
     });
   
     it("should render the bankrupt officer search page with list of officers when DOB filters are used", async () => {
@@ -113,8 +115,9 @@ describe("BankruptController test suite", () => {
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
       await postSearchPage(req, res, nextFunctionSpy);
 
+      const filters = generateFiltersFromBody(req);
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { searched: true, ...BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS, ...PAGINATION_RESULTS, userEmail: "test@testemail.com" });
+      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { filters, searched: true, ...BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS, ...PAGINATION_RESULTS, userEmail: "test@testemail.com" });
     });
 
 
@@ -125,8 +128,9 @@ describe("BankruptController test suite", () => {
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
       await postSearchPage(req, res, nextFunctionSpy);
 
+      const filters = generateFiltersFromBody(req);
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { searched: true, ...BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS, ...PAGINATION_RESULTS, userEmail: "test@testemail.com" });
+      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { filters, searched: true, ...BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS, ...PAGINATION_RESULTS, userEmail: "test@testemail.com" });
     });
 
     it("should render the bankrupt officer search page from only TO_DOB filters with the list of officers", async () => {
@@ -136,8 +140,9 @@ describe("BankruptController test suite", () => {
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
       await postSearchPage(req, res, nextFunctionSpy);
 
+      const filters = generateFiltersFromBody(req);
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { searched: true, ...BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS, ...PAGINATION_RESULTS, userEmail: "test@testemail.com" });
+      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { filters, searched: true, ...BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS, ...PAGINATION_RESULTS, userEmail: "test@testemail.com" });
     });
 
     it("should renders the bankrupt officer search page with no officers", async () => {
@@ -147,8 +152,9 @@ describe("BankruptController test suite", () => {
 
       await postSearchPage(req, res, nextFunctionSpy);
 
+      const filters = generateFiltersFromBody(req);
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { searched: true, ...BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS, pagination: undefined, userEmail: "test@testemail.com" });
+      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { filters, searched: true, ...BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS, pagination: undefined, userEmail: "test@testemail.com" });
     });
 
 
@@ -159,8 +165,9 @@ describe("BankruptController test suite", () => {
 
       await postSearchPage(req, res, nextFunctionSpy);
 
+      const filters = generateFiltersFromBody(req);
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWith('bankrupt', { searched: true, ...BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS, pagination: undefined, userEmail: "test@testemail.com" });
+      expect(res.render).to.have.been.calledOnceWith('bankrupt', { filters, searched: true, ...BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS, pagination: undefined, userEmail: "test@testemail.com" });
     });
 
     it("should render the bankrupt officer search page with errors if the text fields contain invalid characters", async () => {
@@ -170,8 +177,9 @@ describe("BankruptController test suite", () => {
 
       await postSearchPage(req, res, nextFunctionSpy);
 
+      const filters = generateFiltersFromBody(req);
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { validationResult, userEmail: "test@testemail.com" });
+      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { filters, validationResult, userEmail: "test@testemail.com" });
     });
 
     it("should renders the bankrupt officer search page with errors when no filters are used", async () => {
@@ -180,8 +188,10 @@ describe("BankruptController test suite", () => {
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
       const validationResult = new ValidationResult([new ValidationError('noInfo', 'Enter a Date Of Birth or Last Name')]);
       await postSearchPage(req, res, nextFunctionSpy);
+      
+      const filters = generateFiltersFromBody(req);
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { whereTo: "noInfo", validationResult, userEmail: "test@testemail.com" });
+      expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { filters, whereTo: "noInfo", validationResult, userEmail: "test@testemail.com" });
     });
 
 
@@ -192,8 +202,9 @@ describe("BankruptController test suite", () => {
       const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Enter a valid date')]);
       await postSearchPage(req, res, nextFunctionSpy);
 
+      const filters = generateFiltersFromBody(req);
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { whereTo: "invalidFromDob", validationResult, userEmail: "test@testemail.com"});
+      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { filters, whereTo: "invalidFromDob", validationResult, userEmail: "test@testemail.com"});
     });
 
     it("should render the bankrupt officer search page with errors when invalid date fromDob MM filters are used", async () => {
@@ -203,8 +214,9 @@ describe("BankruptController test suite", () => {
       const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Enter a valid date')]);
       await postSearchPage(req, res, nextFunctionSpy);
 
+      const filters = generateFiltersFromBody(req);
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { whereTo: "invalidFromDob", validationResult, userEmail: "test@testemail.com"});
+      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { filters, whereTo: "invalidFromDob", validationResult, userEmail: "test@testemail.com"});
     });
 
     it("should render the bankrupt officer search page with errors when invalid date fromDob YYYY filters are used", async () => {
@@ -214,8 +226,9 @@ describe("BankruptController test suite", () => {
       const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Enter a valid date')]);
       await postSearchPage(req, res, nextFunctionSpy);
 
+      const filters = generateFiltersFromBody(req);
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { whereTo: "invalidFromDob", validationResult, userEmail: "test@testemail.com"});
+      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { filters, whereTo: "invalidFromDob", validationResult, userEmail: "test@testemail.com"});
     });
 
     it("should render the bankrupt officer search page with errors when invalid toDob DD filters are used", async () => {
@@ -225,8 +238,9 @@ describe("BankruptController test suite", () => {
       const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Enter a valid date')]);
       await postSearchPage(req, res, nextFunctionSpy);
       
+      const filters = generateFiltersFromBody(req);
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { toDobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
+      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { filters, toDobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
     });
 
     it("should render the bankrupt officer search page with errors when invalid toDob MM filters are used", async () => {
@@ -236,8 +250,9 @@ describe("BankruptController test suite", () => {
       const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Enter a valid date')]);
       await postSearchPage(req, res, nextFunctionSpy);
 
+      const filters = generateFiltersFromBody(req);
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { toDobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
+      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { filters, toDobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
     });
 
     it("should render the bankrupt officer search page with errors when invalid toDob YYYY filters are used", async () => {
@@ -247,8 +262,9 @@ describe("BankruptController test suite", () => {
       const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Enter a valid date')]);
       await postSearchPage(req, res, nextFunctionSpy);
 
+      const filters = generateFiltersFromBody(req);
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { toDobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
+      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { filters, toDobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
     });
     
 
@@ -262,8 +278,9 @@ describe("BankruptController test suite", () => {
       ]);
       await postSearchPage(req, res, nextFunctionSpy);
 
+      const filters = generateFiltersFromBody(req);
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { whereTo: "invalidFromDob" , toDobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
+      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { filters, whereTo: "invalidFromDob" , toDobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
     });
 
     it("should render the bankrupt officer search page with errors when toDob is before fromDob", async () => {
@@ -273,8 +290,9 @@ describe("BankruptController test suite", () => {
       const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Enter a valid date')]);
       await postSearchPage(req, res, nextFunctionSpy);
 
+      const filters = generateFiltersFromBody(req);
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { toDobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
+      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { filters, toDobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
     });
 
 
@@ -285,8 +303,9 @@ describe("BankruptController test suite", () => {
       const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Enter a valid date')]);
       await postSearchPage(req, res, nextFunctionSpy);
 
+      const filters = generateFiltersFromBody(req);
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { whereTo: "invalidFromDob", validationResult, userEmail: "test@testemail.com"});
+      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { filters, whereTo: "invalidFromDob", validationResult, userEmail: "test@testemail.com"});
     });
 
     it("should render the bankrupt officer search page with errors when toDob date is from the future", async () => {
@@ -296,33 +315,46 @@ describe("BankruptController test suite", () => {
       const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Enter a valid date')]);
       await postSearchPage(req, res, nextFunctionSpy);
 
+      const filters = generateFiltersFromBody(req);
       expect(nextFunctionSpy).not.called;
-      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { toDobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
+      expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { filters, toDobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
     });
 
   });
 
-  it("should render the bankrupt officer search page with errors when non exisitant from date used", async () => {
+  it("should render the bankrupt officer search page with errors when non existant from date used", async () => {
     req.body = mockSearchQueryNonExistantFromDob.filters;
     sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
     sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
     const validationResult = new ValidationResult([new ValidationError('invalidFromDob', 'Enter a valid date')]);
     await postSearchPage(req, res, nextFunctionSpy);
 
+    const filters = generateFiltersFromBody(req);
     expect(nextFunctionSpy).not.called;
-    expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { whereTo: "invalidFromDob", validationResult, userEmail: "test@testemail.com"});
+    expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", {
+      whereTo: "invalidFromDob",
+      validationResult,
+      userEmail: "test@testemail.com",
+      filters
+    });
   });
 
 
-  it("should render the bankrupt officer search page with errors when non exisitant to date used", async () => {
+  it("should render the bankrupt officer search page with errors when non existant to date used", async () => {
     req.body = mockSearchQueryNonExistantToDob.filters;
     sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
     sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
     const validationResult = new ValidationResult([new ValidationError('invalidToDob', 'Enter a valid date')]);
     await postSearchPage(req, res, nextFunctionSpy);
 
+    const filters = generateFiltersFromBody(req);
     expect(nextFunctionSpy).not.called;
-    expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", { toDobError: "invalidToDob", validationResult, userEmail: "test@testemail.com"});
+    expect(res.render).to.have.been.calledOnceWithExactly("bankrupt", {
+      toDobError: "invalidToDob",
+      validationResult,
+      userEmail: "test@testemail.com",
+      filters
+    });
   });
 
 

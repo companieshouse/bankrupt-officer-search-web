@@ -30,7 +30,7 @@
       <span class="govuk-visually-hidden">Error:</span> Enter valid characters
     </p>
     {% endif %}
-    <input class="govuk-input govuk-!-width-one-half" id="forename1" type="text" name="forename1" aria-describedby="forename1-hint">
+    <input class="govuk-input govuk-!-width-one-half" id="forename1" type="text" name="forename1" value="{{filters.forename1}}" aria-describedby="forename1-hint">
   </div>
   <div class="govuk-form-group {% if whereTo === 'noInfo' or (validationResult and validationResult.getErrorForField('surname')) %} govuk-form-group--error {% endif %}" >
     {% if whereTo === 'noInfo' %}
@@ -44,7 +44,7 @@
     </p>
     {% endif %}
     <label class="govuk-label" for="surname">Last name</label>
-    <input class="govuk-input govuk-!-width-one-half" id="surname" type="text" name="surname" aria-describedby="surname-hint">
+    <input class="govuk-input govuk-!-width-one-half" id="surname" type="text" name="surname" value="{{filters.surname}}" aria-describedby="surname-hint">
   </div>
   <div class="govuk-form-group {% if validationResult and validationResult.getErrorForField('alias') %} govuk-form-group--error {% endif %}">
     <label class="govuk-label" for="alias">Alias</label>
@@ -53,7 +53,7 @@
       <span class="govuk-visually-hidden">Error:</span> Enter valid characters
     </p>
     {% endif %}
-    <input class="govuk-input govuk-!-width-one-half" id="alias" type="text" name="alias" aria-describedby="alias-hint">
+    <input class="govuk-input govuk-!-width-one-half" id="alias" type="text" name="alias" value="{{filters.alias}}" aria-describedby="alias-hint">
   </div>
   <div class="govuk-form-group  {% if whereTo === 'invalidFromDob' or whereTo === 'noInfo' %} govuk-form-group--error {% endif %}">
     <fieldset class="govuk-fieldset" role="group" aria-describedby="from-dob-hint">
@@ -79,7 +79,7 @@
               Day
             </label>
             <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="from-dob-dd"
-              name="from-dob-dd" autocomplete="bday-day" type="text"  inputmode="numeric">
+              name="from-dob-dd" value="{{filters.fromDateOfBirth and filters.fromDateOfBirth.split('-')[2]}}" autocomplete="bday-day" type="text"  inputmode="numeric">
           </div>
         </div>
         <div class="govuk-date-input__item">
@@ -88,7 +88,7 @@
               Month
             </label>
             <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="from-dob-mm"
-              name="from-dob-mm" autocomplete="bday-month" type="text"  inputmode="numeric">
+              name="from-dob-mm" value="{{filters.fromDateOfBirth and filters.fromDateOfBirth.split('-')[1]}}" autocomplete="bday-month" type="text"  inputmode="numeric">
           </div>
         </div>
         <div class="govuk-date-input__item">
@@ -97,7 +97,7 @@
               Year
             </label>
             <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="from-dob-yyyy"
-              name="from-dob-yyyy" autocomplete="bday-year" type="text"  inputmode="numeric">
+              name="from-dob-yyyy" value="{{filters.fromDateOfBirth and filters.fromDateOfBirth.split('-')[0]}}" autocomplete="bday-year" type="text"  inputmode="numeric">
             </div>
           </div>
         </div>
@@ -126,7 +126,7 @@
                   Day
                 </label>
                 <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="to-dob-dd"
-                  name="to-dob-dd" autocomplete="bday-day" type="text" inputmode="numeric">
+                  name="to-dob-dd" value="{{filters.toDateOfBirth and filters.toDateOfBirth.split('-')[2]}}" autocomplete="bday-day" type="text" inputmode="numeric">
               </div>
             </div>
             <div class="govuk-date-input__item">
@@ -135,7 +135,7 @@
                   Month
                 </label>
                 <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="to-dob-mm"
-                  name="to-dob-mm" autocomplete="bday-month" type="text"  inputmode="numeric">
+                  name="to-dob-mm" value="{{filters.toDateOfBirth and filters.toDateOfBirth.split('-')[1]}}" autocomplete="bday-month" type="text"  inputmode="numeric">
               </div>
             </div>
             <div class="govuk-date-input__item">
@@ -144,7 +144,7 @@
                   Year
                 </label>
                 <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="to-dob-yyyy"
-                  name="to-dob-yyyy" autocomplete="bday-year" type="text"  inputmode="numeric">
+                  name="to-dob-yyyy" value="{{filters.toDateOfBirth and filters.toDateOfBirth.split('-')[0]}}" autocomplete="bday-year" type="text"  inputmode="numeric">
               </div>
             </div>
           </div>
@@ -159,7 +159,7 @@
       <span class="govuk-visually-hidden">Error:</span> Enter valid characters
     </p>
     {% endif %}
-    <input class="govuk-input govuk-input--width-10" id="postcode" name="postcode" type="text"
+    <input class="govuk-input govuk-input--width-10" id="postcode" name="postcode" value="{{filters.postcode}}" type="text"
       autocomplete="postal-code" aria-describedby="postcode-hint">
   </div>
   <button class="govuk-button" data-module="govuk-button">

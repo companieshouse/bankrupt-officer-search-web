@@ -10,7 +10,7 @@ export function isValidDate(input: moment.MomentInput): boolean | undefined {
   }
 }
   
-export function fromDobInvalid(fromDateOfBirth: string): boolean | undefined{
+export function fromDobInvalid(fromDateOfBirth: string = ''): boolean | undefined{
  
   if(fromDateOfBirth !== ''){
     if(fromDateOfBirth > now.format('YYYY-MM-DD' ) || isValidDate(fromDateOfBirth) === false ){
@@ -19,7 +19,7 @@ export function fromDobInvalid(fromDateOfBirth: string): boolean | undefined{
     return false;
   }
 }
-export function toDobInvalid(toDateOfBirth: string,fromDateOfBirth: string) : boolean | undefined{
+export function toDobInvalid(toDateOfBirth: string = '',fromDateOfBirth: string = '') : boolean | undefined{
   if(toDateOfBirth !== ''){
     if(toDateOfBirth > now.format('YYYY-MM-DD' ) || fromDateOfBirth > toDateOfBirth || isValidDate(toDateOfBirth) === false){
       return true;
