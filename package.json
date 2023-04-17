@@ -19,7 +19,7 @@
   "repository": "git@github.com:companieshouse/bankrupt-officer-search-web.git",
   "license": "MIT",
   "dependencies": {
-    "@companieshouse/node-session-handler": "^4.1.6",
+    "@companieshouse/node-session-handler": "^4.1.7",
     "@companieshouse/structured-logging-node": "^1.0.4",
     "axios": "^0.24.0",
     "cookie-parser": "^1.4.5",
