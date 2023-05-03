@@ -19,7 +19,7 @@
   "repository": "git@github.com:companieshouse/bankrupt-officer-search-web.git",
   "license": "MIT",
   "dependencies": {
-    "@companieshouse/node-session-handler": "^4.1.7",
+    "@companieshouse/node-session-handler": "^4.1.9",
     "@companieshouse/structured-logging-node": "^1.0.4",
     "axios": "^0.24.0",
     "cookie-parser": "^1.4.5",
@@ -28,8 +28,8 @@
     "helmet": "^4.2.1",
     "ioredis": "^4.19.4",
     "moment": "^2.29.4",
-    "nunjucks": "^3.2.2",
-    "private-api-sdk-node": "git+ssh://git@github.com/companieshouse/private-api-sdk-node.git#0.1.63",
+    "nunjucks": "^3.2.4",
+    "private-api-sdk-node": "git+ssh://git@github.com/companieshouse/private-api-sdk-node.git#0.1.80",
     "validator": "^13.7.0",
     "yargs": "^16.2.0"
   },
