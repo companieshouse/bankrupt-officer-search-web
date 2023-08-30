@@ -3,18 +3,17 @@ import { ADD_TO_FRONT, ADD_TO_END } from '../../config';
 import { logger } from '../../utils';
 
 const addPageItem = (items: PageItem[], pageNumber: number, operation: string, current: boolean, prefix: string) => {
-  let page: PageItem;
-  page = {
+  const page: PageItem = {
     number: pageNumber,
     href: `${prefix}?page=${pageNumber}`, 
-  }
+  };
   if (current) page.current = true;
   switch (operation) {
-    case ADD_TO_FRONT: items.unshift(page); break;
-    case ADD_TO_END: items.push(page); break;
-    default: logger.info("Pagination: Unidentified operation during addPageItem: " + operation);
+  case ADD_TO_FRONT: items.unshift(page); break;
+  case ADD_TO_END: items.push(page); break;
+  default: logger.info("Pagination: Unidentified operation during addPageItem: " + operation);
   }
-}
+};
 
 const buildLeftSide = (pageItems: PageItem[], currentPage: number, prefix: string) => {
   let pagesAdded = 0;
@@ -27,10 +26,10 @@ const buildLeftSide = (pageItems: PageItem[], currentPage: number, prefix: strin
   if (pageItems[0].number !== 1) {
     pageItems.unshift({
       ellipsis: true
-    })
+    });
     addPageItem(pageItems, 1, ADD_TO_FRONT, false, prefix);
   }
-}
+};
 
 const buildRightSide = (pageItems: PageItem[], currentPage: number, numOfPages: number, prefix: string) => {
   let pagesAdded = 0;
@@ -43,10 +42,10 @@ const buildRightSide = (pageItems: PageItem[], currentPage: number, numOfPages: 
   if (pageItems[pageItems.length-1].number !== numOfPages) {
     pageItems.push({
       ellipsis: true
-    })
+    });
     addPageItem(pageItems, numOfPages, ADD_TO_END, false, prefix);
   }
-}
+};
 
 /**
  * Generates an object required by the GOV.UK Pagination component to display pagination data.
@@ -64,8 +63,8 @@ export const buildPaginationData = (currentPage: number, numOfPages: number, pre
   const pageItems: PageItem[] = [];
   if (numOfPages < 1 || currentPage < 1) return pagination;
 
-  if (currentPage !== 1) pagination.previous = {href: `${prefix}?page=${currentPage-1}`}
-  if (currentPage !== numOfPages) pagination.next = {href: `${prefix}?page=${currentPage+1}`}
+  if (currentPage !== 1) pagination.previous = {href: `${prefix}?page=${currentPage-1}`};
+  if (currentPage !== numOfPages) pagination.next = {href: `${prefix}?page=${currentPage+1}`};
 
   // If there are less than 10 pages, just display all the links
   if (numOfPages < 10) {
@@ -80,11 +79,11 @@ export const buildPaginationData = (currentPage: number, numOfPages: number, pre
       const current = pageNumber === currentPage;
       addPageItem(pageItems, pageNumber, ADD_TO_END, current, prefix);
     }
-    pageItems.push({ellipsis: true})
+    pageItems.push({ellipsis: true});
     addPageItem(pageItems, numOfPages, ADD_TO_END, false, prefix);
   } else if (numOfPages - currentPage <= 4) {
     addPageItem(pageItems, 1, ADD_TO_FRONT, false, prefix);
-    pageItems.push({ellipsis: true})
+    pageItems.push({ellipsis: true});
     for (let i = numOfPages - 6; i<= numOfPages; i++) {
       const current = i === currentPage;
       addPageItem(pageItems, i, ADD_TO_END, current, prefix);
@@ -96,4 +95,4 @@ export const buildPaginationData = (currentPage: number, numOfPages: number, pre
   }
   pagination.items = pageItems;
   return pagination;
-}
+};

@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "strict": true,
     "moduleResolution": "node",
     "pretty": true,
     "sourceMap": true,
@@ -11,7 +12,16 @@
     "experimentalDecorators": true,
     "strictNullChecks": true,
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "plugins": [
+      {
+          "name": "typescript-tslint-plugin"
+      }
+  ],
+  "paths": {
+      "app/*": ["./*"],
+      "test/*": ["../test/*"]
+  }
   },
   "include": [
     "src/**/*"

@@ -71,7 +71,7 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
         validationResult,
         ...(whereTo && { whereTo }),
         ...(toDobError && { toDobError })
-      }
+      };
       return res.render('bankrupt', templateVariables);
     }
 
@@ -116,4 +116,4 @@ export const generateFiltersFromBody = (req: Request): BankruptOfficerSearchFilt
   // Set post query data
   const filters: BankruptOfficerSearchFilters = { forename1, surname, alias, fromDateOfBirth, toDateOfBirth, postcode };
   return filters;
-}
+};

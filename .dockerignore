@@ -1,9 +1,8 @@
 *
-
+!dist
 !src
 !static
 !gulpfile.js
 !package.json
 !package-lock.json
 !tsconfig.json
-!start-ecs

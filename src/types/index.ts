@@ -17,12 +17,14 @@ export interface BankruptOfficer extends Address {
   dateOfBirth?: string
   debtorDischargeDate?: string
   caseType?: string
+  [key: string]: string | undefined
 }
 export interface FullBankruptOfficer extends BankruptOfficer {
   caseReference?: string
   bankruptcyType?: string
   startDate?: string
   trusteeDischargeDate?: string
+  [key: string]: string | undefined
 }
 export interface BankruptOfficerSearchQuery {
   startIndex: number
@@ -43,6 +45,7 @@ export interface BankruptOfficerSearchFilters {
   fromDateOfBirth?: string
   toDateOfBirth?: string
   postcode?: string
+  [key: string]: string | undefined
 }
 
 export interface BankruptOfficerSearchResults {
