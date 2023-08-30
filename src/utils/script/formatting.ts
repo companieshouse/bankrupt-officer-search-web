@@ -17,12 +17,12 @@ export const firstCharacterUpperCase = (chars: string | undefined): string | und
 
 export const formattingOfficersInfo = (officersList: Array<FullBankruptOfficer>): Array<FullBankruptOfficer> => {
   const keysOfBankruptOfficer = ["forename1", "forename2", "alias", "surname", "addressLine1", "addressLine2", "addressLine3", "town", "county", "caseType", "bankruptcyType"];
-  const dateToBeFormatted = ["debtorDischargeDate", "trusteeDischargeDate", "startDate"];
+  const dateToBeFormatted: string[] = ["debtorDischargeDate", "trusteeDischargeDate", "startDate"];
 
   return officersList.map( officer => {
     keysOfBankruptOfficer.forEach( k => officer[k] = firstCharacterUpperCase(officer[k]) );
     dateToBeFormatted.forEach( k => officer[k] = formatDateForDisplay(officer[k]) );
     officer.dateOfBirth = dateOfBirthFormatting(officer.dateOfBirth);
-    return officer;
+    return officer as FullBankruptOfficer;
   });
 };

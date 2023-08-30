@@ -16,7 +16,7 @@ import {
 
 import { logger } from "../../src/utils";
 
-let app = null;
+let app: any = null;
 
 describe('Routers test suite', () => {
 

@@ -5,6 +5,6 @@ export function notFoundErrorHandler(req: Request, res: Response): void {
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function serverErrorHandler(err, req: Request, res: Response): void {
+export function serverErrorHandler(err: any, req: Request, res: Response): void {
   return res.status(err?.statusCode || 500).render('error-pages/500');
 }

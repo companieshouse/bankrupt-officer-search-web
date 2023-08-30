@@ -1,4 +1,4 @@
 /**
  *
  */
- export { validateTextFields } from "./text-field/text-field.validator";
+export { validateTextFields } from "./text-field/text-field.validator";
