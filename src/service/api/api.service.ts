@@ -1,21 +1,20 @@
 import { Session } from '@companieshouse/node-session-handler';
-import { Resource } from '@companieshouse/api-sdk-node';
-import { createPrivateApiClient } from "private-api-sdk-node";
-import PrivateApiClient from 'private-api-sdk-node/dist/client';
+import { Resource, createApiClient } from '@companieshouse/api-sdk-node';
+import ApiClient from '@companieshouse/api-sdk-node/dist/client';
 
 import { logger, userSession } from '../../utils';
 import { INTERNAL_API_URL } from '../../config';
 import { BankruptOfficerSearchQuery, BankruptOfficerSearchResults, FullBankruptOfficer } from '../../types';
 
-export const createOAuthApiClient = (session: Session | undefined): PrivateApiClient => {
+export const createOAuthApiClient = (session: Session | undefined): ApiClient => {
   const oAuth: string = userSession.getAccessToken(session);
-  return createPrivateApiClient(undefined, oAuth, INTERNAL_API_URL);
+  return createApiClient(undefined, oAuth, INTERNAL_API_URL);
 };
 
 export const fetchBankruptOfficer = async (session: Session | undefined, 
   ephemeralKey: string): Promise<Resource<FullBankruptOfficer>> => {
   const client = createOAuthApiClient(session);
-  return await client.badosService.getBankruptOfficer(ephemeralKey)
+  return await client.BankruptOfficer.getBankruptOfficer(ephemeralKey)
     .catch(e => {
       logger.error(e);
       return e;
@@ -25,7 +24,7 @@ export const fetchBankruptOfficer = async (session: Session | undefined,
 export const fetchBankruptOfficers = async (session: Session | undefined, 
   query: BankruptOfficerSearchQuery): Promise<Resource<BankruptOfficerSearchResults>> => {
   const client = createOAuthApiClient(session);
-  return await client.badosService.getBankruptOfficers(query)
+  return await client.BankruptOfficer.getBankruptOfficers(query)
     .catch(e => {
       logger.error(e);
       return e;
