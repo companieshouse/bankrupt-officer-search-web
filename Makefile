@@ -1,4 +1,4 @@
-artifact_name       := lfp-appeals-frontend
+artifact_name       := bankrupt-officer-search
 version             := "unversioned"
 
 .PHONY: all

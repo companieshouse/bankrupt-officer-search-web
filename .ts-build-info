@@ -672,8 +672,8 @@
         "affectsGlobalScope": false
       },
       "./node_modules/@companieshouse/api-sdk-node/dist/services/company-officers/types.d.ts": {
-        "version": "57a6a032a30f2ad953f403755b65f9e34fb6de2c0681079b339926d161288965",
-        "signature": "57a6a032a30f2ad953f403755b65f9e34fb6de2c0681079b339926d161288965",
+        "version": "8919833678acd7ed45d661defc8e519ce3ce17d53b85e98ea6b9535311c105fe",
+        "signature": "8919833678acd7ed45d661defc8e519ce3ce17d53b85e98ea6b9535311c105fe",
         "affectsGlobalScope": false
       },
       "./node_modules/@companieshouse/api-sdk-node/dist/services/result.d.ts": {
@@ -701,9 +701,19 @@
         "signature": "2cf66dc5eba23b7cfdd407c97e21a250009a2ab46297dbdc6d55f725daeb5a1d",
         "affectsGlobalScope": false
       },
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/company-metrics/types.d.ts": {
+        "version": "fc68d8140f31914a56c20e3fac3a972635bacbaa902accf0b598172e23f97f2b",
+        "signature": "fc68d8140f31914a56c20e3fac3a972635bacbaa902accf0b598172e23f97f2b",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/company-metrics/service.d.ts": {
+        "version": "8757690a0ffe5ea681cc56b217620f049ca17f5d347c2ee1e23fb2edc2e29fd1",
+        "signature": "8757690a0ffe5ea681cc56b217620f049ca17f5d347c2ee1e23fb2edc2e29fd1",
+        "affectsGlobalScope": false
+      },
       "./node_modules/@companieshouse/api-sdk-node/dist/services/company-psc/types.d.ts": {
-        "version": "f4ab08e54af7b424c21540f361cf1f94bf8e5bee172ed0b10968623cb603daa0",
-        "signature": "f4ab08e54af7b424c21540f361cf1f94bf8e5bee172ed0b10968623cb603daa0",
+        "version": "4fb8f74f459778e7f8fc4050d4de285387d24cc1ec45882f0b8a114d45a2d61b",
+        "signature": "4fb8f74f459778e7f8fc4050d4de285387d24cc1ec45882f0b8a114d45a2d61b",
         "affectsGlobalScope": false
       },
       "./node_modules/@companieshouse/api-sdk-node/dist/services/company-psc/service.d.ts": {
@@ -932,13 +942,13 @@
         "affectsGlobalScope": false
       },
       "./node_modules/@companieshouse/api-sdk-node/dist/services/overseas-entities/types.d.ts": {
-        "version": "1913e029284b3d81439b512baaff8629c2218576fb7215c2baee6bce1a73140d",
-        "signature": "1913e029284b3d81439b512baaff8629c2218576fb7215c2baee6bce1a73140d",
+        "version": "ed62ed65b0bf3f4ee38c25789136b663f25f44e689aaff39a693830456a20074",
+        "signature": "ed62ed65b0bf3f4ee38c25789136b663f25f44e689aaff39a693830456a20074",
         "affectsGlobalScope": false
       },
       "./node_modules/@companieshouse/api-sdk-node/dist/services/overseas-entities/service.d.ts": {
-        "version": "637c695158c91413cbdb12c23501d7c3286ef8e491986473f4f70147584684dd",
-        "signature": "637c695158c91413cbdb12c23501d7c3286ef8e491986473f4f70147584684dd",
+        "version": "507fa02c2ff4ae0e3b9e8828495c9af7740572a9d7c348a1a33c6fcea3dea12e",
+        "signature": "507fa02c2ff4ae0e3b9e8828495c9af7740572a9d7c348a1a33c6fcea3dea12e",
         "affectsGlobalScope": false
       },
       "./node_modules/@companieshouse/api-sdk-node/dist/services/overseas-entities/index.d.ts": {
@@ -972,18 +982,38 @@
         "affectsGlobalScope": false
       },
       "./node_modules/@companieshouse/api-sdk-node/dist/services/officer-filing/types.d.ts": {
-        "version": "2f7fb328c9ed3401f1a8346824ec4c3d6ad22f5010c390aaa0d8f47e69e786e4",
-        "signature": "2f7fb328c9ed3401f1a8346824ec4c3d6ad22f5010c390aaa0d8f47e69e786e4",
+        "version": "eeae3b0c316862f30b206fafb0d7954d76de9ea7da6805a8e81352fe5c622d30",
+        "signature": "eeae3b0c316862f30b206fafb0d7954d76de9ea7da6805a8e81352fe5c622d30",
         "affectsGlobalScope": false
       },
       "./node_modules/@companieshouse/api-sdk-node/dist/services/officer-filing/service.d.ts": {
-        "version": "0b07a45d0be7b1527ced043e17f9dfc020111868e7b8759f9acf2bee33349ffe",
-        "signature": "0b07a45d0be7b1527ced043e17f9dfc020111868e7b8759f9acf2bee33349ffe",
+        "version": "50a217a42cec7e08e8743f5332b6c02b96b3b539282f546bae234f9cc21d58d5",
+        "signature": "50a217a42cec7e08e8743f5332b6c02b96b3b539282f546bae234f9cc21d58d5",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/registered-email-address/types.d.ts": {
+        "version": "925d0be4a43db612fc3ce7250155c4ed6c34ab724ce6ff4c42b1f5dec8a697f3",
+        "signature": "925d0be4a43db612fc3ce7250155c4ed6c34ab724ce6ff4c42b1f5dec8a697f3",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/registered-email-address/service.d.ts": {
+        "version": "82dfeff2dc753edc49d5dbdc0b150185796c23b3bceb13849aa9f0e11f826630",
+        "signature": "82dfeff2dc753edc49d5dbdc0b150185796c23b3bceb13849aa9f0e11f826630",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@companieshouse/api-sdk-node/dist/enums/clienttype.d.ts": {
+        "version": "f433fb66930e5bb9070e6b43e09b04f929962c0c5cc5fa69d09ac6d203d526f4",
+        "signature": "f433fb66930e5bb9070e6b43e09b04f929962c0c5cc5fa69d09ac6d203d526f4",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@companieshouse/api-sdk-node/dist/enums/index.d.ts": {
+        "version": "7f8b8a6d77c26dd2ceed65214fd72654e735666c05ed745c2ea481442c41a1d4",
+        "signature": "7f8b8a6d77c26dd2ceed65214fd72654e735666c05ed745c2ea481442c41a1d4",
         "affectsGlobalScope": false
       },
       "./node_modules/@companieshouse/api-sdk-node/dist/client.d.ts": {
-        "version": "5ef25edc3752ef3908f376c9276787275287b7a5c8c4114621365d0b4a1a5ed6",
-        "signature": "5ef25edc3752ef3908f376c9276787275287b7a5c8c4114621365d0b4a1a5ed6",
+        "version": "2e44beb2526eac8248895db41703b4ac67a84179c525b6269ba3cea3bed33985",
+        "signature": "2e44beb2526eac8248895db41703b4ac67a84179c525b6269ba3cea3bed33985",
         "affectsGlobalScope": false
       },
       "./node_modules/@companieshouse/api-sdk-node/dist/config.d.ts": {
@@ -996,129 +1026,9 @@
         "signature": "ddf2b90dc33888bac31f815ba47fb6a919a7773deb3c20049faca6ea542afe20",
         "affectsGlobalScope": false
       },
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/applications/types.d.ts": {
-        "version": "3a5302ad62c07cf31e9272f7b2150a1fbbfbaa688463c741433f126160d6db5e",
-        "signature": "3a5302ad62c07cf31e9272f7b2150a1fbbfbaa688463c741433f126160d6db5e",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/applications/service.d.ts": {
-        "version": "140453692c51912435ec87c09f63ea6b6a34cc5d89c900d8b8fa516d57e36541",
-        "signature": "140453692c51912435ec87c09f63ea6b6a34cc5d89c900d8b8fa516d57e36541",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/applications/index.d.ts": {
-        "version": "7fcd40760f61fcd8706b73bdb39dd33cca2a5590b6b34405f74a64ede8b0304d",
-        "signature": "7fcd40760f61fcd8706b73bdb39dd33cca2a5590b6b34405f74a64ede8b0304d",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/api-keys/types.d.ts": {
-        "version": "8209265055e79418d3ac51a31fbff8aeb84d66bdc3499e625325a2b24f2cbc95",
-        "signature": "8209265055e79418d3ac51a31fbff8aeb84d66bdc3499e625325a2b24f2cbc95",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/api-keys/service.d.ts": {
-        "version": "fa822dc36ebb27108be92c505160867a958872a579a09e572729ad5671e6c695",
-        "signature": "fa822dc36ebb27108be92c505160867a958872a579a09e572729ad5671e6c695",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/api-keys/index.d.ts": {
-        "version": "a88b78c532c099dffad9cc4f62c50e3bfa0aa00bc14a297f48c2f5d0efc39072",
-        "signature": "a88b78c532c099dffad9cc4f62c50e3bfa0aa00bc14a297f48c2f5d0efc39072",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/stream-keys/types.d.ts": {
-        "version": "9fb5d81305cfa5c0099767482340b75c9b8db0f9b1368ee6ab5bfcea1250833e",
-        "signature": "9fb5d81305cfa5c0099767482340b75c9b8db0f9b1368ee6ab5bfcea1250833e",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/stream-keys/service.d.ts": {
-        "version": "6f52449e6236215de3c580578c7e0800502c2da0d9d8bfdb3191606706e86530",
-        "signature": "6f52449e6236215de3c580578c7e0800502c2da0d9d8bfdb3191606706e86530",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/stream-keys/index.d.ts": {
-        "version": "27e833a16be579087698db8f21e61ee0b46104cb78dd1e1b6eb22f2ad64b6033",
-        "signature": "27e833a16be579087698db8f21e61ee0b46104cb78dd1e1b6eb22f2ad64b6033",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/web-clients/types.d.ts": {
-        "version": "2ba2cfa688c872b3bc33d48b0c67ef3fb0ff97e9589c910519707c07baf3d9a3",
-        "signature": "2ba2cfa688c872b3bc33d48b0c67ef3fb0ff97e9589c910519707c07baf3d9a3",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/web-clients/service.d.ts": {
-        "version": "8797d08d38129fc5a69f0a0873485da74dbaa98bfbed9aeda4f9ee186dcbc8a8",
-        "signature": "8797d08d38129fc5a69f0a0873485da74dbaa98bfbed9aeda4f9ee186dcbc8a8",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/web-clients/index.d.ts": {
-        "version": "1110c1f18c336e4362f020cd84b43b0b6475f112071a88e930c6c89e18aa1dfe",
-        "signature": "1110c1f18c336e4362f020cd84b43b0b6475f112071a88e930c6c89e18aa1dfe",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/index.d.ts": {
-        "version": "8e5aface48d0f20ea24121f6b138c455e5ccd27339627d68ea2e15f19eb2fa06",
-        "signature": "8e5aface48d0f20ea24121f6b138c455e5ccd27339627d68ea2e15f19eb2fa06",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/scottish/types.d.ts": {
-        "version": "9ccedd0846bac1f06e3f362c9cc8c13fe4c24824c5854f9bb4ad6ff1d92405e3",
-        "signature": "9ccedd0846bac1f06e3f362c9cc8c13fe4c24824c5854f9bb4ad6ff1d92405e3",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/scottish/service.d.ts": {
-        "version": "6cd80f48f383615917c84c4ecb30464dee3a021d495f61b3459a61698991a289",
-        "signature": "6cd80f48f383615917c84c4ecb30464dee3a021d495f61b3459a61698991a289",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/scottish/index.d.ts": {
-        "version": "a13e36ffc33ee2b0b25a4353476db27128e3163606215c12ff1912c9e47b42fc",
-        "signature": "a13e36ffc33ee2b0b25a4353476db27128e3163606215c12ff1912c9e47b42fc",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/index.d.ts": {
-        "version": "eb09064ebd8c60b5166993998159edf20c4119766de3c9237742e389b9a833eb",
-        "signature": "eb09064ebd8c60b5166993998159edf20c4119766de3c9237742e389b9a833eb",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/services/file-transfer/types.d.ts": {
-        "version": "fb9f53015a8f15589a00acd8b59e95e828a49ef2be5f92bba210132e205ffddb",
-        "signature": "fb9f53015a8f15589a00acd8b59e95e828a49ef2be5f92bba210132e205ffddb",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/services/file-transfer/services.d.ts": {
-        "version": "5d155c6449a177766494227c0db6208d10763860a19896fd72460f20c21f65cc",
-        "signature": "5d155c6449a177766494227c0db6208d10763860a19896fd72460f20c21f65cc",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/services/account-validator/types.d.ts": {
-        "version": "0401042111bd492aef43f4edb05d3bf796f69f5aebc1f7e18f50546faf82cfe8",
-        "signature": "0401042111bd492aef43f4edb05d3bf796f69f5aebc1f7e18f50546faf82cfe8",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/services/account-validator/service.d.ts": {
-        "version": "7c996cace1086b2f8bc11a3d920b2a3b8e918609d59c5004511707c15de0f76a",
-        "signature": "7c996cace1086b2f8bc11a3d920b2a3b8e918609d59c5004511707c15de0f76a",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/services/account-validator/index.d.ts": {
-        "version": "ce1e72b4aa3873026fce006d470168ec2ce83d17bd59b5dab9c3ca47c9956da6",
-        "signature": "ce1e72b4aa3873026fce006d470168ec2ce83d17bd59b5dab9c3ca47c9956da6",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/client.d.ts": {
-        "version": "c933b4cf3b60ecfa8005c3c0d0f0cc6d4583fdfa4799aa378e6deec15ab549c7",
-        "signature": "c933b4cf3b60ecfa8005c3c0d0f0cc6d4583fdfa4799aa378e6deec15ab549c7",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/private-api-sdk-node/dist/index.d.ts": {
-        "version": "552ff45b0ddf6162123bc985d0fe185f013ac64906762adb69a248bba025eae9",
-        "signature": "552ff45b0ddf6162123bc985d0fe185f013ac64906762adb69a248bba025eae9",
-        "affectsGlobalScope": false
-      },
       "./src/service/api/api.service.ts": {
-        "version": "39da26d5f5f06355740e3fe7566b036d0a35da52f7b575127c713545d1d9a76b",
-        "signature": "bd4d81c91291fb59aa11e8903a2d6092dd3b5664c06d342f562e40dec19ebb88",
+        "version": "9c3459227ddd577b2b5fa52b01db8825efbf589ff42ad3c58f38b7015fa6e348",
+        "signature": "4010af6cc1e54da309e601a6c889f5d5a0219a63cf297f3d550fbf16c5c54921",
         "affectsGlobalScope": false
       },
       "./src/service/index.ts": {
@@ -1292,8 +1202,10 @@
     },
     "referencedMap": {
       "./node_modules/@companieshouse/api-sdk-node/dist/client.d.ts": [
+        "./node_modules/@companieshouse/api-sdk-node/dist/enums/index.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/http/http-client.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/company-filing-history/service.d.ts",
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/company-metrics/service.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/company-officers/service.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/company-profile/service.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/company-psc-statements/service.d.ts",
@@ -1310,10 +1222,14 @@
         "./node_modules/@companieshouse/api-sdk-node/dist/services/psc-discrepancies-report/service.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/psc-discrepancies/service.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/refresh-token/index.d.ts",
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/registered-email-address/service.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/search/advanced-search/service.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/search/alphabetical-search/service.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/search/dissolved-search/service.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/transaction/service.d.ts"
+      ],
+      "./node_modules/@companieshouse/api-sdk-node/dist/enums/index.d.ts": [
+        "./node_modules/@companieshouse/api-sdk-node/dist/enums/clienttype.d.ts"
       ],
       "./node_modules/@companieshouse/api-sdk-node/dist/http/index.d.ts": [
         "./node_modules/@companieshouse/api-sdk-node/dist/http/http-client.d.ts",
@@ -1331,6 +1247,11 @@
       "./node_modules/@companieshouse/api-sdk-node/dist/services/company-filing-history/service.d.ts": [
         "./node_modules/@companieshouse/api-sdk-node/dist/http/index.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/company-filing-history/types.d.ts",
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/resource.d.ts"
+      ],
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/company-metrics/service.d.ts": [
+        "./node_modules/@companieshouse/api-sdk-node/dist/http/index.d.ts",
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/company-metrics/types.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/resource.d.ts"
       ],
       "./node_modules/@companieshouse/api-sdk-node/dist/services/company-officers/service.d.ts": [
@@ -1497,6 +1418,11 @@
       "./node_modules/@companieshouse/api-sdk-node/dist/services/refresh-token/service.d.ts": [
         "./node_modules/@companieshouse/api-sdk-node/dist/http/index.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/refresh-token/types.d.ts",
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/resource.d.ts"
+      ],
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/registered-email-address/service.d.ts": [
+        "./node_modules/@companieshouse/api-sdk-node/dist/http/index.d.ts",
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/registered-email-address/types.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/resource.d.ts"
       ],
       "./node_modules/@companieshouse/api-sdk-node/dist/services/resource.d.ts": [
@@ -1916,79 +1842,6 @@
       ],
       "./node_modules/helmet/dist/middlewares/x-xss-protection/index.d.ts": [
         "./node_modules/@types/node/ts4.8/http.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/client.d.ts": [
-        "./node_modules/@companieshouse/api-sdk-node/dist/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/account-validator/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/file-transfer/services.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/index.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/index.d.ts": [
-        "./node_modules/private-api-sdk-node/dist/client.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/account-validator/index.d.ts": [
-        "./node_modules/private-api-sdk-node/dist/services/account-validator/service.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/account-validator/service.d.ts": [
-        "./node_modules/@companieshouse/api-sdk-node/dist/index.d.ts",
-        "./node_modules/@companieshouse/api-sdk-node/dist/services/resource.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/account-validator/types.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/file-transfer/types.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/index.d.ts": [
-        "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/scottish/index.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/scottish/index.d.ts": [
-        "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/scottish/service.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/scottish/types.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/scottish/service.d.ts": [
-        "./node_modules/@companieshouse/api-sdk-node/dist/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/scottish/types.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/file-transfer/services.d.ts": [
-        "./node_modules/@companieshouse/api-sdk-node/dist/index.d.ts",
-        "./node_modules/@companieshouse/api-sdk-node/dist/services/resource.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/file-transfer/types.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/api-keys/index.d.ts": [
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/api-keys/service.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/api-keys/types.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/api-keys/service.d.ts": [
-        "./node_modules/@companieshouse/api-sdk-node/dist/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/api-keys/types.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/applications/index.d.ts": [
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/applications/service.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/applications/types.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/applications/service.d.ts": [
-        "./node_modules/@companieshouse/api-sdk-node/dist/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/applications/types.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/index.d.ts": [
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/api-keys/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/applications/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/stream-keys/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/web-clients/index.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/stream-keys/index.d.ts": [
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/stream-keys/service.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/stream-keys/types.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/stream-keys/service.d.ts": [
-        "./node_modules/@companieshouse/api-sdk-node/dist/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/stream-keys/types.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/web-clients/index.d.ts": [
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/web-clients/service.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/web-clients/types.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/web-clients/service.d.ts": [
-        "./node_modules/@companieshouse/api-sdk-node/dist/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/web-clients/types.d.ts"
       ],
       "./node_modules/winston-transport/index.d.ts": [
         "./node_modules/@types/node/ts4.8/index.d.ts",
@@ -2070,10 +1923,9 @@
         "./src/utils/index.ts"
       ],
       "./src/service/api/api.service.ts": [
+        "./node_modules/@companieshouse/api-sdk-node/dist/client.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/index.d.ts",
         "./node_modules/@companieshouse/node-session-handler/lib/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/client.d.ts",
-        "./node_modules/private-api-sdk-node/dist/index.d.ts",
         "./src/config/index.ts",
         "./src/types/index.ts",
         "./src/utils/index.ts"
@@ -2127,8 +1979,10 @@
     },
     "exportedModulesMap": {
       "./node_modules/@companieshouse/api-sdk-node/dist/client.d.ts": [
+        "./node_modules/@companieshouse/api-sdk-node/dist/enums/index.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/http/http-client.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/company-filing-history/service.d.ts",
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/company-metrics/service.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/company-officers/service.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/company-profile/service.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/company-psc-statements/service.d.ts",
@@ -2145,10 +1999,14 @@
         "./node_modules/@companieshouse/api-sdk-node/dist/services/psc-discrepancies-report/service.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/psc-discrepancies/service.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/refresh-token/index.d.ts",
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/registered-email-address/service.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/search/advanced-search/service.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/search/alphabetical-search/service.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/search/dissolved-search/service.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/transaction/service.d.ts"
+      ],
+      "./node_modules/@companieshouse/api-sdk-node/dist/enums/index.d.ts": [
+        "./node_modules/@companieshouse/api-sdk-node/dist/enums/clienttype.d.ts"
       ],
       "./node_modules/@companieshouse/api-sdk-node/dist/http/index.d.ts": [
         "./node_modules/@companieshouse/api-sdk-node/dist/http/http-client.d.ts",
@@ -2166,6 +2024,11 @@
       "./node_modules/@companieshouse/api-sdk-node/dist/services/company-filing-history/service.d.ts": [
         "./node_modules/@companieshouse/api-sdk-node/dist/http/index.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/company-filing-history/types.d.ts",
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/resource.d.ts"
+      ],
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/company-metrics/service.d.ts": [
+        "./node_modules/@companieshouse/api-sdk-node/dist/http/index.d.ts",
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/company-metrics/types.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/resource.d.ts"
       ],
       "./node_modules/@companieshouse/api-sdk-node/dist/services/company-officers/service.d.ts": [
@@ -2332,6 +2195,11 @@
       "./node_modules/@companieshouse/api-sdk-node/dist/services/refresh-token/service.d.ts": [
         "./node_modules/@companieshouse/api-sdk-node/dist/http/index.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/refresh-token/types.d.ts",
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/resource.d.ts"
+      ],
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/registered-email-address/service.d.ts": [
+        "./node_modules/@companieshouse/api-sdk-node/dist/http/index.d.ts",
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/registered-email-address/types.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/resource.d.ts"
       ],
       "./node_modules/@companieshouse/api-sdk-node/dist/services/resource.d.ts": [
@@ -2752,79 +2620,6 @@
       "./node_modules/helmet/dist/middlewares/x-xss-protection/index.d.ts": [
         "./node_modules/@types/node/ts4.8/http.d.ts"
       ],
-      "./node_modules/private-api-sdk-node/dist/client.d.ts": [
-        "./node_modules/@companieshouse/api-sdk-node/dist/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/account-validator/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/file-transfer/services.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/index.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/index.d.ts": [
-        "./node_modules/private-api-sdk-node/dist/client.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/account-validator/index.d.ts": [
-        "./node_modules/private-api-sdk-node/dist/services/account-validator/service.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/account-validator/service.d.ts": [
-        "./node_modules/@companieshouse/api-sdk-node/dist/index.d.ts",
-        "./node_modules/@companieshouse/api-sdk-node/dist/services/resource.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/account-validator/types.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/file-transfer/types.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/index.d.ts": [
-        "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/scottish/index.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/scottish/index.d.ts": [
-        "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/scottish/service.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/scottish/types.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/scottish/service.d.ts": [
-        "./node_modules/@companieshouse/api-sdk-node/dist/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/scottish/types.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/file-transfer/services.d.ts": [
-        "./node_modules/@companieshouse/api-sdk-node/dist/index.d.ts",
-        "./node_modules/@companieshouse/api-sdk-node/dist/services/resource.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/file-transfer/types.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/api-keys/index.d.ts": [
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/api-keys/service.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/api-keys/types.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/api-keys/service.d.ts": [
-        "./node_modules/@companieshouse/api-sdk-node/dist/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/api-keys/types.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/applications/index.d.ts": [
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/applications/service.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/applications/types.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/applications/service.d.ts": [
-        "./node_modules/@companieshouse/api-sdk-node/dist/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/applications/types.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/index.d.ts": [
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/api-keys/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/applications/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/stream-keys/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/web-clients/index.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/stream-keys/index.d.ts": [
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/stream-keys/service.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/stream-keys/types.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/stream-keys/service.d.ts": [
-        "./node_modules/@companieshouse/api-sdk-node/dist/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/stream-keys/types.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/web-clients/index.d.ts": [
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/web-clients/service.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/web-clients/types.d.ts"
-      ],
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/web-clients/service.d.ts": [
-        "./node_modules/@companieshouse/api-sdk-node/dist/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/services/user-applications/web-clients/types.d.ts"
-      ],
       "./node_modules/winston-transport/index.d.ts": [
         "./node_modules/@types/node/ts4.8/index.d.ts",
         "./node_modules/@types/node/ts4.8/stream.d.ts",
@@ -2875,9 +2670,9 @@
         "./node_modules/@types/express-serve-static-core/index.d.ts"
       ],
       "./src/service/api/api.service.ts": [
+        "./node_modules/@companieshouse/api-sdk-node/dist/client.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/index.d.ts",
         "./node_modules/@companieshouse/node-session-handler/lib/index.d.ts",
-        "./node_modules/private-api-sdk-node/dist/client.d.ts",
         "./src/types/index.ts"
       ],
       "./src/service/index.ts": [
@@ -2919,12 +2714,16 @@
     "semanticDiagnosticsPerFile": [
       "./node_modules/@companieshouse/api-sdk-node/dist/client.d.ts",
       "./node_modules/@companieshouse/api-sdk-node/dist/config.d.ts",
+      "./node_modules/@companieshouse/api-sdk-node/dist/enums/clienttype.d.ts",
+      "./node_modules/@companieshouse/api-sdk-node/dist/enums/index.d.ts",
       "./node_modules/@companieshouse/api-sdk-node/dist/http/http-client.d.ts",
       "./node_modules/@companieshouse/api-sdk-node/dist/http/index.d.ts",
       "./node_modules/@companieshouse/api-sdk-node/dist/http/request-client.d.ts",
       "./node_modules/@companieshouse/api-sdk-node/dist/index.d.ts",
       "./node_modules/@companieshouse/api-sdk-node/dist/services/company-filing-history/service.d.ts",
       "./node_modules/@companieshouse/api-sdk-node/dist/services/company-filing-history/types.d.ts",
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/company-metrics/service.d.ts",
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/company-metrics/types.d.ts",
       "./node_modules/@companieshouse/api-sdk-node/dist/services/company-officers/service.d.ts",
       "./node_modules/@companieshouse/api-sdk-node/dist/services/company-officers/types.d.ts",
       "./node_modules/@companieshouse/api-sdk-node/dist/services/company-profile/service.d.ts",
@@ -2975,6 +2774,8 @@
       "./node_modules/@companieshouse/api-sdk-node/dist/services/refresh-token/index.d.ts",
       "./node_modules/@companieshouse/api-sdk-node/dist/services/refresh-token/service.d.ts",
       "./node_modules/@companieshouse/api-sdk-node/dist/services/refresh-token/types.d.ts",
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/registered-email-address/service.d.ts",
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/registered-email-address/types.d.ts",
       "./node_modules/@companieshouse/api-sdk-node/dist/services/resource.d.ts",
       "./node_modules/@companieshouse/api-sdk-node/dist/services/result.d.ts",
       "./node_modules/@companieshouse/api-sdk-node/dist/services/search/advanced-search/service.d.ts",
@@ -3086,30 +2887,6 @@
       "./node_modules/helmet/dist/middlewares/x-xss-protection/index.d.ts",
       "./node_modules/logform/index.d.ts",
       "./node_modules/moment/ts3.1-typings/moment.d.ts",
-      "./node_modules/private-api-sdk-node/dist/client.d.ts",
-      "./node_modules/private-api-sdk-node/dist/index.d.ts",
-      "./node_modules/private-api-sdk-node/dist/services/account-validator/index.d.ts",
-      "./node_modules/private-api-sdk-node/dist/services/account-validator/service.d.ts",
-      "./node_modules/private-api-sdk-node/dist/services/account-validator/types.d.ts",
-      "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/index.d.ts",
-      "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/scottish/index.d.ts",
-      "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/scottish/service.d.ts",
-      "./node_modules/private-api-sdk-node/dist/services/bankrupt-officer/scottish/types.d.ts",
-      "./node_modules/private-api-sdk-node/dist/services/file-transfer/services.d.ts",
-      "./node_modules/private-api-sdk-node/dist/services/file-transfer/types.d.ts",
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/api-keys/index.d.ts",
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/api-keys/service.d.ts",
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/api-keys/types.d.ts",
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/applications/index.d.ts",
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/applications/service.d.ts",
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/applications/types.d.ts",
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/index.d.ts",
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/stream-keys/index.d.ts",
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/stream-keys/service.d.ts",
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/stream-keys/types.d.ts",
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/web-clients/index.d.ts",
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/web-clients/service.d.ts",
-      "./node_modules/private-api-sdk-node/dist/services/user-applications/web-clients/types.d.ts",
       "./node_modules/typescript/lib/lib.dom.d.ts",
       "./node_modules/typescript/lib/lib.dom.iterable.d.ts",
       "./node_modules/typescript/lib/lib.es2015.collection.d.ts",
@@ -3157,7 +2934,43 @@
       "./src/controller/index.ts",
       "./src/routers/index.ts",
       "./src/server.ts",
-      "./src/service/api/api.service.ts",
+      [
+        "./src/service/api/api.service.ts",
+        [
+          {
+            "file": "./src/service/api/api.service.ts",
+            "start": 885,
+            "length": 12,
+            "code": 2339,
+            "category": 1,
+            "messageText": "Property 'badosService' does not exist on type 'ApiClient'."
+          },
+          {
+            "file": "./src/service/api/api.service.ts",
+            "start": 942,
+            "length": 1,
+            "messageText": "Parameter 'e' implicitly has an 'any' type.",
+            "category": 1,
+            "code": 7006
+          },
+          {
+            "file": "./src/service/api/api.service.ts",
+            "start": 1236,
+            "length": 12,
+            "code": 2339,
+            "category": 1,
+            "messageText": "Property 'badosService' does not exist on type 'ApiClient'."
+          },
+          {
+            "file": "./src/service/api/api.service.ts",
+            "start": 1287,
+            "length": 1,
+            "messageText": "Parameter 'e' implicitly has an 'any' type.",
+            "category": 1,
+            "code": 7006
+          }
+        ]
+      ],
       "./src/service/index.ts",
       "./src/types/index.ts",
       "./src/utils/index.ts",
