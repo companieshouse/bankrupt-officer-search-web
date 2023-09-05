@@ -3,7 +3,7 @@ import chai, { expect } from 'chai';
 import sinonChai from "sinon-chai";
 import sinon from "sinon";
 
-import { BadosService } from 'private-api-sdk-node/dist/services/bankrupt-officer';
+import { BadosService } from '@companieshouse/api-sdk-node/dist/services/bankrupt-officer';
 import { getSearchPage, postSearchPage } from "../../src/controller";
 import { userSession } from '../../src/utils';
 
@@ -73,7 +73,7 @@ describe("BankruptController test suite", () => {
 
   describe("search page get", () => {
 
-    it("should renders the bankrupt officer search page", async () => {
+    it("should render the bankrupt officer search page", async () => {
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
 
       await getSearchPage(req, res, nextFunctionSpy);

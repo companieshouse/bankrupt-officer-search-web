@@ -3,7 +3,7 @@ import chai, { expect } from 'chai';
 import sinonChai from "sinon-chai";
 import sinon from "sinon";
 
-import { BadosService } from 'private-api-sdk-node/dist/services/bankrupt-officer';
+import { BadosService } from '@companieshouse/api-sdk-node/dist/services/bankrupt-officer';
 import { bankruptOfficer } from "../../src/controller";
 import { logger } from '../../src/utils';
 
@@ -50,7 +50,6 @@ describe('BankruptOfficerController test suite', () => {
     sinon.stub(BadosService.prototype, 'getBankruptOfficer').resolves(mockGetResponse[200]);
 
     await bankruptOfficer(req, res, nextFunctionSpy);
-
     expect(nextFunctionSpy).not.called;
     expect(res.render).to.have.been.calledOnceWithExactly('bankrupt_officer', { bankruptOfficer: mockFullBankruptOfficer });
   });

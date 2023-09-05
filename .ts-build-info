@@ -381,19 +381,29 @@
         "signature": "01c93adfc4c6555c559e7334b6b5f45b48c9e1f809144822088e45ba13e36d9f",
         "affectsGlobalScope": false
       },
+      "./node_modules/@types/send/node_modules/@types/mime/index.d.ts": {
+        "version": "84e3bbd6f80983d468260fdbfeeb431cc81f7ea98d284d836e4d168e36875e86",
+        "signature": "84e3bbd6f80983d468260fdbfeeb431cc81f7ea98d284d836e4d168e36875e86",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@types/send/index.d.ts": {
+        "version": "aad5ffa61406b8e19524738fcf0e6fda8b3485bba98626268fdf252d1b2b630a",
+        "signature": "aad5ffa61406b8e19524738fcf0e6fda8b3485bba98626268fdf252d1b2b630a",
+        "affectsGlobalScope": false
+      },
       "./node_modules/@types/range-parser/index.d.ts": {
-        "version": "4e88b833be14c7f384e0dcd57bb30acd799e8e34d212635d693e41a75a71164b",
-        "signature": "4e88b833be14c7f384e0dcd57bb30acd799e8e34d212635d693e41a75a71164b",
+        "version": "16d51f964ec125ad2024cf03f0af444b3bc3ec3614d9345cc54d09bab45c9a4c",
+        "signature": "16d51f964ec125ad2024cf03f0af444b3bc3ec3614d9345cc54d09bab45c9a4c",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/qs/index.d.ts": {
-        "version": "c236451df6139a965bb9b8fba15a43a8bebf4400ca589998e2bdc5e1291fa0f9",
-        "signature": "c236451df6139a965bb9b8fba15a43a8bebf4400ca589998e2bdc5e1291fa0f9",
+        "version": "c7da551241b7be719b7bd654ab12a5098c3206fbb189076dd2d8871011a6ab5a",
+        "signature": "c7da551241b7be719b7bd654ab12a5098c3206fbb189076dd2d8871011a6ab5a",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/express-serve-static-core/index.d.ts": {
-        "version": "ae8d1b919cc922283c52b0c5a3404ef4ffd9eeda1202254b6295e4a87acb8fee",
-        "signature": "ae8d1b919cc922283c52b0c5a3404ef4ffd9eeda1202254b6295e4a87acb8fee",
+        "version": "4aed81e1115540695f896fa93fb22840fe06086741e94c6859e745f173498213",
+        "signature": "4aed81e1115540695f896fa93fb22840fe06086741e94c6859e745f173498213",
         "affectsGlobalScope": true
       },
       "./node_modules/@types/mime/index.d.ts": {
@@ -417,8 +427,8 @@
         "affectsGlobalScope": false
       },
       "./node_modules/@types/express/index.d.ts": {
-        "version": "924732dfbdfd120ee07cf733c7c65018f24ce9ddf06ed9ccf3cad8fdc2e33585",
-        "signature": "924732dfbdfd120ee07cf733c7c65018f24ce9ddf06ed9ccf3cad8fdc2e33585",
+        "version": "43cdd474c5aa3340da4816bb8f1ae7f3b1bcf9e70d997afc36a0f2c432378c84",
+        "signature": "43cdd474c5aa3340da4816bb8f1ae7f3b1bcf9e70d997afc36a0f2c432378c84",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/nunjucks/index.d.ts": {
@@ -826,6 +836,26 @@
         "signature": "263617eaaf05ee9f4a46ac7a983464999ad2d72a0855ac5df3c68910f6967614",
         "affectsGlobalScope": false
       },
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/scottish/types.d.ts": {
+        "version": "9ccedd0846bac1f06e3f362c9cc8c13fe4c24824c5854f9bb4ad6ff1d92405e3",
+        "signature": "9ccedd0846bac1f06e3f362c9cc8c13fe4c24824c5854f9bb4ad6ff1d92405e3",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/scottish/service.d.ts": {
+        "version": "b9a17d629389ee09d61410dcdbc39e8c264bb1657d7a694fb54e8b3b7e486897",
+        "signature": "b9a17d629389ee09d61410dcdbc39e8c264bb1657d7a694fb54e8b3b7e486897",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/scottish/index.d.ts": {
+        "version": "a13e36ffc33ee2b0b25a4353476db27128e3163606215c12ff1912c9e47b42fc",
+        "signature": "a13e36ffc33ee2b0b25a4353476db27128e3163606215c12ff1912c9e47b42fc",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/index.d.ts": {
+        "version": "eb09064ebd8c60b5166993998159edf20c4119766de3c9237742e389b9a833eb",
+        "signature": "eb09064ebd8c60b5166993998159edf20c4119766de3c9237742e389b9a833eb",
+        "affectsGlobalScope": false
+      },
       "./node_modules/@companieshouse/api-sdk-node/dist/services/company-filing-history/types.d.ts": {
         "version": "765d96cd1a096111595d093a261897f55fe3dba787156b4f80bd8493033433b7",
         "signature": "765d96cd1a096111595d093a261897f55fe3dba787156b4f80bd8493033433b7",
@@ -942,13 +972,13 @@
         "affectsGlobalScope": false
       },
       "./node_modules/@companieshouse/api-sdk-node/dist/services/overseas-entities/types.d.ts": {
-        "version": "ed62ed65b0bf3f4ee38c25789136b663f25f44e689aaff39a693830456a20074",
-        "signature": "ed62ed65b0bf3f4ee38c25789136b663f25f44e689aaff39a693830456a20074",
+        "version": "c1f4fa92158c970c9cc1897515e56bbe8889698e3f172ea02dea228322d95e6d",
+        "signature": "c1f4fa92158c970c9cc1897515e56bbe8889698e3f172ea02dea228322d95e6d",
         "affectsGlobalScope": false
       },
       "./node_modules/@companieshouse/api-sdk-node/dist/services/overseas-entities/service.d.ts": {
-        "version": "507fa02c2ff4ae0e3b9e8828495c9af7740572a9d7c348a1a33c6fcea3dea12e",
-        "signature": "507fa02c2ff4ae0e3b9e8828495c9af7740572a9d7c348a1a33c6fcea3dea12e",
+        "version": "d67861b24313a98397b5e6b4714f6b050907d5833f0665837305528a5aa26bea",
+        "signature": "d67861b24313a98397b5e6b4714f6b050907d5833f0665837305528a5aa26bea",
         "affectsGlobalScope": false
       },
       "./node_modules/@companieshouse/api-sdk-node/dist/services/overseas-entities/index.d.ts": {
@@ -1012,8 +1042,8 @@
         "affectsGlobalScope": false
       },
       "./node_modules/@companieshouse/api-sdk-node/dist/client.d.ts": {
-        "version": "2e44beb2526eac8248895db41703b4ac67a84179c525b6269ba3cea3bed33985",
-        "signature": "2e44beb2526eac8248895db41703b4ac67a84179c525b6269ba3cea3bed33985",
+        "version": "8958822be91fefde28817fa441670f8a0c4fd515123eed6e5ecf7519e9067861",
+        "signature": "8958822be91fefde28817fa441670f8a0c4fd515123eed6e5ecf7519e9067861",
         "affectsGlobalScope": false
       },
       "./node_modules/@companieshouse/api-sdk-node/dist/config.d.ts": {
@@ -1027,7 +1057,7 @@
         "affectsGlobalScope": false
       },
       "./src/service/api/api.service.ts": {
-        "version": "9c3459227ddd577b2b5fa52b01db8825efbf589ff42ad3c58f38b7015fa6e348",
+        "version": "fdf994531d49a5c596358c2bbab1cc8233847ffe037ad7fc826ba8f1915cfb5d",
         "signature": "4010af6cc1e54da309e601a6c889f5d5a0219a63cf297f3d550fbf16c5c54921",
         "affectsGlobalScope": false
       },
@@ -1204,6 +1234,7 @@
       "./node_modules/@companieshouse/api-sdk-node/dist/client.d.ts": [
         "./node_modules/@companieshouse/api-sdk-node/dist/enums/index.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/http/http-client.d.ts",
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/index.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/company-filing-history/service.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/company-metrics/service.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/company-officers/service.d.ts",
@@ -1242,6 +1273,18 @@
         "./node_modules/@companieshouse/api-sdk-node/dist/client.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/config.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/http/index.d.ts",
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/resource.d.ts"
+      ],
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/index.d.ts": [
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/scottish/index.d.ts"
+      ],
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/scottish/index.d.ts": [
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/scottish/service.d.ts",
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/scottish/types.d.ts"
+      ],
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/scottish/service.d.ts": [
+        "./node_modules/@companieshouse/api-sdk-node/dist/http/index.d.ts",
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/scottish/types.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/resource.d.ts"
       ],
       "./node_modules/@companieshouse/api-sdk-node/dist/services/company-filing-history/service.d.ts": [
@@ -1505,7 +1548,8 @@
         "./node_modules/@types/node/ts4.8/http.d.ts",
         "./node_modules/@types/node/ts4.8/index.d.ts",
         "./node_modules/@types/qs/index.d.ts",
-        "./node_modules/@types/range-parser/index.d.ts"
+        "./node_modules/@types/range-parser/index.d.ts",
+        "./node_modules/@types/send/index.d.ts"
       ],
       "./node_modules/@types/express/index.d.ts": [
         "./node_modules/@types/body-parser/index.d.ts",
@@ -1751,6 +1795,12 @@
       "./node_modules/@types/node/ts4.8/zlib.d.ts": [
         "./node_modules/@types/node/ts4.8/stream.d.ts",
         "./node_modules/@types/node/ts4.8/zlib.d.ts"
+      ],
+      "./node_modules/@types/send/index.d.ts": [
+        "./node_modules/@types/node/ts4.8/fs.d.ts",
+        "./node_modules/@types/node/ts4.8/index.d.ts",
+        "./node_modules/@types/node/ts4.8/stream.d.ts",
+        "./node_modules/@types/send/node_modules/@types/mime/index.d.ts"
       ],
       "./node_modules/@types/serve-static/index.d.ts": [
         "./node_modules/@types/mime/index.d.ts",
@@ -1981,6 +2031,7 @@
       "./node_modules/@companieshouse/api-sdk-node/dist/client.d.ts": [
         "./node_modules/@companieshouse/api-sdk-node/dist/enums/index.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/http/http-client.d.ts",
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/index.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/company-filing-history/service.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/company-metrics/service.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/company-officers/service.d.ts",
@@ -2019,6 +2070,18 @@
         "./node_modules/@companieshouse/api-sdk-node/dist/client.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/config.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/http/index.d.ts",
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/resource.d.ts"
+      ],
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/index.d.ts": [
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/scottish/index.d.ts"
+      ],
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/scottish/index.d.ts": [
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/scottish/service.d.ts",
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/scottish/types.d.ts"
+      ],
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/scottish/service.d.ts": [
+        "./node_modules/@companieshouse/api-sdk-node/dist/http/index.d.ts",
+        "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/scottish/types.d.ts",
         "./node_modules/@companieshouse/api-sdk-node/dist/services/resource.d.ts"
       ],
       "./node_modules/@companieshouse/api-sdk-node/dist/services/company-filing-history/service.d.ts": [
@@ -2282,7 +2345,8 @@
         "./node_modules/@types/node/ts4.8/http.d.ts",
         "./node_modules/@types/node/ts4.8/index.d.ts",
         "./node_modules/@types/qs/index.d.ts",
-        "./node_modules/@types/range-parser/index.d.ts"
+        "./node_modules/@types/range-parser/index.d.ts",
+        "./node_modules/@types/send/index.d.ts"
       ],
       "./node_modules/@types/express/index.d.ts": [
         "./node_modules/@types/body-parser/index.d.ts",
@@ -2529,6 +2593,12 @@
         "./node_modules/@types/node/ts4.8/stream.d.ts",
         "./node_modules/@types/node/ts4.8/zlib.d.ts"
       ],
+      "./node_modules/@types/send/index.d.ts": [
+        "./node_modules/@types/node/ts4.8/fs.d.ts",
+        "./node_modules/@types/node/ts4.8/index.d.ts",
+        "./node_modules/@types/node/ts4.8/stream.d.ts",
+        "./node_modules/@types/send/node_modules/@types/mime/index.d.ts"
+      ],
       "./node_modules/@types/serve-static/index.d.ts": [
         "./node_modules/@types/mime/index.d.ts",
         "./node_modules/@types/node/ts4.8/http.d.ts",
@@ -2720,6 +2790,10 @@
       "./node_modules/@companieshouse/api-sdk-node/dist/http/index.d.ts",
       "./node_modules/@companieshouse/api-sdk-node/dist/http/request-client.d.ts",
       "./node_modules/@companieshouse/api-sdk-node/dist/index.d.ts",
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/index.d.ts",
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/scottish/index.d.ts",
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/scottish/service.d.ts",
+      "./node_modules/@companieshouse/api-sdk-node/dist/services/bankrupt-officer/scottish/types.d.ts",
       "./node_modules/@companieshouse/api-sdk-node/dist/services/company-filing-history/service.d.ts",
       "./node_modules/@companieshouse/api-sdk-node/dist/services/company-filing-history/types.d.ts",
       "./node_modules/@companieshouse/api-sdk-node/dist/services/company-metrics/service.d.ts",
@@ -2860,6 +2934,8 @@
       "./node_modules/@types/nunjucks/index.d.ts",
       "./node_modules/@types/qs/index.d.ts",
       "./node_modules/@types/range-parser/index.d.ts",
+      "./node_modules/@types/send/index.d.ts",
+      "./node_modules/@types/send/node_modules/@types/mime/index.d.ts",
       "./node_modules/@types/serve-static/index.d.ts",
       "./node_modules/@types/sinon-chai/index.d.ts",
       "./node_modules/@types/sinon/index.d.ts",
@@ -2934,43 +3010,7 @@
       "./src/controller/index.ts",
       "./src/routers/index.ts",
       "./src/server.ts",
-      [
-        "./src/service/api/api.service.ts",
-        [
-          {
-            "file": "./src/service/api/api.service.ts",
-            "start": 885,
-            "length": 12,
-            "code": 2339,
-            "category": 1,
-            "messageText": "Property 'badosService' does not exist on type 'ApiClient'."
-          },
-          {
-            "file": "./src/service/api/api.service.ts",
-            "start": 942,
-            "length": 1,
-            "messageText": "Parameter 'e' implicitly has an 'any' type.",
-            "category": 1,
-            "code": 7006
-          },
-          {
-            "file": "./src/service/api/api.service.ts",
-            "start": 1236,
-            "length": 12,
-            "code": 2339,
-            "category": 1,
-            "messageText": "Property 'badosService' does not exist on type 'ApiClient'."
-          },
-          {
-            "file": "./src/service/api/api.service.ts",
-            "start": 1287,
-            "length": 1,
-            "messageText": "Parameter 'e' implicitly has an 'any' type.",
-            "category": 1,
-            "code": 7006
-          }
-        ]
-      ],
+      "./src/service/api/api.service.ts",
       "./src/service/index.ts",
       "./src/types/index.ts",
       "./src/utils/index.ts",
