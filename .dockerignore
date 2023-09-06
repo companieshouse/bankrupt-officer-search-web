@@ -2,7 +2,7 @@
 !dist
 !src
 !static
-!gulpfile.js
+!gulpfile.mjs
 !package.json
 !package-lock.json
 !tsconfig.json
