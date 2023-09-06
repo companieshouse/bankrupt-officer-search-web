@@ -38,6 +38,8 @@ import { ValidationResult } from '../../src/controller/bankrupt/ValidationResult
 import { ValidationError } from '../../src/controller/bankrupt/ValidationError';
 import { INVALID_CHARACTER_ERROR_MESSAGE } from '../../src/config';
 import { generateFiltersFromBody } from '../../src/controller/bankrupt/bankrupt.controller';
+import { BankruptOfficerSearchResults } from '../../src/types';
+import Resource from '@companieshouse/api-sdk-node/dist/services/resource';
 
 chai.use(sinonChai);
 
@@ -99,7 +101,7 @@ describe("BankruptController test suite", () => {
 
     it("should renders the bankrupt officer search page with the list of officers", async () => {
       req.body = mockSearchQuery.filters;
-      sinon.stub(BadosService.prototype, 'getBankruptOfficers').resolves(mockPostResponse[200]);
+      sinon.stub(BadosService.prototype, 'getBankruptOfficers').resolves(mockPostResponse[200] as Resource<BankruptOfficerSearchResults>);
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
       await postSearchPage(req, res, nextFunctionSpy);
 
@@ -110,7 +112,7 @@ describe("BankruptController test suite", () => {
   
     it("should render the bankrupt officer search page with list of officers when DOB filters are used", async () => {
       req.body = mockSearchQueryDOBRanges.filters;
-      sinon.stub(BadosService.prototype, 'getBankruptOfficers').resolves(mockPostResponse[200]);
+      sinon.stub(BadosService.prototype, 'getBankruptOfficers').resolves(mockPostResponse[200] as Resource<BankruptOfficerSearchResults>);
 
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
       await postSearchPage(req, res, nextFunctionSpy);
@@ -123,7 +125,7 @@ describe("BankruptController test suite", () => {
 
     it("should render the bankrupt officer search page from only FROM_DOB filters with the list of officers", async () => {
       req.body = mockSearchQueryFromDOB.filters;
-      sinon.stub(BadosService.prototype, 'getBankruptOfficers').resolves(mockPostResponse[200]);
+      sinon.stub(BadosService.prototype, 'getBankruptOfficers').resolves(mockPostResponse[200] as Resource<BankruptOfficerSearchResults>);
 
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
       await postSearchPage(req, res, nextFunctionSpy);
@@ -135,7 +137,7 @@ describe("BankruptController test suite", () => {
 
     it("should render the bankrupt officer search page from only TO_DOB filters with the list of officers", async () => {
       req.body = mockSearchQueryToDOB.filters;
-      sinon.stub(BadosService.prototype, 'getBankruptOfficers').resolves(mockPostResponse[200]);
+      sinon.stub(BadosService.prototype, 'getBankruptOfficers').resolves(mockPostResponse[200] as Resource<BankruptOfficerSearchResults>);
 
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
       await postSearchPage(req, res, nextFunctionSpy);

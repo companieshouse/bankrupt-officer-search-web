@@ -16,6 +16,8 @@ import {
 import { 
   getSessionRequest
 } from '../__mocks__/session.mock';
+import { FullBankruptOfficer } from '../../src/types';
+import Resource from '@companieshouse/api-sdk-node/dist/services/resource';
 
 chai.use(sinonChai);
 
@@ -47,7 +49,7 @@ describe('BankruptOfficerController test suite', () => {
   });
 
   it('should return bankruptOfficer with data object and render bankrupt_officer page', async () => {
-    sinon.stub(BadosService.prototype, 'getBankruptOfficer').resolves(mockGetResponse[200]);
+    sinon.stub(BadosService.prototype, 'getBankruptOfficer').resolves(mockGetResponse[200] as Resource<FullBankruptOfficer>);
 
     await bankruptOfficer(req, res, nextFunctionSpy);
     expect(nextFunctionSpy).not.called;
@@ -65,7 +67,7 @@ describe('BankruptOfficerController test suite', () => {
   });
 
   it('should return bankruptOfficer with status code 500 and render error-pages/500 page', async () => {
-    sinon.stub(BadosService.prototype, 'getBankruptOfficer').resolves(mockGetResponse[500]);
+    sinon.stub(BadosService.prototype, 'getBankruptOfficer').resolves(mockGetResponse[500] as Resource<FullBankruptOfficer>);
 
     await bankruptOfficer(req, res, nextFunctionSpy);
 
@@ -75,7 +77,7 @@ describe('BankruptOfficerController test suite', () => {
   });
 
   it('should return bankruptOfficer with status code 404 and render error-pages/404-link-expired page', async () => {
-    sinon.stub(BadosService.prototype, 'getBankruptOfficer').resolves(mockGetResponse[404]);
+    sinon.stub(BadosService.prototype, 'getBankruptOfficer').resolves(mockGetResponse[404] as Resource<FullBankruptOfficer>);
 
     await bankruptOfficer(req, res, nextFunctionSpy);
 

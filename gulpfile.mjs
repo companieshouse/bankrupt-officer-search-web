@@ -2,6 +2,7 @@ import gulp from 'gulp';
 import ts from 'gulp-typescript';
 import * as del from 'del';
 import nodemon from 'gulp-nodemon';
+
 const tsProject = ts.createProject('tsconfig.prod.json');
 const paths = {
     build: ['dist'],
