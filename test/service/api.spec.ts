@@ -93,7 +93,7 @@ describe('ApiService Test suite', () => {
       const client = createOAuthApiClient(getSessionRequest());
       expect(client).instanceOf(ApiClient);
       expect(client.badosService).instanceOf(BadosService);
-      expect(client.BankruptOfficer).is.not.null;
+      expect(client.badosService).is.not.null;
     });
   });
   
