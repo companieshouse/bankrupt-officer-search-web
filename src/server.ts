@@ -3,7 +3,6 @@
  */
 
 import * as http from "http";
-import * as yargs from "yargs";
 
 import app from "./app";
 import { logger } from "./utils";
