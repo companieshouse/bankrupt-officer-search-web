@@ -1,7 +1,7 @@
-const gulp = require('gulp');
-const ts = require('gulp-typescript');
-const del = require('del');
-nodemon = require('gulp-nodemon');
+import gulp from 'gulp';
+import ts from 'gulp-typescript';
+import * as del from 'del';
+import nodemon from 'gulp-nodemon';
 const tsProject = ts.createProject('tsconfig.prod.json');
 const paths = {
     build: ['dist'],
