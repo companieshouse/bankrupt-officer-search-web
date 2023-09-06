@@ -425,14 +425,14 @@ export const PAGINATION_RESULTS = {
 
 export const errorStatusCode: Array<number> = [401, 404, 500];
 
-export const mockPostResponse: any = { 
+export const mockPostResponse = { 
   "200": { httpStatusCode: 200, resource: BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS },
   "401": { httpStatusCode: 401 },
   "404": { httpStatusCode: 404 },
   "500": { httpStatusCode: 500 }
 };
 
-export const mockGetResponse: any = { 
+export const mockGetResponse = { 
   "200": { httpStatusCode: 200, resource: mockFullBankruptOfficer },
   "401": { httpStatusCode: 401 },
   "404": { httpStatusCode: 404 },
