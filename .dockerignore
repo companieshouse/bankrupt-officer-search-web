@@ -10,3 +10,4 @@
 !docker_start.sh
 !routes.yaml
 !views
+!start-ecs
