@@ -12,7 +12,7 @@ import { logger } from "./utils";
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(yargs.argv.PORT || yargs.argv._[0]);
+const port = normalizePort(process.env.PORT || process.argv0);
 app.set("port", port);
 
 /**
