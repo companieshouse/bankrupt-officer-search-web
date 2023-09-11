@@ -19,7 +19,7 @@ cdn_host = "d3uvya5a8a1ncx.cloudfront.net"
 chs_url = "https://cidev.aws.chdev.org"
 cookie_domain = "cidev.aws.chdev.org"
 # cookie_secret
-human_log = 1
+human_log = "1"
 #internal_api_url="http://api.chs.local:4001"
 log_level = "debug"
 piwik_url = "https://matomo.platform.aws.chdev.org/"
