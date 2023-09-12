@@ -52,6 +52,17 @@ describe('Routers test suite', () => {
     });
   });
 
+  describe('Healthcheck', () => {
+    it('should return 200 without authentication', async () => {
+        const resp = await request(app)
+            .get(`${SCOTTISH_BANKRUPT_OFFICER}/healthcheck`)
+            .set('Cookie', signedOutCookie)
+            .redirects(0);
+
+        expect(resp.status).to.equal(200);
+    });
+  });
+
   describe('Hit Scottish Endpoint', () => {
     it("should find " + SCOTTISH_BANKRUPT_OFFICER + " page url", async () => {
       return await request(app)
