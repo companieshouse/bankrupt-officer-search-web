@@ -5,11 +5,12 @@ locals {
   service_name              = "bankrupt-officer-search-web"
   container_port            = "3000" # default node port required here until prod docker container is built allowing port change via env var
   docker_repo               = "bankrupt-officer-search-web"
-  lb_listener_rule_priority = 10
+  lb_listener_rule_priority = 14
   lb_listener_paths         = ["/admin/officer-search/scottish-bankrupt-officer", "/admin/officer-search/scottish-bankrupt-officer/.*"]
   healthcheck_path          = "/admin/officer-search/scottish-bankrupt-officer" #healthcheck path for bankrupt officer search web
   healthcheck_matcher       = "200" # no explicit healthcheck in this service yet, change this when added!
 
+  kms_alias                 = "alias/${var.aws_profile}/environment-services-kms"
   service_secrets           = jsondecode(data.vault_generic_secret.service_secrets.data_json)
 
   parameter_store_secrets    = {
