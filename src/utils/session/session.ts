@@ -8,38 +8,39 @@ import { AccessTokenKeys } from '@companieshouse/node-session-handler/lib/sessio
 import {
   PERMISSIONS_PATH
 } from '../../config';
+import { Session } from '@companieshouse/node-session-handler';
 
-export function getSignInInfo(session): ISignInInfo {
+export function getSignInInfo(session: Session | undefined): ISignInInfo | undefined {
   return session?.data?.[SessionKey.SignInInfo];
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function getPermissions(session): any {
+export function getPermissions(session: Session | undefined): any {
   const signInInfo = getSignInInfo(session);
   return signInInfo?.[SignInInfoKeys.UserProfile]?.[UserProfileKeys.Permissions];
 }
 
-export function checkPermission(session): boolean {
+export function checkPermission(session: Session | undefined): boolean {
   const permission = getPermissions(session);
   return permission?.[PERMISSIONS_PATH] === 1;
 }
 
-export function getLoggedInUserEmail(session): string {
+export function getLoggedInUserEmail(session: Session | undefined): string {
   const signInInfo = getSignInInfo(session);
   return signInInfo?.[SignInInfoKeys.UserProfile]?.[UserProfileKeys.Email] as string;
 }
 
-export function getUserId(session): string{
+export function getUserId(session: Session): string{
   const signInInfo = getSignInInfo(session);
   return signInInfo?.[SignInInfoKeys.UserProfile]?.[UserProfileKeys.UserId] as string;
 }
 
-export function checkUserSignedIn(session): boolean {
+export function checkUserSignedIn(session: Session | undefined): boolean {
   const signInInfo = getSignInInfo(session);
   return signInInfo?.[SignInInfoKeys.SignedIn] === 1;
 }
 
-export function getAccessToken(session): string {
+export function getAccessToken(session: Session | undefined): string {
   const signInInfo = getSignInInfo(session);
   return signInInfo?.[SignInInfoKeys.AccessToken]?.[AccessTokenKeys.AccessToken] as string;
 }

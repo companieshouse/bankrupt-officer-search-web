@@ -1,8 +1,12 @@
- FROM 169942020521.dkr.ecr.eu-west-1.amazonaws.com/base/node:14-alpine-builder
- FROM 169942020521.dkr.ecr.eu-west-1.amazonaws.com/base/node:14-alpine-runtime
+FROM 416670754337.dkr.ecr.eu-west-2.amazonaws.com/local/configure-local-ssh
+FROM 416670754337.dkr.ecr.eu-west-2.amazonaws.com/ci-node-runtime-18
 
- COPY start-ecs /usr/local/bin/
+COPY --from=0 ./ ./
 
- RUN chmod 555 /usr/local/bin/start-ecs
+WORKDIR /opt
 
- CMD ["start-ecs"]
+COPY dist/app ./package.json ./package-lock.json docker_start.sh routes.yaml ./
+
+CMD ["./docker_start.sh"]
+
+EXPOSE 3000

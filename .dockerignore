@@ -1,9 +1,13 @@
 *
-
+!dist
 !src
 !static
-!gulpfile.js
+!gulpfile.mjs
 !package.json
 !package-lock.json
 !tsconfig.json
+!tsconfig.prod.json
+!docker_start.sh
+!routes.yaml
+!views
 !start-ecs

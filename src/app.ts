@@ -21,6 +21,7 @@ import {
 } from './controller';
 
 import router from './routers';
+import preAuthRouter from './routers/pre.auth';
 
 import {
   PIWIK_SITE_ID,
@@ -74,6 +75,9 @@ const env = nunjucks.configure([
 
 const cookieConfig: CookieConfig = { cookieName: '__SID', cookieSecret: COOKIE_SECRET, cookieDomain: COOKIE_DOMAIN };
 const sessionStore = new SessionStore(new Redis(`redis://${CACHE_SERVER}`));
+
+// Needs to be included above the middleware so that authentication is not applied.
+app.use('/', preAuthRouter);
 
 app.use([SCOTTISH_BANKRUPT_OFFICER, SCOTTISH_BANKRUPT_OFFICER_DETAILS], createLoggerMiddleware(APPLICATION_NAME));
 app.use([SCOTTISH_BANKRUPT_OFFICER, SCOTTISH_BANKRUPT_OFFICER_DETAILS], SessionMiddleware(cookieConfig, sessionStore));

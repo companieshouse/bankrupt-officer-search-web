@@ -1,11 +1,25 @@
 local_resource(
   name = 'dev:bankrupt-officer-search-web:init',
-  cmd = 'npm install && npm run build'
+  cmd = 'npm --silent install && npm --silent run build:init'
 )
 
 local_resource(
   name = 'dev:bankrupt-officer-search-web:build',
-  cmd = 'npm run build'
+  cmd = 'npm --silent run build:copy-views',
+  deps = [
+    'src/views'
+  ]
+)
+
+local_resource(
+  name = 'dev:bankrupt-officer-search-web:build-code',
+  cmd = 'npm --silent run build:compile',
+  deps = [
+    'src'
+  ],
+  ignore = [
+    'src/views'
+  ]
 )
 
 custom_build(
@@ -17,7 +31,6 @@ custom_build(
       local_path = './dist/app',
       remote_path = '/app/dist/app'
     ),
-    run('cd /app && yarn install', trigger=['./package.json', './yarn.lock']),
     restart_container()
   ],
   deps = [

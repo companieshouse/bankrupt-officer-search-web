@@ -30,7 +30,8 @@ export default (req: Request, res: Response, next: NextFunction): void => {
     }
     
   } catch (err) {
-    logger.error(err);
+    if(typeof err === 'string')
+      logger.error(err);
     next(err);
   }
 };

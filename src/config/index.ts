@@ -8,10 +8,10 @@ export const getEnvironmentValue = (key: string): string => {
   return value;
 };
 
-export const getEnvironmentValueOrDefault = (key: string, defaultValue: any): string => {
+export const getEnvironmentValueOrDefault = (key: string, defaultValue: unknown): string => {
   const value: string = process.env[key] || "";
 
-  if (!value) {
+  if (!value && typeof defaultValue === 'string') {
     return defaultValue;
   }
 
@@ -35,11 +35,11 @@ export const SCOTTISH_BANKRUPT_OFFICER_DETAILS = "/admin/officer-search/scottish
 export const PERMISSIONS_PATH = SCOTTISH_BANKRUPT_OFFICER;
 
 // For pagination component
-export const ADD_TO_FRONT: string = "add_to_front";
-export const ADD_TO_END: string = "add_to_end";
-export const ADD_ELLIPSIS: string = "add_ellipsis";
-export const RESULTS_PER_PAGE: number = Number(getEnvironmentValueOrDefault("RESULTS_PER_PAGE", "20"));
-export const BANKRUPT_OFFICER_SEARCH_SESSION: string = "bankrupt-officer-search-session";
+export const ADD_TO_FRONT = "add_to_front";
+export const ADD_TO_END = "add_to_end";
+export const ADD_ELLIPSIS = "add_ellipsis";
+export const RESULTS_PER_PAGE = Number(getEnvironmentValueOrDefault("RESULTS_PER_PAGE", "20"));
+export const BANKRUPT_OFFICER_SEARCH_SESSION = "bankrupt-officer-search-session";
 export const SESSION_FILTER = "filters";
 
 export const INVALID_CHARACTER_ERROR_MESSAGE = "Enter valid characters";
