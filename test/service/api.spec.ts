@@ -21,8 +21,8 @@ import {
 } from "../../src/service/api/api.service";
 
 import { logger } from "../../src/utils";
-import { BadosService } from '@companieshouse/api-sdk-node/dist/services/bankrupt-officer';
-import ApiClient from '@companieshouse/api-sdk-node/dist/client';
+import { BadosService } from 'private-api-sdk-node/dist/services/bankrupt-officer';
+import PrivateApiClient from 'private-api-sdk-node/dist/client';
 import { FullBankruptOfficer } from '@companieshouse/api-sdk-node/dist/services/bankrupt-officer/scottish';
 import Resource from '@companieshouse/api-sdk-node/dist/services/resource';
 import { BankruptOfficerSearchResults } from '../../src/types';
@@ -94,7 +94,7 @@ describe('ApiService Test suite', () => {
   describe('createOAuthApiClient', () => {
     it('check instance of PrivateApiClient', () => {
       const client = createOAuthApiClient(getSessionRequest());
-      expect(client).instanceOf(ApiClient);
+      expect(client).instanceOf(PrivateApiClient);
       expect(client.badosService).instanceOf(BadosService);
       expect(client.badosService).is.not.null;
     });

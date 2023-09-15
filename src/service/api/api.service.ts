@@ -1,14 +1,15 @@
 import { Session } from '@companieshouse/node-session-handler';
-import { Resource, createApiClient } from '@companieshouse/api-sdk-node';
-import ApiClient from '@companieshouse/api-sdk-node/dist/client';
+import { Resource } from '@companieshouse/api-sdk-node';
+import { createPrivateApiClient } from "private-api-sdk-node";
+import PrivateApiClient from 'private-api-sdk-node/dist/client';
 
 import { logger, userSession } from '../../utils';
 import { INTERNAL_API_URL } from '../../config';
 import { BankruptOfficerSearchQuery, BankruptOfficerSearchResults, FullBankruptOfficer } from '../../types';
 
-export const createOAuthApiClient = (session: Session | undefined): ApiClient => {
+export const createOAuthApiClient = (session: Session | undefined): PrivateApiClient => {
   const oAuth: string = userSession.getAccessToken(session);
-  return createApiClient(undefined, oAuth, INTERNAL_API_URL);
+  return createPrivateApiClient(undefined, oAuth, INTERNAL_API_URL);
 };
 
 export const fetchBankruptOfficer = async (session: Session | undefined, 

@@ -1,4 +1,4 @@
-import { createApiClient } from "@companieshouse/api-sdk-node";
+import { createPrivateApiClient } from "private-api-sdk-node";
 import { 
   BankruptOfficerSearchFilters, 
   BankruptOfficerSearchQuery,
@@ -9,7 +9,7 @@ export const PAGE_NOT_FOUND = "page not found";
 export const LINK_EXPIRED = "This link has expired";
 export const SERVER_ERROR = "Sorry, there is a problem with the service";
 export const EPHEMERALKEY = "B687FDB8F0E171DBE05400144FFBDD12";
-export const mockApiClient = createApiClient(undefined, "OAUTH_TOKEN", "TEST_URL");
+export const mockApiClient = createPrivateApiClient(undefined, "OAUTH_TOKEN", "TEST_URL");
 
 export const FAKE_URL = { 
   path: "tryAgainNoLuck" 
