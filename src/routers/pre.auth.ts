@@ -1,7 +1,7 @@
 import { SCOTTISH_BANKRUPT_OFFICER } from "../config";
 import { Router } from "express";
 
-import { healthcheckEndpoint } from '../controller/healthcheck'
+import { healthcheckEndpoint } from '../controller/healthcheck';
 
 const router = Router();
 
