@@ -20,8 +20,6 @@ let app: unknown = null;
 
 describe('Routers test suite', () => {
 
-  this.timeout(10000);
-
   beforeEach(done => {
     sinon.stub(Redis.prototype, 'connect').returns(Promise.resolve());
     sinon.stub(Redis.prototype, 'get').returns(Promise.resolve(sessionSignedIn));
@@ -39,6 +37,7 @@ describe('Routers test suite', () => {
   });
 
   describe('Authentication', () => {
+
     [ SCOTTISH_BANKRUPT_OFFICER,
       SCOTTISH_BANKRUPT_OFFICER_DETAILS].forEach((page) => {
       it('should redirect ' + page + ' to signin if user is not logged in', async () => {
@@ -50,7 +49,7 @@ describe('Routers test suite', () => {
             expect(response.text).to.include('/signin');
             expect(response.status).equal(302);
           });
-      });
+      }).timeout(10000);
     });
   });
 
