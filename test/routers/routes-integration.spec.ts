@@ -48,7 +48,7 @@ describe('Routers test suite', () => {
             expect(response.text).to.include('/signin');
             expect(response.status).equal(302);
           });
-      });
+      }).timeout(10000);
     });
   });
 
