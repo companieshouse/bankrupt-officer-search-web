@@ -76,7 +76,8 @@
   },
   "overrides": {
     "nodemon": "$nodemon",
-    "glob-parent": "^5.1.2"
+    "glob-parent": "^5.1.2",
+    "chokidar": "^2.1.8"
   },
   "nodemonConfig": {
     "watch": [
