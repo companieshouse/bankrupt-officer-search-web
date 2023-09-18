@@ -23,7 +23,7 @@ import {
 import { logger } from "../../src/utils";
 import { BadosService } from 'private-api-sdk-node/dist/services/bankrupt-officer';
 import PrivateApiClient from 'private-api-sdk-node/dist/client';
-import { FullBankruptOfficer } from '@companieshouse/api-sdk-node/dist/services/bankrupt-officer/scottish';
+import { FullBankruptOfficer } from 'private-api-sdk-node/dist/services/bankrupt-officer/scottish';
 import Resource from '@companieshouse/api-sdk-node/dist/services/resource';
 import { BankruptOfficerSearchResults } from '../../src/types';
 
