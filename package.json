@@ -76,7 +76,8 @@
     "typescript": "^5.2.2"
   },
   "overrides": {
-    "nodemon": "$nodemon"
+    "nodemon": "$nodemon",
+    "glob-parent": "^5.1.2"
   },
   "nodemonConfig": {
     "watch": [
