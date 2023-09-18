@@ -57,6 +57,7 @@
     "@types/yargs": "^17.0.24",
     "@typescript-eslint/eslint-plugin": "^6.6.0",
     "@typescript-eslint/parser": "^6.6.0",
+    "path-dirname": "^1.0.2",
     "chai": "^4.3.8",
     "del": "^7.1.0",
     "eslint": "^8.48.0",
