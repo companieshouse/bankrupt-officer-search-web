@@ -5,7 +5,7 @@ locals {
   service_name              = "bankrupt-officer-search-web"
   container_port            = "3000" # default node port required here until prod docker container is built allowing port change via env var
   docker_repo               = "bankrupt-officer-search-web"
-  lb_listener_rule_priority = 14
+  lb_listener_rule_priority = 15
   lb_listener_paths         = ["/admin/officer-search/scottish-bankrupt-officer", "/admin/officer-search/scottish-bankrupt-officer/.*"]
   healthcheck_path          = "/admin/officer-search/scottish-bankrupt-officer" #healthcheck path for bankrupt officer search web
   healthcheck_matcher       = "200" # no explicit healthcheck in this service yet, change this when added!
