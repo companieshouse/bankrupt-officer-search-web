@@ -22,7 +22,7 @@ locals {
     "oauth2_redirect_uri"       = local.service_secrets["oauth2_redirect_uri"]
     "account_url"               = local.service_secrets["account_url"]
     "cache_server"              = local.service_secrets["cache_server"]
-    "cookie_sercret"            = local.service_secrets["cookie_sercret"]
+    "cookie_secret"            = local.service_secrets["cookie_secret"]
   }
 
   vpc_name                  = local.service_secrets["vpc_name"]
