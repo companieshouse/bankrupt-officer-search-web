@@ -7,7 +7,7 @@ locals {
   docker_repo               = "bankrupt-officer-search-web"
   lb_listener_rule_priority = 15
   lb_listener_paths         = ["/admin/officer-search/scottish-bankrupt-officer", "/admin/officer-search/scottish-bankrupt-officer/*"]
-  healthcheck_path          = "/admin/officer-search/scottish-bankrupt-officer" #healthcheck path for bankrupt officer search web
+  healthcheck_path          = "/admin/officer-search/scottish-bankrupt-officer/healthcheck" #healthcheck path for bankrupt officer search web
   healthcheck_matcher       = "200"                                             # no explicit healthcheck in this service yet, change this when added!
 
   kms_alias       = "alias/${var.aws_profile}/environment-services-kms"
