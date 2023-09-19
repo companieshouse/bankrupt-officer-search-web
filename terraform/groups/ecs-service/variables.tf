@@ -61,38 +61,38 @@ variable "bankrupt_officer_search_web_version" {
 }
 
 variable "chs_url" {
-  type        = string
+  type = string
 }
 variable "cdn_host" {
-  type        = string
+  type = string
 }
 variable "account_local_url" {
-  type        = string
+  type = string
 }
 
 variable "piwik_url" {
-  type        = string
+  type = string
 }
 variable "piwik_site_id" {
-  type        = string
+  type = string
 }
 variable "cookie_domain" {
-  type        = string
+  type = string
 }
 variable "cookie_name" {
-  type        = string
-  default     = "__SID"
+  type    = string
+  default = "__SID"
 }
 variable "cookie_secure_only" {
-  type        = string
-  default     = "0"
+  type    = string
+  default = "0"
 }
 variable "default_session_expiration" {
-  type        = string
-  default     = "3600"
+  type    = string
+  default = "3600"
 }
 variable "api_url" {
-  type        = string
+  type = string
 }
 variable "human_log" {
   type    = string
