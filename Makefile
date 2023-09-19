@@ -1,4 +1,4 @@
-artifact_name       := bankrupt-officer-search
+artifact_name       := bankrupt-officer-search-web
 version             := "unversioned"
 
 .PHONY: all
