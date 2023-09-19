@@ -15,10 +15,6 @@ variable "aws_profile" {
   type        = string
   description = "The AWS profile to use for deployment."
 }
-variable "kms_alias" {
-  type        = string
-}
-
 # ------------------------------------------------------------------------------
 # Docker Container
 # ------------------------------------------------------------------------------
@@ -96,9 +92,6 @@ variable "default_session_expiration" {
   default     = "3600"
 }
 variable "api_url" {
-  type        = string
-}
-variable "piwik_start_goal_id" {
   type        = string
 }
 variable "human_log" {
