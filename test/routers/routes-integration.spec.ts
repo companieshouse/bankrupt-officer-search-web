@@ -19,8 +19,8 @@ import { logger } from "../../src/utils";
 
 let app: unknown = null;
 
-describe('Routers test suite', () => {
-
+describe('Routers test suite', function () {
+  this.timeout(10000);
   beforeEach(done => {
     sinon.stub(Redis.prototype, 'connect').returns(Promise.resolve());
     sinon.stub(Redis.prototype, 'get').returns(Promise.resolve(sessionSignedIn));
@@ -50,7 +50,7 @@ describe('Routers test suite', () => {
             expect(response.text).to.include('/signin');
             expect(response.status).equal(302);
           });
-      }).timeout(10000);
+      });
     });
   });
 
