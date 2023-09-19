@@ -66,13 +66,11 @@ locals {
     { "name": "COOKIE_DOMAIN", "value": "${var.cookie_domain}" },
     { "name": "COOKIE_NAME", "value": "${var.cookie_name}" },
     { "name": "DEFAULT_SESSION_EXPIRATION", "value": "${var.default_session_expiration}" },
-    { "name": "INTERNAL_API_URL", "value" : "${var.internal_api_url}" },
     { "name": "HUMAN_LOG", "value" : "${var.human_log}" },
     { "name" : "BANKRUPT_OFFICER_SEARCH_WEB_VERSION", "value" : "${var.bankrupt_officer_search_web_version}" },
     { "name": "LOG_LEVEL", "value": "${var.log_level}" },
     { "name": "PIWIK_URL", "value": "${var.piwik_url}" },
     { "name": "PIWIK_SITE_ID", "value": "${var.piwik_site_id}" },
-    { "name": "PIWIK_START_GOAL_ID", "value": "${var.piwik_start_goal_id}" },
     { "name": "TZ", "value" : "${var.tz}" }
   ]
 }
