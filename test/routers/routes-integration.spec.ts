@@ -2,6 +2,7 @@ import Redis from 'ioredis';
 import sinon from "sinon";
 import request from "supertest";
 import { expect } from 'chai';
+import {} from "mocha";
 
 import {
   sessionSignedIn,
