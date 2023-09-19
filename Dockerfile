@@ -5,7 +5,7 @@ COPY --from=0 ./ ./
 
 WORKDIR /opt
 
-COPY dist/app ./package.json ./package-lock.json docker_start.sh routes.yaml ./
+COPY dist ./package.json ./package-lock.json docker_start.sh routes.yaml ./
 
 CMD ["./docker_start.sh"]
 

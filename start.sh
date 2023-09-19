@@ -30,5 +30,5 @@ else
     source "${APP_DIR}/global_env"
     source "${APP_DIR}/app_env"
 
-    node ${APP_DIR}/dist/app.js -- $PORT
+    node ${APP_DIR}/dist/server.js -- $PORT
 fi
