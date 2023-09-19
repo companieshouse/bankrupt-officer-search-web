@@ -101,3 +101,6 @@ variable "human_log" {
 variable "tz" {
   type = string
 }
+variable "node_env" {
+  type = string
+}
