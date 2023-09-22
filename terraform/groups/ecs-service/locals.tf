@@ -17,7 +17,6 @@ locals {
     "vpc_name"             = local.service_secrets["vpc_name"]
     "chs_api_key"          = local.service_secrets["chs_api_key"]
     "internal_api_url"     = local.service_secrets["internal_api_url"]
-    "cdn_host"             = local.service_secrets["cdn_host"]
     "oauth2_auth_uri"      = local.service_secrets["oauth2_auth_uri"]
     "oauth2_redirect_uri"  = local.service_secrets["oauth2_redirect_uri"]
     "oauth2_token_uri"     = local.service_secrets["oauth2_token_uri"]
@@ -32,7 +31,6 @@ locals {
   vpc_name             = local.service_secrets["vpc_name"]
   chs_api_key          = local.service_secrets["chs_api_key"]
   internal_api_url     = local.service_secrets["internal_api_url"]
-  cdn_host             = local.service_secrets["cdn_host"]
   oauth2_auth_uri      = local.service_secrets["oauth2_auth_uri"]
   oauth2_redirect_uri  = local.service_secrets["oauth2_redirect_uri"]
   oauth2_token_uri     = local.service_secrets["oauth2_token_uri"]
@@ -73,7 +71,7 @@ locals {
     { "name" : "ACCOUNT_LOCAL_URL", "value" : "${var.account_local_url}" },
     { "name" : "API_URL", "value" : "${var.api_url}" },
     { "name" : "CHS_URL", "value" : "${var.chs_url}" },
-    { "name" : "CDN_HOST", "value" : "//${var.cdn_host}" },
+    { "name" : "CDN_HOST", "value" : "${var.cdn_host}" },
     { "name" : "COOKIE_DOMAIN", "value" : "${var.cookie_domain}" },
     { "name" : "COOKIE_NAME", "value" : "${var.cookie_name}" },
     { "name" : "DEFAULT_SESSION_EXPIRATION", "value" : "${var.default_session_expiration}" },
