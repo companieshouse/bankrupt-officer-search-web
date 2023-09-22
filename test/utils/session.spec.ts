@@ -36,7 +36,7 @@ describe('SessionUtils test suite', () => {
   });
 
   it('Test function getPermissions() when session is empty', () => {
-    const testPermission = getPermissions({});
+    const testPermission = getPermissions({} as Session);
     expect(testPermission).to.be.undefined;
   });
 
@@ -46,7 +46,7 @@ describe('SessionUtils test suite', () => {
   });
 
   it('Test function checkPermission() when session is empty', () => {
-    const testPermission = checkPermission({});
+    const testPermission = checkPermission({} as Session);
     expect(testPermission).to.be.false;
   });
 
@@ -56,7 +56,7 @@ describe('SessionUtils test suite', () => {
   });
 
   it('Test function getLoggedInUserEmail() when session is empty', () => {
-    const testEmail = getLoggedInUserEmail({});
+    const testEmail = getLoggedInUserEmail({} as Session);
     expect(testEmail).to.be.undefined;
   });
 
@@ -66,7 +66,7 @@ describe('SessionUtils test suite', () => {
   });
 
   it('Test function getUserId() when session is empty', () => {
-    const userId = getUserId({});
+    const userId = getUserId({} as Session);
     expect(userId).to.be.undefined;
   });
 

@@ -16,7 +16,7 @@ export const fetchBankruptOfficer = async (session: Session | undefined,
   ephemeralKey: string): Promise<Resource<FullBankruptOfficer>> => {
   const client = createOAuthApiClient(session);
   return await client.badosService.getBankruptOfficer(ephemeralKey)
-    .catch(e => {
+    .catch((e) => {
       logger.error(e);
       return e;
     });
@@ -26,7 +26,7 @@ export const fetchBankruptOfficers = async (session: Session | undefined,
   query: BankruptOfficerSearchQuery): Promise<Resource<BankruptOfficerSearchResults>> => {
   const client = createOAuthApiClient(session);
   return await client.badosService.getBankruptOfficers(query)
-    .catch(e => {
+    .catch((e) => {
       logger.error(e);
       return e;
     });

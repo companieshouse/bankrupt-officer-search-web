@@ -1,0 +1,10 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+        "incremental": true,
+        "tsBuildInfoFile": "./.ts-build-info"
+    },
+    "include": [
+        "./src/**/*.ts"
+    ]
+}

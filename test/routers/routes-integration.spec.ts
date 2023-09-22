@@ -2,6 +2,7 @@ import Redis from 'ioredis';
 import sinon from "sinon";
 import request from "supertest";
 import { expect } from 'chai';
+import {} from "mocha";
 
 import {
   sessionSignedIn,
@@ -16,10 +17,10 @@ import {
 
 import { logger } from "../../src/utils";
 
-let app = null;
+let app: unknown = null;
 
-describe('Routers test suite', () => {
-
+describe('Routers test suite', function () {
+  this.timeout(10000);
   beforeEach(done => {
     sinon.stub(Redis.prototype, 'connect').returns(Promise.resolve());
     sinon.stub(Redis.prototype, 'get').returns(Promise.resolve(sessionSignedIn));
@@ -37,6 +38,7 @@ describe('Routers test suite', () => {
   });
 
   describe('Authentication', () => {
+
     [ SCOTTISH_BANKRUPT_OFFICER,
       SCOTTISH_BANKRUPT_OFFICER_DETAILS].forEach((page) => {
       it('should redirect ' + page + ' to signin if user is not logged in', async () => {
@@ -49,6 +51,17 @@ describe('Routers test suite', () => {
             expect(response.status).equal(302);
           });
       });
+    });
+  });
+
+  describe('Healthcheck', () => {
+    it('should return 200 without authentication', async () => {
+      const resp = await request(app)
+        .get(`${SCOTTISH_BANKRUPT_OFFICER}/healthcheck`)
+        .set('Cookie', signedOutCookie)
+        .redirects(0);
+
+      expect(resp.status).to.equal(200);
     });
   });
 

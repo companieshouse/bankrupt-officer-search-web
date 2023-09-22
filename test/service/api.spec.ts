@@ -23,6 +23,9 @@ import {
 import { logger } from "../../src/utils";
 import { BadosService } from 'private-api-sdk-node/dist/services/bankrupt-officer';
 import PrivateApiClient from 'private-api-sdk-node/dist/client';
+import { FullBankruptOfficer } from 'private-api-sdk-node/dist/services/bankrupt-officer/scottish';
+import Resource from '@companieshouse/api-sdk-node/dist/services/resource';
+import { BankruptOfficerSearchResults } from '../../src/types';
 
 chai.use(sinonChai);
 
@@ -42,7 +45,7 @@ describe('ApiService Test suite', () => {
 
   describe('fetchBankruptOfficer()', () => {
     it('should return the response object with the correct fields', async () => {
-      const stubRequest = sinon.stub(BadosService.prototype, 'getBankruptOfficer').resolves(mockGetResponse[200]);
+      const stubRequest = sinon.stub(BadosService.prototype, 'getBankruptOfficer').resolves(mockGetResponse[200] as Resource<FullBankruptOfficer>);
 
       const results = await fetchBankruptOfficer(getSessionRequest(), EPHEMERALKEY);
       
@@ -66,7 +69,7 @@ describe('ApiService Test suite', () => {
 
   describe('fetchBankruptOfficers()', () => {
     it('should return the response object with the correct fields', async () => {
-      const stubRequest = sinon.stub(BadosService.prototype, 'getBankruptOfficers').resolves(mockPostResponse[200]);
+      const stubRequest = sinon.stub(BadosService.prototype, 'getBankruptOfficers').resolves(mockPostResponse[200] as Resource<BankruptOfficerSearchResults>);
 
       const results = await fetchBankruptOfficers(getSessionRequest(), mockSearchQuery);
       

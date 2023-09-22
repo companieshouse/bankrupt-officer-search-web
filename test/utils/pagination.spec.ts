@@ -17,7 +17,7 @@ describe('Pagination test suite', () => {
       ],
       "previous":{"href":"prefix?page=1"},
       "next":{"href":"prefix?page=3"}
-    }
+    };
     expect(paginationData).to.deep.equal(expectedData);
   });
 
@@ -40,7 +40,7 @@ describe('Pagination test suite', () => {
       ],
       "previous":{"href":"prefix?page=3"},
       "next":{"href":"prefix?page=5"}
-    }
+    };
     expect(paginationData).to.deep.equal(expectedData);
   });
 
@@ -62,7 +62,7 @@ describe('Pagination test suite', () => {
       ],
       "previous":{"href":"prefix?page=6"},
       "next":{"href":"prefix?page=8"}
-    }
+    };
     expect(paginationData).to.deep.equal(expectedData);
   });
 
@@ -83,7 +83,7 @@ describe('Pagination test suite', () => {
         {"number":11,"href":"prefix?page=11"}
       ],
       "previous":{"href":"prefix?page=5"},
-      "next":{"href":"prefix?page=7"}}
+      "next":{"href":"prefix?page=7"}};
     expect(paginationData).to.deep.equal(expectedData);
   });
 });

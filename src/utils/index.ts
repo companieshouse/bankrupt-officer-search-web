@@ -16,4 +16,4 @@ export { formattingOfficersInfo } from "./script/formatting";
 /**
  *
  */
- export { buildPaginationData } from "./pagination/pagination";
+export { buildPaginationData } from "./pagination/pagination";
