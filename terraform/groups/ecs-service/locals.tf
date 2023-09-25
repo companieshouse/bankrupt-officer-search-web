@@ -2,7 +2,7 @@
 locals {
   stack_name                = "search-service" # this must match the stack name the service deploys into
   name_prefix               = "${local.stack_name}-${var.environment}"
-  service_name              = "bankrupt-officer-search-web"
+  service_name              = "bankrupt-officer-srch-web"
   container_port            = "3000" # default node port required here until prod docker container is built allowing port change via env var
   docker_repo               = "bankrupt-officer-search-web"
   lb_listener_rule_priority = 15
