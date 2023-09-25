@@ -4,7 +4,7 @@ locals {
   name_prefix               = "${local.stack_name}-${var.environment}"
   service_name              = "bankrupt-officer-srch-web"
   container_port            = "3000" # default node port required here until prod docker container is built allowing port change via env var
-  docker_repo               = "bankrupt-officer-search-web"
+  docker_repo               = "bankrupt-officer-srch-web"
   lb_listener_rule_priority = 15
   lb_listener_paths         = ["/admin/officer-search/scottish-bankrupt-officer", "/admin/officer-search/scottish-bankrupt-officer/*"]
   healthcheck_path          = "/admin/officer-search/scottish-bankrupt-officer/healthcheck" #healthcheck path for bankrupt officer search web
