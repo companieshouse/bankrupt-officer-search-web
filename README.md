@@ -50,6 +50,10 @@ Development mode is available for this service in [Docker CHS Development](https
 
 Ensure that you are logged into the AWS eu-west-2 region:
 
+`aws sso login` or `aws configure sso`
+
+and then run:
+
 `aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 416670754337.dkr.ecr.eu-west-2.amazonaws.com`
 
 and then run:
