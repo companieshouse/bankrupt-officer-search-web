@@ -1,7 +1,0 @@
-app_name: bankrupt-officer-search-web
-group: web
-weight: 991
-
-routes:
-  1: /admin/officer-search/scottish-bankrupt-officer
-  2: /admin/officer-search/scottish-bankrupt-officer/.*
