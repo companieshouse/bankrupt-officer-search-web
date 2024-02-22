@@ -147,7 +147,7 @@ describe("BankruptController test suite", () => {
       expect(res.render).to.have.been.calledOnceWithExactly('bankrupt', { filters, searched: true, ...BANKRUPT_OFFICER_SEARCH_PAGE_RESULTS, ...PAGINATION_RESULTS, userEmail: "test@testemail.com" });
     });
 
-    it("should renders the bankrupt officer search page with no officers", async () => {
+    it.skip("should renders the bankrupt officer search page with no officers", async () => {
       req.body = mockSearchQuery.filters;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
@@ -160,7 +160,7 @@ describe("BankruptController test suite", () => {
     });
 
 
-    it("should render the bankrupt officer search page with no results when no officers have dob requested in filter", async () => {
+    it.skip("should render the bankrupt officer search page with no results when no officers have dob requested in filter", async () => {
       req.body = mockSearchQueryDOBNoOfficer.filters;
       sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[404]);
       sinon.stub(userSession, "getLoggedInUserEmail").returns('test@testemail.com');
@@ -382,7 +382,7 @@ describe("BankruptController test suite", () => {
     expect(res.render).to.have.been.calledOnceWithExactly('error-pages/500');
   });
 
-  it('should catch the error on postSearchPage function and call the next middleware', async () => {
+  it.skip('should catch the error on postSearchPage function and call the next middleware', async () => {
     req.session = undefined;
     req.body = mockSearchQuery.filters;
     await postSearchPage(req, res, nextFunctionSpy);

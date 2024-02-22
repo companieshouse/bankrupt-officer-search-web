@@ -25,9 +25,18 @@ export const fetchBankruptOfficer = async (session: Session | undefined,
 export const fetchBankruptOfficers = async (session: Session | undefined, 
   query: BankruptOfficerSearchQuery): Promise<Resource<BankruptOfficerSearchResults>> => {
   const client = createOAuthApiClient(session);
-  return await client.badosService.getBankruptOfficers(query)
+  return await client.badosService.getBankruptOfficers(query) 
     .catch((e) => {
+      console.log('>>>>>>>>error: fetchBankruptOfficers');
       logger.error(e);
+      if (e.httpStatusCode === 404) { // In case "404 Not found" throws an error
+        return {
+          itemsPerPage: 0,
+          startIndex: 0,
+          totalResults: 0,
+          items: []
+        };
+      }
       return e;
     });
 };
