@@ -88,6 +88,8 @@ const renderSearchResultsPage = async (req: Request, res: Response, filters: Ban
 
     const results = await fetchBankruptOfficers(req.session, body);
     // Not found officers has to be rendered anyway with an empty list 
+    console.log(">>>>>results");
+    console.log(results);
     if(results.httpStatusCode === 404  || results.httpStatusCode === 200) {
       const userEmail = userSession.getLoggedInUserEmail(req.session);
       const { itemsPerPage = 0, startIndex = 0, totalResults = 0, items = [] } = results.resource || {};

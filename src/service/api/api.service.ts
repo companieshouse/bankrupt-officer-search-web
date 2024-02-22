@@ -28,6 +28,7 @@ export const fetchBankruptOfficers = async (session: Session | undefined,
   return await client.badosService.getBankruptOfficers(query) 
     .catch((e) => {
       console.log('>>>>>>>>error: fetchBankruptOfficers');
+      console.log(e);
       logger.error(e);
       if (e.httpStatusCode === 404) { // In case "404 Not found" throws an error
         return {
