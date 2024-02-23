@@ -32,10 +32,13 @@ export const fetchBankruptOfficers = async (session: Session | undefined,
       logger.error(e);
       if (e.httpStatusCode === 404) { // In case "404 Not found" throws an error
         return {
-          itemsPerPage: 0,
-          startIndex: 0,
-          totalResults: 0,
-          items: []
+          httpStatusCode: e.httpStatusCode,
+          resource: {
+            itemsPerPage: 0,
+            startIndex: 0,
+            totalResults: 0,
+            items: []
+          }
         };
       }
       return e;
