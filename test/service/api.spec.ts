@@ -79,7 +79,7 @@ describe('ApiService Test suite', () => {
     });
   
     errorStatusCode.forEach( httpStatus => {
-      it.skip(`should return the error object with the ${httpStatus} in httpStatusCode field`, async () => {
+      it(`should return the error object with the ${httpStatus} in httpStatusCode field`, async () => {
         const stubRequest = sinon.stub(BadosService.prototype, 'getBankruptOfficers').rejects(mockPostResponse[httpStatus]);
 
         const results = await fetchBankruptOfficers(getSessionRequest(), mockSearchQuery);
