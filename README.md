@@ -5,7 +5,7 @@ Web application for searching for bankrupt officers
 
 - [NodeJS](https://nodejs.org/)
 - [ExpressJS](https://expressjs.com/)
-- [Typescript](https://www.typescriptlang.org/) 
+- [Typescript](https://www.typescriptlang.org/)
 - [NunJucks](https://mozilla.github.io/nunjucks)
 - [GulpJS](https://gulpjs.com/)
 - [GOV.UK Design System](https://design-system.service.gov.uk/)
@@ -62,7 +62,7 @@ and then run:
 
 ### Endpoints
 
-Method | Path | Description
---- | --- | ---
-GET | `/admin/officer-search/scottish-bankrupt-officer` | Returns result(s) for a Scottish bankrupt officer(s) based on search parameters inserted
-GET | `/admin/officer-search/scottish-bankrupt-officer/{id}` | Returns the result for a Scottish bankrupt officer based on the {id}.
+Method | Path                                                   | Description
+------ | ------------------------------------------------------ | -----------
+GET    | `/admin/officer-search/scottish-bankrupt-officer`      | Returns result(s) for a Scottish bankrupt officer(s) based on search parameters inserted
+GET    | `/admin/officer-search/scottish-bankrupt-officer/{id}` | Returns the result for a Scottish bankrupt officer based on the {id}.
