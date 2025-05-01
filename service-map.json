@@ -1,0 +1,16 @@
+{
+    "type": "Service",
+    "name": "bankrupt-officer-search-web",
+    "description": "Web API handling bankrupt officer search",
+    "owned_by": "Titans",
+    "git_repo": "https://github.com/companieshouse/bankrupt-officer-search-web",
+    "public": "true",
+    "users": "bankruptcy & dissolution team",
+    "code_analysis_link": "http://code-analysis.platform.aws.chdev.org:9000/dashboard?id=uk.gov.companieshouse%3Abankrupt-officer-search-web#",    
+    "service_area": "Intelligence and Enforcement",
+    "service_component": "Bankruptcy & Dissolution",
+    "language": "NodeJS",
+    "integration_outgoing": [      
+      "bankrupt-officer-search-api,CALLS_API"
+    ]
+  }
