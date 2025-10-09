@@ -85,20 +85,34 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
 const renderSearchResultsPage = async (req: Request, res: Response, filters: BankruptOfficerSearchFilters) => {
   const body: BankruptOfficerSearchQuery = { startIndex: req.query?.page ? Number(req.query.page) - 1 : 0, itemsPerPage: RESULTS_PER_PAGE, filters};
 
-  const results = await fetchBankruptOfficers(req.session, body);
-  // Not found officers has to be rendered anyway with an empty list 
-  if(results.httpStatusCode === 404  || results.httpStatusCode === 200){
-    const userEmail = userSession.getLoggedInUserEmail(req.session);
-    const { itemsPerPage = 0, startIndex = 0, totalResults = 0, items = [] } = results.resource || {};
-    let paginationData;
-    if (totalResults > 0 && itemsPerPage > 0) {
-      const numOfPages = Math.ceil(totalResults / RESULTS_PER_PAGE);
-      paginationData = buildPaginationData(startIndex + 1, numOfPages, SCOTTISH_BANKRUPT_OFFICER);
+  try {
+    const results = await fetchBankruptOfficers(req.session, body);
+
+    if(results.httpStatusCode === 404  || results.httpStatusCode === 200){
+      const userEmail = userSession.getLoggedInUserEmail(req.session);
+      const { itemsPerPage = 0, startIndex = 0, totalResults = 0, items = [] } = results.resource || {};
+      let paginationData;
+      if (totalResults > 0 && itemsPerPage > 0) {
+        const numOfPages = Math.ceil(totalResults / RESULTS_PER_PAGE);
+        paginationData = buildPaginationData(startIndex + 1, numOfPages, SCOTTISH_BANKRUPT_OFFICER);
+      }
+      return res.render('bankrupt', { filters, pagination: paginationData, itemsPerPage, startIndex, totalResults, items: formattingOfficersInfo(items), searched: true, userEmail });
+    } else {
+      // make sure we never have the "Invalid status code" issue
+      const statusRaw = results?.httpStatusCode;
+      const statusNum = Number(statusRaw);
+
+      const safeStatus =
+          Number.isInteger(statusNum) && statusNum >= 100 && statusNum <= 599 ?
+            statusNum :
+            500; // fallback to known status code
+
+      return res.status(safeStatus).render('error-pages/500');
     }
-    return res.render('bankrupt', { filters, pagination: paginationData, itemsPerPage, startIndex, totalResults, items: formattingOfficersInfo(items), searched: true, userEmail });
-  } else {
-    return res.status(results.httpStatusCode).render('error-pages/500');
-  } 
+  } catch (err) {
+    logger.error(`${err}`);
+    return res.status(500).render('error-pages/500');
+  }
 };
 
 export const generateFiltersFromBody = (req: Request): BankruptOfficerSearchFilters => {
