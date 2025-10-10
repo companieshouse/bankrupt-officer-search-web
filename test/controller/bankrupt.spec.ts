@@ -6,6 +6,7 @@ import sinon from "sinon";
 import { BadosService } from 'private-api-sdk-node/dist/services/bankrupt-officer';
 import { getSearchPage, postSearchPage } from "../../src/controller";
 import { userSession } from '../../src/utils';
+import * as service from '../../src/service';
 
 import {
   BANKRUPT_OFFICER_SEARCH_NO_PAGE_RESULTS,
@@ -383,12 +384,17 @@ describe("BankruptController test suite", () => {
   });
 
   it('should catch the error on postSearchPage function and call the next middleware', async () => {
+    const stub = sinon.stub(service, 'fetchBankruptOfficers').rejects(new Error('boom'));
+
     req.session = undefined;
     req.body = mockSearchQuery.filters;
+
     await postSearchPage(req, res, nextFunctionSpy);
 
-    expect(nextFunctionSpy).to.have.been.calledOnce;
-    expect(res.status).not.called;
-    expect(res.render).not.called;
+    expect(nextFunctionSpy).not.to.have.been.called;
+    expect(res.status).to.have.been.calledOnceWith(500);
+    expect(res.render).to.have.been.calledOnceWith('error-pages/500');
+
+    stub.restore();
   });
 });
