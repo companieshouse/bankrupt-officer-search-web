@@ -85,17 +85,30 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
 const renderSearchResultsPage = async (req: Request, res: Response, filters: BankruptOfficerSearchFilters) => {
   const body: BankruptOfficerSearchQuery = { startIndex: req.query?.page ? Number(req.query.page) - 1 : 0, itemsPerPage: RESULTS_PER_PAGE, filters};
 
+  const ridHeader = req.get?.('x-request-id') ?? req.headers?.['x-request-id'];
+  const rid = Array.isArray(ridHeader) ? (ridHeader[0] ?? '') : (ridHeader ?? '');
+
+  logger.info(`[${rid}] search:start`);
+  logger.info(`[${rid}] search:body si=${body.startIndex} ipp=${body.itemsPerPage}`);
+
   try {
+    logger.info(`[${rid}] fetch:start`);
     const results = await fetchBankruptOfficers(req.session, body);
+    logger.info(`[${rid}] fetch:done status=${results?.httpStatusCode}`);
 
     if(results.httpStatusCode === 404  || results.httpStatusCode === 200){
+      logger.info(`[${rid}] render:bankrupt:start`);
       const userEmail = userSession.getLoggedInUserEmail(req.session);
       const { itemsPerPage = 0, startIndex = 0, totalResults = 0, items = [] } = results.resource || {};
       let paginationData;
       if (totalResults > 0 && itemsPerPage > 0) {
         const numOfPages = Math.ceil(totalResults / RESULTS_PER_PAGE);
+        logger.info(`[${rid}] pagination pages=${numOfPages} page=${startIndex + 1}`);
         paginationData = buildPaginationData(startIndex + 1, numOfPages, SCOTTISH_BANKRUPT_OFFICER);
+      } else {
+        logger.info(`[${rid}] pagination skip (empty)`);
       }
+      logger.info(`[${rid}] render:bankrupt:done total=${totalResults} items=${items.length}`);
       return res.render('bankrupt', { filters, pagination: paginationData, itemsPerPage, startIndex, totalResults, items: formattingOfficersInfo(items), searched: true, userEmail });
     } else {
       // make sure we never have the "Invalid status code" issue
@@ -107,11 +120,16 @@ const renderSearchResultsPage = async (req: Request, res: Response, filters: Ban
             statusNum :
             500; // fallback to known status code
 
-      return res.status(safeStatus).render('error-pages/500');
+      logger.info(`[${rid}] render:500:from-status status=${statusRaw} safe=${safeStatus}`);
+      const out = res.status(safeStatus).render('error-pages/500');
+      logger.info(`[${rid}] render:500:done`);
+      return out;
     }
   } catch (err) {
-    logger.error(`${err}`);
-    return res.status(500).render('error-pages/500');
+    logger.error(`[${rid}] catch:error ${(err instanceof Error) ? err.message : String(err)}`);
+    const out = res.status(500).render('error-pages/500');
+    logger.info(`[${rid}] render:500:from-catch`);
+    return out;
   }
 };
 
