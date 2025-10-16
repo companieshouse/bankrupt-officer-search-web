@@ -85,10 +85,9 @@ export const postSearchPage = async (req: Request, res: Response, next: NextFunc
 const renderSearchResultsPage = async (req: Request, res: Response, filters: BankruptOfficerSearchFilters) => {
   const body: BankruptOfficerSearchQuery = { startIndex: req.query?.page ? Number(req.query.page) - 1 : 0, itemsPerPage: RESULTS_PER_PAGE, filters};
 
-  const rid =
-      (typeof req.get === 'function' && (req.get('x-request-id') as string)) ||
-      ((req as any)?.headers?.['x-request-id'] as string) ||
-      '';
+  const ridHeader = req.get?.('x-request-id') ?? req.headers?.['x-request-id'];
+  const rid = Array.isArray(ridHeader) ? (ridHeader[0] ?? '') : (ridHeader ?? '');
+
   logger.info(`[${rid}] search:start`);
   logger.info(`[${rid}] search:body si=${body.startIndex} ipp=${body.itemsPerPage}`);
 
