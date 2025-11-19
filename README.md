@@ -12,7 +12,6 @@ Web application for searching for bankrupt officers
 - [Mocha](https://mochajs.org/)
 - [Chai](https://www.chaijs.com/)
 - [Docker](https://www.docker.com/)
-- [Tilt](https://tilt.dev/)
 
 ## Recommendations
 
