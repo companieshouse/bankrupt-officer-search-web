@@ -35,8 +35,8 @@ Development mode is available for this service in [Docker CHS Development](https
 
 ### Requirements
 
-1. node v18 (Concourse pipeline builds using Node 18 and live runs on Node 18)
-2. npm 8.6+
+1. node v24 (Concourse pipeline builds using Node 24 and live runs on Node 24)
+2. npm 10.8+
 3. Docker
 
 ### Build and Test changes
