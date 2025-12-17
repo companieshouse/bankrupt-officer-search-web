@@ -17,7 +17,8 @@
     "test": "NODE_ENV=test && mocha --file './test/setup.ts' --require ts-node/register './test/**/*.spec.ts'",
     "test:watch": "mocha --file './test/setup.ts' --require ts-node/register './test/**/*.spec.ts' --watch",
     "test:coverage": "nyc npm test",
-    "analyse-code": "sonar-scanner"
+    "analyse-code": "sonar-scanner",
+    "chs-dev": "nodemon --legacy-watch"
   },
   "keywords": [],
   "author": "",
@@ -59,11 +60,11 @@
     "chai": "^4.3.10",
     "del": "^7.1.0",
     "eslint": "^8.50.0",
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.1",
     "gulp-nodemon": "^2.5.0",
     "gulp-typescript": "^6.0.0-alpha.1",
     "mocha": "^10.2.0",
-    "nodemon": "^3.0.1",
+    "nodemon": "^3.1.11",
     "nyc": "^15.1.0",
     "sinon": "^16.0.0",
     "sinon-chai": "^3.7.0",
@@ -74,8 +75,7 @@
   },
   "overrides": {
     "nodemon": "$nodemon",
-    "glob-parent": "^5.1.2",
-    "chokidar": "^2.1.8"
+    "gulp": "$gulp"
   },
   "nodemonConfig": {
     "watch": [
