@@ -50,3 +50,7 @@ sonar: test
 .PHONY: security-check
 security-check:
 	npm audit
+
+.PHONY: dependency-check
+dependency-check:
+	npm audit
