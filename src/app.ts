@@ -36,11 +36,13 @@ import {
 } from './config';
 
 const app = express();
+const isLocalDocker = process.env.LOCAL_DOCKER === 'true';
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(helmet({
+  hsts: isLocalDocker ? false: undefined,
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
@@ -55,7 +57,9 @@ app.use(helmet({
         'www.piwiki.com/piwik.js',
         CDN_HOST
       ],
-      objectSrc: ["'none'"]
+      objectSrc: ["'none'"],
+      // disable auto-upgrade outside prod
+      upgradeInsecureRequests: isLocalDocker ? null : []
     }
   }
 }));
