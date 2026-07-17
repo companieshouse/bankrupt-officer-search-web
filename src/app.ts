@@ -58,7 +58,7 @@ app.use(helmet({
         CDN_HOST
       ],
       objectSrc: ["'none'"],
-      // disable auto-upgrade outside prod
+     
       upgradeInsecureRequests: isLocalDocker ? null : []
     }
   }
