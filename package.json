@@ -76,7 +76,8 @@
   "overrides": {
     "nodemon": "$nodemon",
     "gulp": "$gulp",
-    "serialize-javascript": "^7.0.5"
+    "serialize-javascript": "^7.0.5",
+    "adm-zip": ">=0.6.0"
   },
   "nodemonConfig": {
     "watch": [

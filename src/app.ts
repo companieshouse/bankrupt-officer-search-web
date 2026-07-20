@@ -32,17 +32,17 @@ import {
   CACHE_SERVER,
   APPLICATION_NAME,
   SCOTTISH_BANKRUPT_OFFICER,
-  SCOTTISH_BANKRUPT_OFFICER_DETAILS
+  SCOTTISH_BANKRUPT_OFFICER_DETAILS,
+  IS_LOCAL_DOCKER
 } from './config';
 
 const app = express();
-const isLocalDocker = process.env.LOCAL_DOCKER === 'true';
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(helmet({
-  hsts: isLocalDocker ? false: undefined,
+  hsts: IS_LOCAL_DOCKER ? false: undefined,
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
@@ -59,7 +59,7 @@ app.use(helmet({
       ],
       objectSrc: ["'none'"],
      
-      upgradeInsecureRequests: isLocalDocker ? null : []
+      upgradeInsecureRequests: IS_LOCAL_DOCKER ? null : []
     }
   }
 }));

@@ -27,6 +27,8 @@ export const CHS_URL = getEnvironmentValue("CHS_URL");
 export const API_KEY = getEnvironmentValue("CHS_API_KEY");
 export const COOKIE_DOMAIN = getEnvironmentValue("COOKIE_DOMAIN");
 export const INTERNAL_API_URL = getEnvironmentValue("INTERNAL_API_URL");
+// This is used to determine if the application is running in a local docker environment or not. It is set in the docker-compose.yml file.
+export const IS_LOCAL_DOCKER = process.env.LOCAL_DOCKER;
 
 export const APPLICATION_NAME = "bankrupt-officer-search-web";
 export const SCOTTISH_BANKRUPT_OFFICER = "/admin/officer-search/scottish-bankrupt-officer";
