@@ -10,8 +10,9 @@ import { logger } from "./utils";
 /**
  * Get port from environment and store in Express.
  */
-
-const port = normalizePort(process.env.PORT || process.argv0);
+const portArgIndex = process.argv.findIndex(argv => argv.startsWith('--PORT'));
+const portArgV = portArgIndex !== -1 ? process.argv[portArgIndex].split('=')[1] : process.env.PORT;
+const port = normalizePort(portArgV || process.argv[2]);
 app.set("port", port);
 
 /**
