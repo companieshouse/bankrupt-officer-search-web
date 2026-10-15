@@ -63,7 +63,7 @@
     "gulp": "^5.0.1",
     "gulp-nodemon": "^2.5.0",
     "gulp-typescript": "^6.0.0-alpha.1",
-    "mocha": "^10.2.0",
+    "mocha": "^11.3.0",
     "nodemon": "^3.1.11",
     "nyc": "^18.0.0",
     "sinon": "^16.0.0",
@@ -84,7 +84,9 @@
     },
     "@istanbuljs/load-nyc-config": {
       "js-yaml": "^4.3.2"
-    }
+    },
+    "braces": "^3.0.3",
+    "micromatch": "^4.0.8"
   },
   "nodemonConfig": {
     "watch": [
