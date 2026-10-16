@@ -15,6 +15,22 @@ describe('Validation test suite', () => {
       expect((isValidDate(fromDate))).to.be.true;
     });
 
+    ['1980-01-01', '1980-1-1', '1980-01-1', '1980-1-01'].forEach((date) => {
+      it(`should return true for valid date ${date}`, function () {
+        expect(isValidDate(date)).to.be.true;
+      });
+    });
+
+    ['1980-02-30', '1980-13-01', '1980-00-10', '1980-01-32', '1980/01/01', '19800101', 'abcd-01-01'].forEach((date) => {
+      it(`should return false for invalid date ${date}`, function () {
+        expect(isValidDate(date)).to.be.false;
+      });
+    });
+
+    it('should return undefined for an empty string', function () {
+      expect(isValidDate('')).to.be.undefined;
+    });
+
   });
   describe('validation for fromDobInvalid method return boolean if conditions are met', () => {
     it('should return true when future fromDob is used', function () {

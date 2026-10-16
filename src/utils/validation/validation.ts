@@ -6,7 +6,10 @@ const now = moment();
 export function isValidDate(input: moment.MomentInput): boolean | undefined {
   const minDate = moment.utc("0001-01-01");
   if(input !== ''){
-    return moment(input, 'YYYY-M-D', true).isValid() && (moment(input, 'YYYY-M-D').isAfter(minDate));
+    // moment >= 2.30 strict mode no longer accepts zero-padded values for the 'M'/'D' tokens
+    const formats = ['YYYY-M-D', 'YYYY-MM-DD', 'YYYY-MM-D', 'YYYY-M-DD'];
+    const parsedDate = moment(input, formats, true);
+    return parsedDate.isValid() && parsedDate.isAfter(minDate);
   }
 }
   
