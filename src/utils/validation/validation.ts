@@ -8,7 +8,8 @@ export function isValidDate(input: moment.MomentInput): boolean | undefined {
   if(input !== ''){
     // moment >= 2.30 strict mode no longer accepts zero-padded values for the 'M'/'D' tokens
     const formats = ['YYYY-M-D', 'YYYY-MM-DD', 'YYYY-MM-D', 'YYYY-M-DD'];
-    return moment(input, formats, true).isValid() && moment(input, formats, true).isAfter(minDate);
+    const parsedDate = moment(input, formats, true);
+    return parsedDate.isValid() && parsedDate.isAfter(minDate);
   }
 }
   
