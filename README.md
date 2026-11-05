@@ -17,7 +17,7 @@ Web application for searching for bankrupt officers
 
 We recommend the use of [Visual Studio Code](https://code.visualstudio.com/) for development as it allows the installation of the [ESLint](https://marketplace.visualstudio.com/items?itemName=rvest.vs-code-prettier-eslint) and the [Nunjucks](https://marketplace.visualstudio.com/items?itemName=ronnidc.nunjucks) plugins. These plugins will make linting of TS and Nunjuck much better than most code editors.
 
-IntelliJ does not have a Nunjuck plugin but you can configure IntelliJ to provide syntax highlighting using Twig plugin
+IntelliJ does not have a Nunjuck plugin but you can configure IntelliJ to provide syntax highlighting using Twig plugin.
 
 ## Running locally
 
